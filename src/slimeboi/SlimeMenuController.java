@@ -45,20 +45,20 @@ public class SlimeMenuController implements Initializable {
 
     @FXML
     private void startPulsar(ActionEvent event) {
-       /*
+       
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("SlimeLevel1.fxml"));
             Scene scene = new Scene(root);
             
-            
+            Stage stage = (Stage) fondo.getScene().getWindow();
             
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(SlimeMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+        
         
     }
 
