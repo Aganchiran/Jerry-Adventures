@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    
+    .vbox-custom{
+        -fx-background-image: url("slimeboi.resources/bgf1.png"); 
+    } 
+
+}
