@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -39,23 +40,25 @@ public class SlimeMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        fondo.getStyleClass().add("vbox-custom");
+        fondo.setId("vbox-custom");
     }
 
     @FXML
     private void startPulsar(ActionEvent event) {
-       /* 
+       /*
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("SlimeLevel1.fxml"));
             Scene scene = new Scene(root);
-        
+            
+            
+            
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(SlimeMenuController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
+        }
+        */
         
     }
 

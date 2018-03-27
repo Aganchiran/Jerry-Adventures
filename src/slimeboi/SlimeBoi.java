@@ -26,6 +26,7 @@ public class SlimeBoi extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     /**
