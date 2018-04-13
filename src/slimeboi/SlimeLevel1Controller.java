@@ -7,7 +7,13 @@ package slimeboi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.AnimationTimer;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * FXML Controller class
@@ -16,12 +22,40 @@ import javafx.fxml.Initializable;
  */
 public class SlimeLevel1Controller implements Initializable {
 
+    @FXML
+    private Canvas canvas;
+    private double x = 10;
+    private double y = 10;
+    private int xInc = 5;
+    private int yInc = 5;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        
+        
+        new AnimationTimer()
+        {
+            public void handle(long currentNanoTime)
+            {
+                gc.clearRect(0, 0, 600, 400);
+                gc.fillOval(x, y, 10, 10);
+                
+                if(x == 590)xInc = xInc * -1;
+                if(x == 0)xInc = xInc * -1;
+                if(y == 390) yInc = yInc * -1;
+                if(y == 0) yInc = yInc * -1;
+                
+                x += xInc;
+                y += yInc;
+                
+            }
+        }.start();
+        
     }    
     
 }
