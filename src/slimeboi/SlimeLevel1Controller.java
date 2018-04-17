@@ -14,6 +14,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
+import slimeboi.creatures.Jerry;
+import slimeboi.graphics.CustomAnimation;
 
 /**
  * FXML Controller class
@@ -36,12 +41,14 @@ public class SlimeLevel1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        //Jerry jerry = new Jerry(0,0);
         
         
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
+                
                 gc.clearRect(0, 0, 600, 400);
                 gc.fillOval(x, y, 10, 10);
                 
