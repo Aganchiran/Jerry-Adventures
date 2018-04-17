@@ -16,21 +16,39 @@ import javafx.scene.image.WritableImage;
  */
 public class CustomAnimation {
     
-    public WritableImage[] sequence;
+    private WritableImage[] sequence;
+    private int frameRate;
+    private int numFrames;
+    private int frameAdjustement;
+    private int currentAnimationFrame = 0;
     
-    public CustomAnimation(String url, int numFrames, int x, int y, int width, int height){
+    public CustomAnimation(String url, int numFrames, int x, int y, int width, int height, int frameRate){
+        
+        sequence = new WritableImage[numFrames];
+        this.frameRate = frameRate;
+        this.numFrames = numFrames;
+        frameAdjustement = 60/frameRate;
+        
         Image SpriteSheet = new Image(url);//"slimeboi/resources/JerrySpriteSheet.png"
         PixelReader reader = SpriteSheet.getPixelReader();
         
-        for(int i = 0 ; i < numFrames ; i++){
-            WritableImage frame = new WritableImage(reader, x + ((i % 10) * width), y + ((i / 10) * height), width, height);
-            sequence[i] = frame;
+        for(int i = x ; i < numFrames + x ; i++){
+            WritableImage frame = new WritableImage(reader, ((i % 10) * width), (y * height) + ((i / 10) * height), width, height);
+            sequence[i - x] = frame;
         }
         
     }
     
-    public void play(GraphicsContext gc){
+    public Image nextFrame(){
         
+        if(frameAdjustement != 0){
+            frameAdjustement--;
+        }else{
+            frameAdjustement = 60/frameRate;
+            currentAnimationFrame = (currentAnimationFrame + 1) % numFrames;
+        }
+        
+        return sequence[currentAnimationFrame];
     }
     
 }

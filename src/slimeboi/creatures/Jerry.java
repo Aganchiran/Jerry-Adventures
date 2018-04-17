@@ -14,16 +14,40 @@ import slimeboi.graphics.CustomAnimation;
  */
 public class Jerry extends Creature{
     
-    private CustomAnimation idle = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 26, 0, 0, 64, 64);
+    private final String url = "slimeboi/resources/JerrySpriteSheet.png";
+    private final int frameWidth = 64;
+    private final int frameHeight = 64;
+    
+    private CustomAnimation currentAnimation;
+    
+    private CustomAnimation idleRight = new CustomAnimation(url, 26, 0, 0, frameWidth, frameHeight, 16);
+    private CustomAnimation idleLeft = new CustomAnimation(url, 26, 0, 3, frameWidth, frameHeight, 16);
+    private CustomAnimation right = new CustomAnimation(url, 26, 0, 6, frameWidth, frameHeight, 16);
+    private CustomAnimation left = new CustomAnimation(url, 26, 0, 9, frameWidth, frameHeight, 16);
+    private CustomAnimation endJumpRight = new CustomAnimation(url, 11, 0, 12, frameWidth, frameHeight, 30);
+    private CustomAnimation endJumpLeft = new CustomAnimation(url, 11, 0, 14, frameWidth, frameHeight, 30);
+    private CustomAnimation onAirRight = new CustomAnimation(url, 1, 0, 26, frameWidth, frameHeight, 60);
+    private CustomAnimation onAirLeft = new CustomAnimation(url, 1, 0, 27, frameWidth, frameHeight, 60);
+    
+    private CustomAnimation biteRight = new CustomAnimation(url, 18, 0, 16, frameWidth, frameHeight, 30);
+    private CustomAnimation biteLeft = new CustomAnimation(url, 18, 0, 18, frameWidth, frameHeight, 30);
+    private CustomAnimation fatIdleRight = new CustomAnimation(url, 16, 0, 20, frameWidth, frameHeight, 12);
+    private CustomAnimation fatIdleLeft = new CustomAnimation(url, 16, 0, 22, frameWidth, frameHeight, 12);
+    private CustomAnimation fatRight = new CustomAnimation(url, 10, 0, 24, frameWidth, frameHeight, 6);
+    private CustomAnimation fatLeft = new CustomAnimation(url, 10, 0, 25, frameWidth, frameHeight, 6);
+    
+    
+    
     
     public Jerry(float xPos, float yPos){
         super(xPos, yPos);
         
+        currentAnimation = idleRight;
     }
     
-    public void render(GraphicsContext gc, int i){
+    public void render(GraphicsContext gc){
         
-        gc.drawImage(idle.sequence[i], xPos, yPos);
+        gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
         
     }
     

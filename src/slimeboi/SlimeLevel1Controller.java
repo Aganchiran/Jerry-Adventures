@@ -29,6 +29,7 @@ public class SlimeLevel1Controller implements Initializable {
 
     @FXML
     private Canvas canvas;
+    
     private double x = 10;
     private double y = 10;
     private int xInc = 5;
@@ -41,25 +42,17 @@ public class SlimeLevel1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        //Jerry jerry = new Jerry(0,0);
+        Jerry jerry = new Jerry(0,0);
         
         
+        //GAME LOOP//
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
                 
                 gc.clearRect(0, 0, 600, 400);
-                gc.fillOval(x, y, 10, 10);
-                
-                if(x == 590)xInc = xInc * -1;
-                if(x == 0)xInc = xInc * -1;
-                if(y == 390) yInc = yInc * -1;
-                if(y == 0) yInc = yInc * -1;
-                
-                x += xInc;
-                y += yInc;
-                
+                jerry.render(gc);
             }
         }.start();
         
