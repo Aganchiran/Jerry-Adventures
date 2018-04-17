@@ -17,8 +17,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyEvent;
 import slimeboi.creatures.Jerry;
 import slimeboi.graphics.CustomAnimation;
+import slimeboi.input.KeyManager;
 
 /**
  * FXML Controller class
@@ -45,12 +47,12 @@ public class SlimeLevel1Controller implements Initializable {
         Jerry jerry = new Jerry(0,0);
         
         
+        
         //GAME LOOP//
         new AnimationTimer()
         {
             public void handle(long currentNanoTime)
             {
-                
                 gc.clearRect(0, 0, 600, 400);
                 jerry.render(gc);
             }
@@ -58,4 +60,13 @@ public class SlimeLevel1Controller implements Initializable {
         
     }    
     
+    public void listenKeys(){
+        canvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, KeyEvent -> {
+            KeyManager.pressingKey(KeyEvent);
+        });
+        
+        canvas.getScene().addEventFilter(KeyEvent.KEY_RELEASED, KeyEvent -> {
+            KeyManager.releasingKey(KeyEvent);
+        });
+    }
 }

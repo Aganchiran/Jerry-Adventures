@@ -7,6 +7,7 @@ package slimeboi.creatures;
 
 import javafx.scene.canvas.GraphicsContext;
 import slimeboi.graphics.CustomAnimation;
+import slimeboi.input.KeyManager;
 
 /**
  *
@@ -46,6 +47,8 @@ public class Jerry extends Creature{
     }
     
     public void render(GraphicsContext gc){
+        if(KeyManager.checkKey()) currentAnimation = right;
+        else currentAnimation = idleRight;
         
         gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
         

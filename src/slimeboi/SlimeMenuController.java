@@ -48,12 +48,16 @@ public class SlimeMenuController implements Initializable {
        
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("SlimeLevel1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SlimeLevel1.fxml"));
+            root = loader.load();
             Scene scene = new Scene(root);
             
             Stage stage = (Stage) fondo.getScene().getWindow();
             
             stage.setScene(scene);
+            
+            SlimeLevel1Controller level = loader.getController();
+            level.listenKeys();
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(SlimeMenuController.class.getName()).log(Level.SEVERE, null, ex);
