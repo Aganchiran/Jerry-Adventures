@@ -5,6 +5,9 @@
  */
 package slimeboi.creatures;
 
+import javafx.scene.canvas.GraphicsContext;
+import slimeboi.graphics.CustomAnimation;
+
 /**
  *
  * @author Javier Pastor Pérez
@@ -13,6 +16,7 @@ public abstract class Creature {
     protected double xPos,yPos;
     protected int health;
     protected double speed;
+    protected CustomAnimation currentAnimation;
     
     public static final int DEFAULT_HEALTH = 3;
     public static final double DEFAULT_SPEED = 10;
@@ -24,6 +28,17 @@ public abstract class Creature {
         this.speed = DEFAULT_SPEED;
     }
     
+    public void render(GraphicsContext gc){
+        updateState();
+        move();
+        gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
+    }
+    
+    public void move(){
+        xPos += speed;
+    }
+    
+    public abstract void updateState();
     
     public double getXPos(){
         return xPos;

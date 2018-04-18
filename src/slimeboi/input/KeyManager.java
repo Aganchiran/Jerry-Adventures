@@ -5,7 +5,7 @@
  */
 package slimeboi.input;
 
-import javafx.scene.input.KeyCode;
+import java.util.HashMap;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -13,21 +13,25 @@ import javafx.scene.input.KeyEvent;
  * @author Javier Pastor Pérez
  */
 public class KeyManager {
-    private static boolean key;
+    public static final int RIGHT = 0;
+    public static final int LEFT = 1;
+ 
+    private static final HashMap keyMap = new HashMap(110);
     
-    public static boolean checkKey(){
+    public static boolean checkKey(String id){
         
-        return key;
+        return (boolean) keyMap.getOrDefault(id, false);
     }
     
     public static void pressingKey(KeyEvent e){
-        key = e.getCode() == KeyCode.D;
-        System.out.println(key);
+        
+        keyMap.put(e.getCode().getName(), true);
+        
     }
     
     public static void releasingKey(KeyEvent e){
-        key = !(e.getCode() == KeyCode.D);
-        System.out.println(key);
+        
+        keyMap.put(e.getCode().getName(), false);
     }
     
 }
