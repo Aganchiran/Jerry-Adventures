@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slimeboi.creatures;
+package slimeboi.entities.creatures;
 
 import javafx.scene.canvas.GraphicsContext;
+import slimeboi.entities.Entity;
 import slimeboi.graphics.CustomAnimation;
 
 /**
  *
  * @author Javier Pastor Pérez
  */
-public abstract class Creature {
-    protected double xPos,yPos;
+public abstract class Creature extends Entity{
     protected int health;
     protected double speed;
     protected CustomAnimation currentAnimation;
@@ -21,9 +21,8 @@ public abstract class Creature {
     public static final int DEFAULT_HEALTH = 3;
     public static final double DEFAULT_SPEED = 10;
     
-    public Creature(double xPos, double yPos){
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Creature(double xPos, double yPos, double width, double height){
+        super(xPos, yPos, width, height);
         this.health = DEFAULT_HEALTH;
         this.speed = DEFAULT_SPEED;
     }
@@ -40,13 +39,7 @@ public abstract class Creature {
     
     public abstract void updateState();
     
-    public double getXPos(){
-        return xPos;
-    }
-    
-    public double getYPos(){
-        return yPos;
-    }
+   
     
     public int getHealth(){
         return health;
@@ -55,15 +48,7 @@ public abstract class Creature {
     public double getSpeed(){
         return speed;
     }
-    
-    public void setXPos(double newXPos){
-        xPos = newXPos;
-    }
-    
-    public void setYPos(double newYPos){
-        yPos = newYPos;
-    }
-    
+        
     public void setHealth(int newHealth){
         health = newHealth;
     }

@@ -25,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author sabehas
  */
-public class SlimeMenuController implements Initializable {
+public class MainMenu implements Initializable {
 
     @FXML
     private Button startButton;
@@ -36,6 +36,8 @@ public class SlimeMenuController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,7 +50,7 @@ public class SlimeMenuController implements Initializable {
        
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SlimeLevel1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             root = loader.load();
             Scene scene = new Scene(root);
             
@@ -56,11 +58,11 @@ public class SlimeMenuController implements Initializable {
             
             stage.setScene(scene);
             
-            SlimeLevel1Controller level = loader.getController();
+            Game level = loader.getController();
             level.listenKeys();
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(SlimeMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

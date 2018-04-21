@@ -10,16 +10,12 @@ import java.util.ResourceBundle;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
-import slimeboi.creatures.Jerry;
-import slimeboi.graphics.CustomAnimation;
+import slimeboi.entities.creatures.Jerry;
+import slimeboi.entities.tiles.EarthTile;
+import slimeboi.graphics.Assets;
 import slimeboi.input.KeyManager;
 
 /**
@@ -27,34 +23,42 @@ import slimeboi.input.KeyManager;
  *
  * @author sabehas
  */
-public class SlimeLevel1Controller implements Initializable {
+public class Game implements Initializable {
 
     @FXML
     private Canvas canvas;
     
-    private double x = 10;
-    private double y = 10;
-    private int xInc = 5;
-    private int yInc = 5;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Jerry jerry = new Jerry(0,0);
+        Jerry jerry = new Jerry(0,550,64,64);
+        EarthTile[] ets = new EarthTile[200];
+        for(int i = 0 ; i < 100 ; i++){
+            ets[i] = new EarthTile((i * 32), 597,Assets.EarthUC);
+            ets[i + 100] = new EarthTile((i * 32), 629,Assets.EarthCC);
+        }
         
         
         
         //GAME LOOP//
         new AnimationTimer()
         {
+            @Override
             public void handle(long currentNanoTime)
             {
-                gc.clearRect(0, 0, 600, 400);
+                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 jerry.render(gc);
+                
+                for(int i = 0 ; i < 200 ; i++){
+                    ets[i].render(gc);
+                }
             }
         }.start();
         

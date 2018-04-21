@@ -15,14 +15,14 @@ import javafx.stage.Stage;
  *
  * @author sabehas
  */
-public class SlimeBoi extends Application {
+public class Launcher extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SlimeMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("slimeboi/slimelevel1.css");
+        scene.getStylesheets().add("slimeboi/slime.css");
         
         stage.setScene(scene);
         stage.show();
