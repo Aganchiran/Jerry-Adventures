@@ -43,6 +43,8 @@ public class MainMenu implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         fondo.setId("vbox-custom");
+        startButton.setId("start-custom");
+        quitButton.setId("quit-custom");
     }
 
     @FXML
