@@ -15,6 +15,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import slimeboi.entities.creatures.Jerry;
 import slimeboi.entities.tiles.EarthTile;
+import slimeboi.entities.tiles.SkyTile;
+import slimeboi.entities.tiles.Tile;
 import slimeboi.graphics.Assets;
 import slimeboi.input.KeyManager;
 
@@ -27,6 +29,7 @@ public class Game implements Initializable {
 
     @FXML
     private Canvas canvas;
+    public Tile[][] tiles = new Tile[100][21];
     
 
     /**
@@ -38,14 +41,18 @@ public class Game implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Jerry jerry = new Jerry(0,550,64,64);
-        EarthTile[] ets = new EarthTile[200];
+        Jerry jerry = new Jerry(0, 550, 23, 16, 21, 30, this);
+
         for(int i = 0 ; i < 100 ; i++){
-            ets[i] = new EarthTile((i * 32), 597,Assets.EarthUC);
-            ets[i + 100] = new EarthTile((i * 32), 629,Assets.EarthCC);
+            for(int j = 0 ; j < 19 ; j++){
+               tiles[i][j] = new SkyTile((i * 32), 597 - (32 * (j + 1)),Assets.Sky, this);
+            }
+            tiles[i][19] = new EarthTile((i * 32), 597,Assets.EarthUC, this);
+            tiles[i][20] = new EarthTile((i * 32), 629,Assets.EarthCC, this);
         }
-        
-        
+
+        tiles[5][18] = new EarthTile((5 * 32), 565,Assets.EarthUC, this);
+        tiles[5][19] = new EarthTile((5 * 32), 597,Assets.EarthCC, this);
         
         //GAME LOOP//
         new AnimationTimer()
@@ -54,11 +61,14 @@ public class Game implements Initializable {
             public void handle(long currentNanoTime)
             {
                 gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                jerry.render(gc);
-                
-                for(int i = 0 ; i < 200 ; i++){
-                    ets[i].render(gc);
+
+                for(int i = 0 ; i < 100 ; i++){
+                    for(int j = 0 ; j < 21 ; j++){
+                        tiles[i][j].render(gc);
+                    }
                 }
+                
+                jerry.render(gc);
             }
         }.start();
         

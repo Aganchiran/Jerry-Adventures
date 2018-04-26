@@ -7,6 +7,7 @@ package slimeboi.entities.tiles;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import slimeboi.Game;
 import slimeboi.entities.Entity;
 
 /**
@@ -15,15 +16,17 @@ import slimeboi.entities.Entity;
  */
 public abstract class Tile extends Entity{
     protected Image texture;
-    private static final double DEFAULT_SIZE = 64;
+    private static final double DEFAULT_WIDTH = 32;
+    private static final double DEFAULT_HEIGHT = 32;
     
-    public Tile(double xPos, double yPos){
-        super(xPos, yPos, DEFAULT_SIZE, DEFAULT_SIZE);
+    public Tile(double xPos, double yPos, Game game){
+        super(xPos, yPos, DEFAULT_WIDTH, DEFAULT_HEIGHT, 0, 0, game);
         
     }
     public abstract boolean isSolid();
     
 
+    @Override
     public void render(GraphicsContext gc){
         gc.drawImage(texture, xPos, yPos);
     }

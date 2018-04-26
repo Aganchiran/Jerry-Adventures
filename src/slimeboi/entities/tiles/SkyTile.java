@@ -12,16 +12,16 @@ import slimeboi.Game;
  *
  * @author Javier Pastor Pérez
  */
-public class EarthTile extends Tile{
+public class SkyTile extends Tile{
 
-    public EarthTile(double xPos, double yPos, Image texture, Game game) {
+    public SkyTile(double xPos, double yPos, Image texture, Game game) {
         super(xPos, yPos, game);
         super.texture = texture;
     }
 
     @Override
     public boolean isSolid() {
-        return true;
+        return false;
     }
-
+    
 }

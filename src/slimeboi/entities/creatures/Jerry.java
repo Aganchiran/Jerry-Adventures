@@ -6,6 +6,7 @@
 package slimeboi.entities.creatures;
 
 import javafx.scene.input.KeyCode;
+import slimeboi.Game;
 import slimeboi.graphics.Assets;
 import slimeboi.input.KeyManager;
 
@@ -17,11 +18,11 @@ public class Jerry extends Creature{
     
 
     private String orientation = "right";
-    private int currentFrame = 0;
+
     
     
-    public Jerry(double xPos, double yPos, double width, double height){
-        super(xPos, yPos, width, height);
+    public Jerry(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
+        super(xPos, yPos, width, height, xOffset, yOffset, game);
         
         currentAnimation = Assets.idleRight;
     }
@@ -33,13 +34,13 @@ public class Jerry extends Creature{
             currentAnimation = Assets.right;
             
             orientation = "right";
-            speed = 1;
+            xIncrement = 1;
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){
             Assets.left.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
             currentAnimation = Assets.left;
             
             orientation = "left";
-            speed = -1;
+            xIncrement = -1;
         }else{
             if(orientation.equals("right")){
                 Assets.idleRight.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
@@ -48,7 +49,7 @@ public class Jerry extends Creature{
                 Assets.idleLeft.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
                 currentAnimation = Assets.idleLeft;
             }
-            speed = 0;
+            xIncrement = 0;
         }
     }
     

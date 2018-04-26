@@ -5,7 +5,9 @@
  */
 package slimeboi.entities;
 
+import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
+import slimeboi.Game;
 
 /**
  *
@@ -14,17 +16,24 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class Entity {
     protected double xPos;
     protected double yPos;
-    protected double width;
-    protected double height;
+
+    protected BoundingBox hitBox;
+    protected Game game;
     
-    public Entity(double xPos, double yPos, double width, double height){
+    
+    public Entity(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
         this.xPos = xPos;
         this.yPos = yPos;
-        this.width = width;
-        this.height = height;
+
+        this.hitBox = new BoundingBox(xOffset, yOffset, width, height);
+        this.game = game;
     }
     
     public abstract void render(GraphicsContext gc);
+    
+    public BoundingBox getCollisionBounds(double xIncrement, double yIncrement){
+        return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
+    }
     
     public double getXPos(){
         return xPos;

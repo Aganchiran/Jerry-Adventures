@@ -6,6 +6,8 @@
 package slimeboi.entities.creatures;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
+import slimeboi.Game;
 import slimeboi.entities.Entity;
 import slimeboi.graphics.CustomAnimation;
 
@@ -15,26 +17,50 @@ import slimeboi.graphics.CustomAnimation;
  */
 public abstract class Creature extends Entity{
     protected int health;
-    protected double speed;
+    protected double xIncrement;
     protected CustomAnimation currentAnimation;
     
     public static final int DEFAULT_HEALTH = 3;
     public static final double DEFAULT_SPEED = 10;
     
-    public Creature(double xPos, double yPos, double width, double height){
-        super(xPos, yPos, width, height);
+    public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
+        super(xPos, yPos, width, height, xOffset, yOffset, game);
         this.health = DEFAULT_HEALTH;
-        this.speed = DEFAULT_SPEED;
+        this.xIncrement = 0;
     }
     
+    @Override
     public void render(GraphicsContext gc){
         updateState();
-        move();
+        
+        if(!checkColisions()){
+            move();
+        }
+        
+        
         gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
+        
+        //Descomentar para visualizar hitbox//
+        //gc.setFill(Paint.valueOf("black"));
+        //gc.fillRect(getCollisionBounds(0, 0).getMinX(), getCollisionBounds(0, 0).getMinY(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
+
     }
     
     public void move(){
-        xPos += speed;
+            xPos += xIncrement;
+    }
+    
+    public boolean checkColisions(){
+        
+        for(int i = 0 ; i < 100 ; i++){
+            for(int j = 0 ; j < 21 ; j++){
+                if(game.tiles[i][j].getCollisionBounds(0, 0).intersects(getCollisionBounds(xIncrement, 0)) && game.tiles[i][j].isSolid()){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
     public abstract void updateState();
@@ -46,7 +72,7 @@ public abstract class Creature extends Entity{
     }
     
     public double getSpeed(){
-        return speed;
+        return xIncrement;
     }
         
     public void setHealth(int newHealth){
@@ -54,7 +80,7 @@ public abstract class Creature extends Entity{
     }
     
     public void setSpeed(double newSpeed){
-        speed = newSpeed;
+        xIncrement = newSpeed;
     }
  
 }
