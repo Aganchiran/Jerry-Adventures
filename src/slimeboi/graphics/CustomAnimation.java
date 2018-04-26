@@ -16,9 +16,9 @@ import javafx.scene.image.WritableImage;
  */
 public class CustomAnimation {
     
-    private WritableImage[] sequence;
-    private int frameRate;
-    private int numFrames;
+    private final WritableImage[] sequence;
+    private final int frameRate;
+    private final int numFrames;
     private int frameAdjustement;
     private int currentAnimationFrame = 0;
     
@@ -49,6 +49,13 @@ public class CustomAnimation {
         }
         
         return sequence[currentAnimationFrame];
+    }
+    
+    public int getCurrentAnimationFrame(){
+        return currentAnimationFrame;
+    }
+    public void setCurrentAnimationFrame(int x){
+        currentAnimationFrame = x;
     }
     
 }

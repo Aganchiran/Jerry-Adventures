@@ -15,11 +15,9 @@ import slimeboi.input.KeyManager;
  */
 public class Jerry extends Creature{
     
-    
-    
-    
-    
+
     private String orientation = "right";
+    private int currentFrame = 0;
     
     
     public Jerry(double xPos, double yPos, double width, double height){
@@ -31,17 +29,23 @@ public class Jerry extends Creature{
     @Override
     public void updateState(){
         if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
+            Assets.right.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
             currentAnimation = Assets.right;
+            
             orientation = "right";
             speed = 1;
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){
+            Assets.left.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
             currentAnimation = Assets.left;
+            
             orientation = "left";
             speed = -1;
         }else{
             if(orientation.equals("right")){
+                Assets.idleRight.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
                 currentAnimation = Assets.idleRight;
             }else{
+                Assets.idleLeft.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
                 currentAnimation = Assets.idleLeft;
             }
             speed = 0;
