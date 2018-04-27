@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slimeboi.entities.creatures;
+package slimeboi.entities.creatures.jerry;
 
 import javafx.scene.input.KeyCode;
 import slimeboi.Game;
+import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.Assets;
 import slimeboi.input.KeyManager;
 
@@ -29,7 +30,15 @@ public class Jerry extends Creature{
     
     @Override
     public void updateState(){
-        if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
+        if(isOnAir){
+            if(orientation.equals("right")){
+                currentAnimation = Assets.onAirRight;
+            }else{
+                currentAnimation = Assets.onAirLeft;
+            }
+        }else if(KeyManager.checkKey(KeyCode.SPACE.getName())){
+            yIncrement = -4;
+        }else if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
             Assets.right.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
             currentAnimation = Assets.right;
             
@@ -41,7 +50,7 @@ public class Jerry extends Creature{
             
             orientation = "left";
             xIncrement = -1;
-        }else{
+        }else {
             if(orientation.equals("right")){
                 Assets.idleRight.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
                 currentAnimation = Assets.idleRight;
@@ -52,5 +61,6 @@ public class Jerry extends Creature{
             xIncrement = 0;
         }
     }
+    
     
 }

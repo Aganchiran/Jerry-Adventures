@@ -5,6 +5,7 @@
  */
 package slimeboi.entities.creatures;
 
+import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
@@ -18,7 +19,10 @@ import slimeboi.graphics.CustomAnimation;
 public abstract class Creature extends Entity{
     protected int health;
     protected double xIncrement;
+    protected double yIncrement;
     protected CustomAnimation currentAnimation;
+    
+    protected boolean isOnAir = false;
     
     public static final int DEFAULT_HEALTH = 3;
     public static final double DEFAULT_SPEED = 10;
@@ -32,13 +36,21 @@ public abstract class Creature extends Entity{
     @Override
     public void render(GraphicsContext gc){
         updateState();
+        gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
+        yIncrement += 0.1;
         
-        if(!checkColisions()){
-            move();
+        if(!colidesX()){
+            moveX();
         }
         
+        if(!colidesY()){
+            isOnAir = true;
+            moveY();
+        } else {
+            yIncrement = 0;
+        }
+
         
-        gc.drawImage(currentAnimation.nextFrame(), xPos, yPos);
         
         //Descomentar para visualizar hitbox//
         //gc.setFill(Paint.valueOf("black"));
@@ -46,15 +58,42 @@ public abstract class Creature extends Entity{
 
     }
     
-    public void move(){
+    private void moveX(){
             xPos += xIncrement;
     }
     
-    public boolean checkColisions(){
+    private void moveY(){
+            yPos += yIncrement;
+    }
+    
+    public boolean colidesX(){
+        BoundingBox tileHitBox;
         
         for(int i = 0 ; i < 100 ; i++){
             for(int j = 0 ; j < 21 ; j++){
-                if(game.tiles[i][j].getCollisionBounds(0, 0).intersects(getCollisionBounds(xIncrement, 0)) && game.tiles[i][j].isSolid()){
+                tileHitBox = game.tiles[i][j].getCollisionBounds(0, 0);
+                
+                if(tileHitBox.intersects(this.getCollisionBounds(xIncrement, 0)) && game.tiles[i][j].isSolid()){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    public boolean colidesY(){
+        BoundingBox tileHitBox;
+        
+        for(int i = 0 ; i < 100 ; i++){
+            for(int j = 0 ; j < 21 ; j++){
+                tileHitBox = game.tiles[i][j].getCollisionBounds(0, 0);
+                
+                if(tileHitBox.intersects(this.getCollisionBounds(0, yIncrement)) && game.tiles[i][j].isSolid()){
+                    if(yIncrement > 0){
+                        yPos = tileHitBox.getMinY() - this.hitBox.getMinY() - this.hitBox.getHeight() - 0.1;
+                        isOnAir = false;
+                    }
                     return true;
                 }
             }

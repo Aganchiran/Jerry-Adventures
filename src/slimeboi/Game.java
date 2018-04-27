@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
-import slimeboi.entities.creatures.Jerry;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.EarthTile;
 import slimeboi.entities.tiles.SkyTile;
 import slimeboi.entities.tiles.Tile;
@@ -47,12 +47,12 @@ public class Game implements Initializable {
             for(int j = 0 ; j < 19 ; j++){
                tiles[i][j] = new SkyTile((i * 32), 597 - (32 * (j + 1)),Assets.Sky, this);
             }
-            tiles[i][19] = new EarthTile((i * 32), 597,Assets.EarthUC, this);
-            tiles[i][20] = new EarthTile((i * 32), 629,Assets.EarthCC, this);
+            tiles[i][19] = new EarthTile((i * 32), 597,Assets.EarthUpCenter, this);
+            tiles[i][20] = new EarthTile((i * 32), 629,Assets.EarthCenterCenter, this);
         }
 
-        tiles[5][18] = new EarthTile((5 * 32), 565,Assets.EarthUC, this);
-        tiles[5][19] = new EarthTile((5 * 32), 597,Assets.EarthCC, this);
+        tiles[5][18] = new EarthTile((5 * 32), 565,Assets.EarthVerticalUp, this);
+        tiles[5][19] = new EarthTile((5 * 32), 597,Assets.EarthCenterCenter, this);
         
         //GAME LOOP//
         new AnimationTimer()
