@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
+import slimeboi.graphics.Assets;
 import slimeboi.graphics.CustomAnimation;
 
 /**
@@ -21,16 +22,22 @@ public abstract class Creature extends Entity{
     protected double xIncrement;
     protected double yIncrement;
     protected CustomAnimation currentAnimation;
-    
+    protected CreatureState state;
     protected boolean isOnAir = false;
     
+    protected final StateRight STATE_RIGHT = new StateRight(this);
+    protected final StateLeft STATE_LEFT = new StateLeft(this);
+    
+    public final Assets assets;
     public static final int DEFAULT_HEALTH = 3;
     public static final double DEFAULT_SPEED = 10;
     
-    public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
+    
+    public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Assets assets, Game game){
         super(xPos, yPos, width, height, xOffset, yOffset, game);
         this.health = DEFAULT_HEALTH;
         this.xIncrement = 0;
+        this.assets = assets;
     }
     
     @Override

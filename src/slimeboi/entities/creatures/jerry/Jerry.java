@@ -8,7 +8,8 @@ package slimeboi.entities.creatures.jerry;
 import javafx.scene.input.KeyCode;
 import slimeboi.Game;
 import slimeboi.entities.creatures.Creature;
-import slimeboi.graphics.Assets;
+import slimeboi.graphics.AssetsJerry;
+import slimeboi.graphics.AssetsViejo;
 import slimeboi.input.KeyManager;
 
 /**
@@ -17,48 +18,27 @@ import slimeboi.input.KeyManager;
  */
 public class Jerry extends Creature{
     
-
-    private String orientation = "right";
-
-    
-    
     public Jerry(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
-        super(xPos, yPos, width, height, xOffset, yOffset, game);
+        super(xPos, yPos, width, height, xOffset, yOffset, new AssetsJerry(), game);
         
-        currentAnimation = Assets.idleRight;
+        currentAnimation = AssetsViejo.idleRight;
+        state = STATE_RIGHT;
     }
     
     @Override
     public void updateState(){
         if(isOnAir){
-            if(orientation.equals("right")){
-                currentAnimation = Assets.onAirRight;
-            }else{
-                currentAnimation = Assets.onAirLeft;
-            }
+            state.onAir();
         }else if(KeyManager.checkKey(KeyCode.SPACE.getName())){
             yIncrement = -4;
         }else if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
-            Assets.right.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
-            currentAnimation = Assets.right;
-            
-            orientation = "right";
-            xIncrement = 1;
+            state = STATE_RIGHT;
+            state.move();
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){
-            Assets.left.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
-            currentAnimation = Assets.left;
-            
-            orientation = "left";
-            xIncrement = -1;
+            state = STATE_LEFT;
+            state.move();
         }else {
-            if(orientation.equals("right")){
-                Assets.idleRight.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
-                currentAnimation = Assets.idleRight;
-            }else{
-                Assets.idleLeft.setCurrentAnimationFrame(currentAnimation.getCurrentAnimationFrame());
-                currentAnimation = Assets.idleLeft;
-            }
-            xIncrement = 0;
+            state.idle();
         }
     }
     

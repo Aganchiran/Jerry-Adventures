@@ -17,7 +17,7 @@ import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.EarthTile;
 import slimeboi.entities.tiles.SkyTile;
 import slimeboi.entities.tiles.Tile;
-import slimeboi.graphics.Assets;
+import slimeboi.graphics.AssetsViejo;
 import slimeboi.input.KeyManager;
 
 /**
@@ -45,14 +45,14 @@ public class Game implements Initializable {
 
         for(int i = 0 ; i < 100 ; i++){
             for(int j = 0 ; j < 19 ; j++){
-               tiles[i][j] = new SkyTile((i * 32), 597 - (32 * (j + 1)),Assets.Sky, this);
+               tiles[i][j] = new SkyTile((i * 32), 597 - (32 * (j + 1)),AssetsViejo.Sky, this);
             }
-            tiles[i][19] = new EarthTile((i * 32), 597,Assets.EarthUpCenter, this);
-            tiles[i][20] = new EarthTile((i * 32), 629,Assets.EarthCenterCenter, this);
+            tiles[i][19] = new EarthTile((i * 32), 597,AssetsViejo.EarthUpCenter, this);
+            tiles[i][20] = new EarthTile((i * 32), 629,AssetsViejo.EarthCenterCenter, this);
         }
 
-        tiles[5][18] = new EarthTile((5 * 32), 565,Assets.EarthVerticalUp, this);
-        tiles[5][19] = new EarthTile((5 * 32), 597,Assets.EarthCenterCenter, this);
+        tiles[5][18] = new EarthTile((5 * 32), 565,AssetsViejo.EarthVerticalUp, this);
+        tiles[5][19] = new EarthTile((5 * 32), 597,AssetsViejo.EarthCenterCenter, this);
         
         //GAME LOOP//
         new AnimationTimer()
