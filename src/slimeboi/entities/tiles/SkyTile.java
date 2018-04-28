@@ -5,8 +5,7 @@
  */
 package slimeboi.entities.tiles;
 
-import javafx.scene.image.Image;
-import slimeboi.Game;
+import slimeboi.graphics.AssetsViejo;
 
 /**
  *
@@ -14,9 +13,8 @@ import slimeboi.Game;
  */
 public class SkyTile extends Tile{
 
-    public SkyTile(double xPos, double yPos, Image texture, Game game) {
-        super(xPos, yPos, game);
-        super.texture = texture;
+    public SkyTile() {
+        super.texture = AssetsViejo.Sky;
     }
 
     @Override

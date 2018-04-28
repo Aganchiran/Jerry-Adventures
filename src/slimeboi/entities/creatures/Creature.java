@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
+import slimeboi.entities.tiles.Tile;
 import slimeboi.graphics.Assets;
 import slimeboi.graphics.CustomAnimation;
 
@@ -18,6 +19,9 @@ import slimeboi.graphics.CustomAnimation;
  * @author Javier Pastor Pérez
  */
 public abstract class Creature extends Entity{
+    protected double xPos;
+    protected double yPos;
+    
     protected int health;
     protected double xIncrement;
     protected double yIncrement;
@@ -34,10 +38,12 @@ public abstract class Creature extends Entity{
     
     
     public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Assets assets, Game game){
-        super(xPos, yPos, width, height, xOffset, yOffset, game);
+        super(width, height, xOffset, yOffset, game);
         this.health = DEFAULT_HEALTH;
         this.xIncrement = 0;
         this.assets = assets;
+        this.xPos = xPos;
+        this.yPos = yPos;
     }
     
     @Override
@@ -78,9 +84,9 @@ public abstract class Creature extends Entity{
         
         for(int i = 0 ; i < 100 ; i++){
             for(int j = 0 ; j < 21 ; j++){
-                tileHitBox = game.tiles[i][j].getCollisionBounds(0, 0);
+                tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
-                if(tileHitBox.intersects(this.getCollisionBounds(xIncrement, 0)) && game.tiles[i][j].isSolid()){
+                if(tileHitBox.intersects(this.getCollisionBounds(xIncrement, 0)) && game.world.getTileset().get(game.world.map[i][j]).isSolid()){
                     return true;
                 }
             }
@@ -94,9 +100,9 @@ public abstract class Creature extends Entity{
         
         for(int i = 0 ; i < 100 ; i++){
             for(int j = 0 ; j < 21 ; j++){
-                tileHitBox = game.tiles[i][j].getCollisionBounds(0, 0);
+                tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
-                if(tileHitBox.intersects(this.getCollisionBounds(0, yIncrement)) && game.tiles[i][j].isSolid()){
+                if(tileHitBox.intersects(this.getCollisionBounds(0, yIncrement)) && game.world.getTileset().get(game.world.map[i][j]).isSolid()){
                     if(yIncrement > 0){
                         yPos = tileHitBox.getMinY() - this.hitBox.getMinY() - this.hitBox.getHeight() - 0.1;
                         isOnAir = false;
@@ -107,6 +113,10 @@ public abstract class Creature extends Entity{
         }
         
         return false;
+    }
+    
+    public BoundingBox getCollisionBounds(double xIncrement, double yIncrement){
+        return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
     }
     
     public abstract void updateState();
@@ -120,13 +130,30 @@ public abstract class Creature extends Entity{
     public double getSpeed(){
         return xIncrement;
     }
-        
+    
+    public double getXPos(){
+        return xPos;
+    }
+    
+    public double getYPos(){
+        return yPos;
+    }
+    
+    
     public void setHealth(int newHealth){
         health = newHealth;
     }
     
     public void setSpeed(double newSpeed){
         xIncrement = newSpeed;
+    }
+
+    public void setXPos(double newXPos){
+        xPos = newXPos;
+    }
+    
+    public void setYPos(double newYPos){
+        yPos = newYPos;
     }
  
 }

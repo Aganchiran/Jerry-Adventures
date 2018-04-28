@@ -5,18 +5,16 @@
  */
 package slimeboi.entities.tiles;
 
-import javafx.scene.image.Image;
-import slimeboi.Game;
+import slimeboi.graphics.AssetsViejo;
 
 /**
  *
  * @author Javier Pastor Pérez
  */
-public class EarthTile extends Tile{
+public class EarthUpCenter extends Tile{
 
-    public EarthTile(double xPos, double yPos, Image texture, Game game) {
-        super(xPos, yPos, game);
-        super.texture = texture;
+    public EarthUpCenter() {
+        super.texture = AssetsViejo.EarthUpCenter;
     }
 
     @Override

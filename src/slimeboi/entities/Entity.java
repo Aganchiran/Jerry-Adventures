@@ -14,16 +14,13 @@ import slimeboi.Game;
  * @author Javier Pastor Pérez
  */
 public abstract class Entity {
-    protected double xPos;
-    protected double yPos;
+
 
     protected BoundingBox hitBox;
     protected Game game;
     
     
-    public Entity(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Entity(double width, double height, double xOffset, double yOffset, Game game){
 
         this.hitBox = new BoundingBox(xOffset, yOffset, width, height);
         this.game = game;
@@ -31,23 +28,4 @@ public abstract class Entity {
     
     public abstract void render(GraphicsContext gc);
     
-    public BoundingBox getCollisionBounds(double xIncrement, double yIncrement){
-        return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
-    }
-    
-    public double getXPos(){
-        return xPos;
-    }
-    
-    public double getYPos(){
-        return yPos;
-    }
-    
-    public void setXPos(double newXPos){
-        xPos = newXPos;
-    }
-    
-    public void setYPos(double newYPos){
-        yPos = newYPos;
-    }
 }
