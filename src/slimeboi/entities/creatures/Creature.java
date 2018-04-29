@@ -24,13 +24,13 @@ public abstract class Creature extends Entity{
     
     protected int health;
     protected double xIncrement;
-    protected double yIncrement;
+    public double yIncrement;
     protected CustomAnimation currentAnimation;
-    protected CreatureState state;
+    public CreatureState state;
     protected boolean isOnAir = false;
     
-    protected final StateRight STATE_RIGHT = new StateRight(this);
-    protected final StateLeft STATE_LEFT = new StateLeft(this);
+    public final StateRight STATE_RIGHT = new StateRight(this);
+    public final StateLeft STATE_LEFT = new StateLeft(this);
     
     public final Assets assets;
     public static final int DEFAULT_HEALTH = 3;

@@ -25,6 +25,7 @@ public class StateLeft extends CreatureState{
     @Override
     public void onAir() {
         creature.currentAnimation = creature.assets.onAirLeft;
+        
     }
 
     @Override

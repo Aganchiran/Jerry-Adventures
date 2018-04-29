@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.Tile;
 import slimeboi.input.KeyManager;
@@ -29,7 +30,7 @@ public class Game implements Initializable {
     @FXML
     private Canvas canvas;
     public World world;
-    
+    public static Jerry jerry;
 
     /**
      * Initializes the controller class.
@@ -39,12 +40,13 @@ public class Game implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Jerry jerry = new Jerry(0, 550, 23, 16, 21, 30, this);
+        jerry = new Jerry(0, 550, 23, 16, 21, 30, this);
         
         world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 100, 21);
         world.loadWorld();
-
+        DefaultControls.LoadDefaultControls();
         
         //GAME LOOP//
         new AnimationTimer()
