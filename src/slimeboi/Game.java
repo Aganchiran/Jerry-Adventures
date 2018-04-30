@@ -14,7 +14,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import slimeboi.entities.creatures.jerry.Jerry;
-import slimeboi.entities.tiles.Tile;
 import slimeboi.input.KeyManager;
 import slimeboi.worlds.Leaflands;
 import slimeboi.worlds.World;
@@ -40,9 +39,9 @@ public class Game implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Jerry jerry = new Jerry(0, 550, 23, 16, 21, 30, this);
+        Jerry jerry = new Jerry(35, 550, 23, 16, 21, 30, this);
         
-        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 100, 21);
+        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21);
         world.loadWorld();
 
         

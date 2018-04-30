@@ -91,9 +91,9 @@ public class AssetsViejo {
     public static final WritableImage EarthVerticalCenter = new WritableImage(reader, 14 * DEFAULT_TILE_WIDTH, 2 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     public static final WritableImage EarthVerticalDown = new WritableImage(reader, 14 * DEFAULT_TILE_WIDTH, 3 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
-    public static final WritableImage EarthHorizontalRight = new WritableImage(reader, 10 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
+    public static final WritableImage EarthHorizontalLeft = new WritableImage(reader, 10 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     public static final WritableImage EarthHorizontalCenter = new WritableImage(reader, 11 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
-    public static final WritableImage EarthHorizontalLeft = new WritableImage(reader, 12 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
+    public static final WritableImage EarthHorizontalRight = new WritableImage(reader, 12 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
     public static final WritableImage EarthSingleBlock = new WritableImage(reader, 14 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
