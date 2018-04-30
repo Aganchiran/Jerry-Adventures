@@ -16,6 +16,8 @@ public abstract class CreatureState {
         this.creature = creature;
     }
     
+    
+    
     public abstract void idle();
     public abstract void onAir();
     public abstract void move();

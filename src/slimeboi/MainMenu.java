@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import slimeboi.commands.DefaultControls;
 
 /**
  * FXML Controller class
@@ -41,6 +42,8 @@ public class MainMenu implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        DefaultControls.LoadDefaultControls();
+        
         fondo.setId("vbox-custom");
         startButton.setId("start-custom");
         quitButton.setId("quit-custom");

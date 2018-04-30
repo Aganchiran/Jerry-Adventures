@@ -7,6 +7,7 @@ package slimeboi.entities.creatures.jerry;
 
 import javafx.scene.input.KeyCode;
 import slimeboi.Game;
+import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.AssetsJerry;
 import slimeboi.graphics.AssetsViejo;
@@ -30,17 +31,20 @@ public class Jerry extends Creature{
         if(isOnAir){
             state.onAir();
         }else if(KeyManager.checkKey(KeyCode.SPACE.getName())){
-            yIncrement = -4;
+            //yIncrement = -4;
+            configuration.doAction(2); //2 es Espacio
         }else if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
-            state = STATE_RIGHT;
-            state.move();
-        }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){
-            state = STATE_LEFT;
-            state.move();
+            /*state = STATE_RIGHT;
+            state.move();*/
+            configuration.doAction(0); // 0 es Derecha
+        }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){           
+           /* state = STATE_LEFT;
+            state.move();*/
+            configuration.doAction(1); // 1 es Izquierda
         }else {
             state.idle();
         }
     }
     
     
-}
+} 
