@@ -22,13 +22,16 @@ public abstract class Creature extends Entity{
     
     protected int health;
     protected double xIncrement;
-    public double yIncrement;
+    protected double yIncrement;
     protected CustomAnimation currentAnimation;
     public CreatureState state;
     protected boolean isOnAir = false;
     
     public final StateRight STATE_RIGHT = new StateRight(this);
     public final StateLeft STATE_LEFT = new StateLeft(this);
+    public final StateLeftOnAir STATE_LEFT_ON_AIR = new StateLeftOnAir(this);
+    public final StateRightOnAir STATE_RIGHT_ON_AIR = new StateRightOnAir(this);
+
     
     public final Assets assets;
     public static final int DEFAULT_HEALTH = 3;
@@ -102,6 +105,8 @@ public abstract class Creature extends Entity{
                     if(yIncrement > 0){
                         yPos = tileHitBox.getMinY() - this.hitBox.getMinY() - this.hitBox.getHeight() - 0.1;
                         isOnAir = false;
+                        if(state == STATE_LEFT_ON_AIR)state = STATE_LEFT;
+                        else if(state == STATE_RIGHT_ON_AIR) state = STATE_RIGHT;
                     }
                     return true;
                 }
@@ -127,6 +132,18 @@ public abstract class Creature extends Entity{
         return xIncrement;
     }
     
+    public double getYIncrement(){
+        return yIncrement;
+    }
+    
+    public boolean isOnAir(){
+        return state == STATE_LEFT_ON_AIR || state == STATE_RIGHT_ON_AIR;
+    }
+    
+    
+    public void setYIncrement(double newIncrement){
+        yIncrement = newIncrement;
+    }
     
     public void setHealth(int newHealth){
         health = newHealth;

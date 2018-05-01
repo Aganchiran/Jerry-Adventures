@@ -23,8 +23,10 @@ public class RightMovement  implements JerryCommand {
     public void execute() {
 //        creature.state = creature.STATE_RIGHT;
 //        creature.state.move();
-          creature.state = creature.STATE_RIGHT;
-          creature.state.move();
+        if(creature.isOnAir()) creature.state = creature.STATE_RIGHT_ON_AIR;
+        else creature.state = creature.STATE_RIGHT;
+        
+        creature.state.move();
 
     }
     

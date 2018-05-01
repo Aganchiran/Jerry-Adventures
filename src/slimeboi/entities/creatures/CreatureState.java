@@ -19,7 +19,7 @@ public abstract class CreatureState {
     
     
     public abstract void idle();
-    public abstract void onAir();
+    public abstract void jump();
     public abstract void move();
     public abstract void die();
 }

@@ -31,7 +31,7 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Button configA;
     
-    public static boolean AorB;
+    public static boolean AorB = true;
 
     /**
      * Initializes the controller class.

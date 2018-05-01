@@ -13,8 +13,8 @@ import slimeboi.entities.Entity;
  * @author Javier Pastor Pérez
  */
 public class Camera {
-    private double xPos = 0;
-    private double yPos = 0;
+    private int xPos = 0;
+    private int yPos = 0;
     private final Game game;
     
     public Camera(Game game){
@@ -22,8 +22,8 @@ public class Camera {
     }
     
     public void centerOnEntity(Entity e){
-        xPos = e.getXPos() - (game.getCanvas().getWidth() / 2) + (e.getHitBox().getWidth()/2);
-        yPos = e.getYPos() - (game.getCanvas().getHeight()/ 2) + (e.getHitBox().getHeight()/2);
+        xPos = (int) (e.getXPos() - (game.getCanvas().getWidth() / 2) + (e.getHitBox().getWidth()/2));
+        yPos = (int) (e.getYPos() - (game.getCanvas().getHeight()/ 2) + (e.getHitBox().getHeight()/2));
         notShowOutsideMap();
     }
     
@@ -34,10 +34,10 @@ public class Camera {
         double bottomOfMap = game.getWorld().getHeightInPixels();
         
         if(xPos < 0) xPos = 0;
-        else if(xPos + rightSideOfScreen > rightSideOfMap) xPos = rightSideOfMap - rightSideOfScreen;
+        else if(xPos + rightSideOfScreen > rightSideOfMap) xPos = (int) (rightSideOfMap - rightSideOfScreen);
         
         if(yPos < 0) yPos = 0;
-        else if(yPos + bottomOfScreen > bottomOfMap) yPos = bottomOfMap - bottomOfScreen;
+        else if(yPos + bottomOfScreen > bottomOfMap) yPos = (int) (bottomOfMap - bottomOfScreen);
     }
     
     public double getXPos(){

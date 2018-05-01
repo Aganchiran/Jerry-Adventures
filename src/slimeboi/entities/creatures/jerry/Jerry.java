@@ -28,9 +28,9 @@ public class Jerry extends Creature{
     
     @Override
     public void updateState(){
-        if(isOnAir){
-            state.onAir();
-        }else if(KeyManager.checkKey(KeyCode.SPACE.getName())){
+        /*if(isOnAir){
+            state.jump();
+        }else */if(KeyManager.checkKey(KeyCode.SPACE.getName())){
             //yIncrement = -4;
             configuration.doAction(2); //2 es Espacio
         }else if(KeyManager.checkKey(KeyCode.Z.getName())){

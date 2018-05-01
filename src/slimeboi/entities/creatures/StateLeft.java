@@ -23,7 +23,8 @@ public class StateLeft extends CreatureState{
     }
 
     @Override
-    public void onAir() {
+    public void jump() {
+        creature.setYIncrement(-4);
         creature.currentAnimation = creature.assets.onAirLeft;
         
     }
