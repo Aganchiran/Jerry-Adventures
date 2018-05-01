@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
+import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
 import slimeboi.worlds.Leaflands;
 import slimeboi.worlds.World;
@@ -28,8 +29,9 @@ public class Game implements Initializable {
 
     @FXML
     private Canvas canvas;
-    public World world;
-    public static Jerry jerry;
+    private Camera camera;
+    private World world;
+    public Jerry jerry;
 
     /**
      * Initializes the controller class.
@@ -41,11 +43,13 @@ public class Game implements Initializable {
         
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        jerry = new Jerry(35, 550, 23, 16, 21, 30, this);
+        jerry = new Jerry(500, 550, 23, 16, 21, 30, this);
         
-        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21);
+        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
-        DefaultControls.LoadDefaultControls();
+        DefaultControls.LoadDefaultControls(this);
+        
+        camera = new Camera(this);
         
         //GAME LOOP//
         new AnimationTimer()
@@ -70,5 +74,16 @@ public class Game implements Initializable {
         canvas.getScene().addEventFilter(KeyEvent.KEY_RELEASED, KeyEvent -> {
             KeyManager.releasingKey(KeyEvent);
         });
+    }
+    
+    public Canvas getCanvas(){
+        return canvas;
+    }
+    
+    public Camera getCamera(){
+        return camera;
+    }
+    public World getWorld(){
+        return world;
     }
 }

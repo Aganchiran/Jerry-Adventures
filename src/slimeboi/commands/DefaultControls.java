@@ -16,11 +16,11 @@ import slimeboi.entities.creatures.jerry.Jerry;
 public class DefaultControls {
     public static ControlLoader configuration;
     
-    public static void LoadDefaultControls(){
+    public static void LoadDefaultControls(Game game){
         configuration = new ControlLoader();
         
         Jerry jerry;
-        jerry = Game.jerry;
+        jerry = game.jerry;
         
         RightMovement RMaction = new RightMovement(jerry);
         configuration.setCommand(0, RMaction);

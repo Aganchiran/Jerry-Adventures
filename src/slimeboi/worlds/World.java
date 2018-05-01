@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
+import slimeboi.Game;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.entities.tiles.Tile;
 
@@ -22,26 +23,29 @@ import slimeboi.entities.tiles.Tile;
 public abstract class World {
     private final String music;
     private final String mapURL;
-    private final int width;
-    private final int height;
+    protected final int width;
+    protected final int height;
     
-    public final int[][] map;
-    private final ArrayList<Creature> creatures = new ArrayList();
+    protected final int[][] map;
+    protected final ArrayList<Creature> creatures = new ArrayList();
     
     protected final ArrayList<Tile> tileSet = new ArrayList();
+    protected final Game game;
     
-    public World(String music, String mapURL, int width, int height){
+    public World(String music, String mapURL, int width, int height, Game game){
         map = new int[width][height];
         this.mapURL = mapURL;
         this.width = width;
         this.height = height;
         this.music = music;
+        this.game = game;
     }
     
     public void render(GraphicsContext gc){
+        game.getCamera().centerOnEntity(game.jerry);
         for(int i = 0 ; i < width ; i++){
             for(int j = 0 ; j < height ; j++){
-                tileSet.get(map[i][j]).render(gc, i * Tile.DEFAULT_WIDTH, j * Tile.DEFAULT_HEIGHT);
+                tileSet.get(map[i][j]).render(gc, i * Tile.DEFAULT_WIDTH - game.getCamera().getXPos(), j * Tile.DEFAULT_HEIGHT - game.getCamera().getYPos());
             }
         }
     }
@@ -76,5 +80,17 @@ public abstract class World {
     
     public ArrayList<Tile> getTileset(){
         return tileSet;
+    }
+    
+    public int[][] getMap(){
+        return map;
+    }
+    
+    public double getWidthInPixels(){
+        return width * Tile.DEFAULT_WIDTH;
+    }
+    
+    public double getHeightInPixels(){
+        return height * Tile.DEFAULT_HEIGHT;
     }
 }

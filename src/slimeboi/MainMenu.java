@@ -42,7 +42,7 @@ public class MainMenu implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        DefaultControls.LoadDefaultControls();
+        //DefaultControls.LoadDefaultControls(this);
         
         fondo.setId("vbox-custom");
         startButton.setId("start-custom");
