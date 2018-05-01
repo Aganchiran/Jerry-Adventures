@@ -34,6 +34,8 @@ public class MainMenu implements Initializable {
     private Button quitButton;
     @FXML
     private VBox fondo;
+    @FXML
+    private Button settingsButton;
 
     /**
      * Initializes the controller class.
@@ -75,6 +77,19 @@ public class MainMenu implements Initializable {
     @FXML
     private void quitPulsar(ActionEvent event) {
        System.exit(0);
+    }
+
+    @FXML
+    private void settingsPulsar(ActionEvent event) throws IOException {
+        Parent root;
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SettingsMenu.fxml"));
+        root = loader.load();
+        Scene scene = new Scene(root);
+            
+        Stage stage = (Stage) fondo.getScene().getWindow();
+            
+        stage.setScene(scene);
     }
     
 }

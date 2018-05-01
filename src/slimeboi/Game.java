@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import static slimeboi.SettingsMenuController.AorB;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.Camera;
@@ -47,7 +48,11 @@ public class Game implements Initializable {
         
         world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
-        DefaultControls.LoadDefaultControls(this);
+        
+        if(AorB)
+            DefaultControls.LoadControlsA(this);
+        else
+            DefaultControls.LoadControlsB(this);
         
         camera = new Camera(this);
         
