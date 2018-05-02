@@ -5,7 +5,6 @@
  */
 package slimeboi.graphics;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -56,6 +55,10 @@ public class CustomAnimation {
     }
     public void setCurrentAnimationFrame(int x){
         currentAnimationFrame = x;
+    }
+    
+    public int getDurationInMilis(){
+        return (1000/frameRate) * numFrames;
     }
     
 }

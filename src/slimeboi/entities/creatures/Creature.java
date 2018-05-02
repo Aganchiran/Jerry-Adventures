@@ -25,12 +25,14 @@ public abstract class Creature extends Entity{
     protected double yIncrement;
     protected CustomAnimation currentAnimation;
     public CreatureState state;
+    public CreatureState notFreezedState;
     protected boolean isOnAir = false;
     
     public final StateRight STATE_RIGHT = new StateRight(this);
     public final StateLeft STATE_LEFT = new StateLeft(this);
     public final StateLeftOnAir STATE_LEFT_ON_AIR = new StateLeftOnAir(this);
     public final StateRightOnAir STATE_RIGHT_ON_AIR = new StateRightOnAir(this);
+    public final StateFreezed STATE_FREEZED = new StateFreezed(this);
 
     
     public final Assets assets;
@@ -51,12 +53,19 @@ public abstract class Creature extends Entity{
         gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
         yIncrement += 0.1;
         
-        if(!colidesX()){
+        if(!colidesX() && state != STATE_FREEZED){
             moveX();
         }
         
         if(!colidesY()){
             isOnAir = true;
+            if(state == STATE_LEFT){
+                state = STATE_LEFT_ON_AIR;
+                notFreezedState = STATE_LEFT_ON_AIR;
+            }else if(state == STATE_RIGHT){
+                state = STATE_RIGHT_ON_AIR;
+                notFreezedState = STATE_RIGHT_ON_AIR;
+            }
             moveY();
         } else {
             yIncrement = 0;
@@ -102,11 +111,16 @@ public abstract class Creature extends Entity{
                 tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
                 if(tileHitBox.intersects(this.getCollisionBounds(0, yIncrement)) && game.getWorld().getTileset().get(game.getWorld().getMap()[i][j]).isSolid()){
-                    if(yIncrement > 0){
+                    if(yIncrement > 0.1){
                         yPos = tileHitBox.getMinY() - this.hitBox.getMinY() - this.hitBox.getHeight() - 0.1;
                         isOnAir = false;
-                        if(state == STATE_LEFT_ON_AIR)state = STATE_LEFT;
-                        else if(state == STATE_RIGHT_ON_AIR) state = STATE_RIGHT;
+                        if(state == STATE_LEFT_ON_AIR){
+                            state = STATE_LEFT;
+                            notFreezedState = STATE_LEFT;
+                        }else if(state == STATE_RIGHT_ON_AIR){
+                            state = STATE_RIGHT;
+                            notFreezedState = STATE_RIGHT;
+                        }
                     }
                     return true;
                 }

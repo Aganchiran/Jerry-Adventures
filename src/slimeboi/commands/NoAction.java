@@ -15,4 +15,10 @@ public class NoAction implements JerryCommand {
     public void execute(){
         
     }
+    
+        
+    @Override
+    public String toString(){
+        return this.getClass().getName();
+    }
 }
