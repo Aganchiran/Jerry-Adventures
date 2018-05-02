@@ -39,7 +39,8 @@ public class Jerry extends Creature{
         if(KeyManager.checkKey(KeyCode.SPACE.getName())){
 
             configuration.doAction(2); //2 es Espacio
-        }else if(KeyManager.checkKey(KeyCode.Z.getName())){
+        }
+        if(KeyManager.checkKey(KeyCode.Z.getName())){
             
             configuration.doAction(3); //3 es Z (o la que acabe siendo)
         }else if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
