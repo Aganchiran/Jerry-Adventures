@@ -5,7 +5,10 @@
  */
 package slimeboi.commands;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import slimeboi.entities.creatures.Creature;
+import slimeboi.graphics.AssetsJerry;
 
 /**
  *
@@ -20,7 +23,47 @@ public class Eat implements JerryCommand {
     
     @Override
     public void execute() {
-        //por implementar
+        
+        
+        if(creature.facingRight()) creature.currentAnimation = AssetsJerry.biteRight;
+        else creature.currentAnimation = AssetsJerry.biteLeft;
+        creature.currentAnimation.setCurrentAnimationFrame(0);
+
+
+        creature.state = creature.STATE_FREEZED;
+        
+        if(creature.notFreezedState == creature.STATE_LEFT){
+            creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
+        }else if(creature.notFreezedState == creature.STATE_RIGHT){
+            creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
+        }
+        
+        ControlLoader.disableControls();
+        creature.setYIncrement(-2.7);
+        if(creature.facingRight()){
+            creature.setXIncrement(1);
+        }else{
+            creature.setXIncrement(-1);
+        }
+        
+        
+        Timer timer = new Timer();
+        try{
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println("RASHHOOOOOI ---> " + creature.notFreezedState);
+                    while(creature.isOnAir());
+
+                    creature.state = creature.notFreezedState;
+                    ControlLoader.enableControls();
+                }
+            };
+
+            timer.schedule(task, 10);
+        }finally{
+            timer.cancel();
+        }
     }    
     
 }

@@ -11,6 +11,7 @@ package slimeboi.commands;
  */
 public class ControlLoader {
     private static JerryCommand[] previousActions;
+    private static boolean controlsDisabled = false;
     public static JerryCommand[] actions;
     
     public ControlLoader(){
@@ -36,10 +37,14 @@ public class ControlLoader {
         actions[slot].execute();
     }
     
-    public static void unableControls(){
-        for(int i = 0; i<7; i++) {
-            previousActions[i] = actions[i];
-            actions[i] = new NoAction();
+    public static void disableControls(){
+        
+        if(!controlsDisabled){
+            for(int i = 0; i<7; i++) {
+                previousActions[i] = actions[i];
+                actions[i] = new NoAction();
+            }
+            controlsDisabled = true;
         }
     }
     
@@ -48,6 +53,8 @@ public class ControlLoader {
         for(int i = 0; i<7; i++) {
             actions[i] = previousActions[i];
         }
+                
+        controlsDisabled = false;
     }
     
 }

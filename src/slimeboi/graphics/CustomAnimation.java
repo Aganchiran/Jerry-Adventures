@@ -18,15 +18,18 @@ public class CustomAnimation {
     private final WritableImage[] sequence;
     private final int frameRate;
     private final int numFrames;
+    private final boolean loop;
     private int frameAdjustement;
     private int currentAnimationFrame = 0;
+
     
-    public CustomAnimation(String url, int numFrames, int x, int y, int width, int height, int frameRate){
+    public CustomAnimation(String url, int numFrames, int x, int y, int width, int height, int frameRate, boolean loop){
         
         sequence = new WritableImage[numFrames];
         this.frameRate = frameRate;
         this.numFrames = numFrames;
-        frameAdjustement = 60/frameRate;
+        this.loop = loop;
+        frameAdjustement = 60/frameRate - 1;
         
         Image SpriteSheet = new Image(url);//"slimeboi/resources/JerrySpriteSheet.png"
         PixelReader reader = SpriteSheet.getPixelReader();
@@ -43,8 +46,9 @@ public class CustomAnimation {
         if(frameAdjustement != 0){
             frameAdjustement--;
         }else{
-            frameAdjustement = 60/frameRate;
-            currentAnimationFrame = (currentAnimationFrame + 1) % numFrames;
+            frameAdjustement = 60/frameRate - 1;
+            if(!loop && currentAnimationFrame == numFrames - 1) currentAnimationFrame = numFrames - 1;
+            else currentAnimationFrame = (currentAnimationFrame + 1) % numFrames;
         }
         
         return sequence[currentAnimationFrame];
@@ -58,7 +62,8 @@ public class CustomAnimation {
     }
     
     public int getDurationInMilis(){
-        return (1000/frameRate) * numFrames;
+        System.out.println(16 * ((numFrames - 1) * 60/frameRate));
+        return 16 * ((numFrames - 1) * 60/frameRate);
     }
     
 }

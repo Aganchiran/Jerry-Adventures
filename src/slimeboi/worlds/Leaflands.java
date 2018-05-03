@@ -6,6 +6,7 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
+import slimeboi.entities.creatures.Blancanubes;
 import slimeboi.entities.tiles.EarthCenterCenter;
 import slimeboi.entities.tiles.EarthCenterLeft;
 import slimeboi.entities.tiles.EarthCenterRight;
@@ -49,6 +50,8 @@ public class Leaflands extends World{
         tileSet.add(new EarthHorizontalCenter());//14
         tileSet.add(new EarthHorizontalRight());//15
         tileSet.add(new EarthSingleBlock());//16
+        
+        creatures.add(new Blancanubes(500, 100, 32, 23, 16, 20, game));
     }
     
 }

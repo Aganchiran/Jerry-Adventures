@@ -28,7 +28,7 @@ public class StateRightOnAir extends CreatureState{
     public void move() {
         creature.currentAnimation = creature.assets.onAirRight;
 
-        creature.xIncrement = 1;
+        creature.xIncrement = creature.DEFAULT_SPEED;
     }
 
     @Override

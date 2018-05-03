@@ -48,6 +48,10 @@ public abstract class World {
                 tileSet.get(map[i][j]).render(gc, i * Tile.DEFAULT_WIDTH - game.getCamera().getXPos(), j * Tile.DEFAULT_HEIGHT - game.getCamera().getYPos());
             }
         }
+        
+        for(int i = 0 ; i < creatures.size() ; i++){
+            creatures.get(i).render(gc);
+        }
     }
     
     public void loadWorld(){

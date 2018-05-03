@@ -22,4 +22,9 @@ public abstract class CreatureState {
     public abstract void jump();
     public abstract void move();
     public abstract void die();
+    
+    @Override
+    public String toString(){
+        return this.getClass().getName();
+    }
 }

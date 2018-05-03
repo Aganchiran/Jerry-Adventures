@@ -23,7 +23,7 @@ public abstract class Creature extends Entity{
     protected int health;
     protected double xIncrement;
     protected double yIncrement;
-    protected CustomAnimation currentAnimation;
+    public CustomAnimation currentAnimation;
     public CreatureState state;
     public CreatureState notFreezedState;
     protected boolean isOnAir = false;
@@ -36,15 +36,23 @@ public abstract class Creature extends Entity{
 
     
     public final Assets assets;
-    public static final int DEFAULT_HEALTH = 3;
-    public static final double DEFAULT_SPEED = 10;
+    public final int MAX_HEALTH;
+    public final double DEFAULT_SPEED;
     
     
-    public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Assets assets, Game game){
+    public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, double speed, int health, Assets assets, Game game){
         super(xPos, yPos, width, height, xOffset, yOffset, game);
-        this.health = DEFAULT_HEALTH;
+        MAX_HEALTH = health;
+        DEFAULT_SPEED = speed;
+        
+        this.health = health;
         this.xIncrement = 0;
         this.assets = assets;
+         
+
+        currentAnimation = assets.idleRight;
+        state = STATE_RIGHT;
+        notFreezedState = STATE_RIGHT;
     }
     
     @Override
@@ -53,7 +61,7 @@ public abstract class Creature extends Entity{
         gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
         yIncrement += 0.1;
         
-        if(!colidesX() && state != STATE_FREEZED){
+        if(!colidesX()){
             moveX();
         }
         
@@ -114,11 +122,16 @@ public abstract class Creature extends Entity{
                     if(yIncrement > 0.1){
                         yPos = tileHitBox.getMinY() - this.hitBox.getMinY() - this.hitBox.getHeight() - 0.1;
                         isOnAir = false;
+                        
                         if(state == STATE_LEFT_ON_AIR){
                             state = STATE_LEFT;
-                            notFreezedState = STATE_LEFT;
                         }else if(state == STATE_RIGHT_ON_AIR){
                             state = STATE_RIGHT;
+                        }
+                        
+                        if(notFreezedState == STATE_LEFT_ON_AIR){
+                            notFreezedState = STATE_LEFT;
+                        }else if(notFreezedState == STATE_RIGHT_ON_AIR){
                             notFreezedState = STATE_RIGHT;
                         }
                     }
@@ -146,14 +159,25 @@ public abstract class Creature extends Entity{
         return xIncrement;
     }
     
+    public double getXIncrement(){
+        return xIncrement;
+    }
+    
     public double getYIncrement(){
         return yIncrement;
     }
     
     public boolean isOnAir(){
-        return state == STATE_LEFT_ON_AIR || state == STATE_RIGHT_ON_AIR;
+        return notFreezedState == STATE_LEFT_ON_AIR || notFreezedState == STATE_RIGHT_ON_AIR;
     }
     
+    public boolean facingRight(){
+        return notFreezedState == STATE_RIGHT || notFreezedState == STATE_RIGHT_ON_AIR;
+    }
+    
+    public void setXIncrement(double newIncrement){
+        xIncrement = newIncrement;
+    }
     
     public void setYIncrement(double newIncrement){
         yIncrement = newIncrement;

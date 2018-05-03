@@ -13,6 +13,7 @@ import slimeboi.commands.ControlLoader;
 import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.AssetsJerry;
+import slimeboi.graphics.CustomAnimation;
 import slimeboi.input.KeyManager;
 
 /**
@@ -25,16 +26,20 @@ public class Jerry extends Creature{
     private double lastYIncrement = 0;
     
     public Jerry(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
-        super(xPos, yPos, width, height, xOffset, yOffset, new AssetsJerry(), game);
-        
-        currentAnimation = assets.idleRight;
-        state = STATE_RIGHT;
-        notFreezedState = STATE_RIGHT;
+        super(xPos, yPos, width, height, xOffset, yOffset, 1, 3, new AssetsJerry(), game);
     }
     
     @Override
     public void updateState(){
-        if(lastYIncrement > 2.5 && lastStateOnAir && !isOnAir()) land();
+ 
+        if(lastStateOnAir && !isOnAir()){
+            if(state != STATE_FREEZED){
+                if(lastYIncrement > 2.5) land(AssetsJerry.endJumpRight, AssetsJerry.endJumpLeft);
+            }else{
+                land(AssetsJerry.endBiteRight, AssetsJerry.endBiteLeft);
+            }
+            
+        } 
         
         if(KeyManager.checkKey(KeyCode.SPACE.getName())){
 
@@ -57,16 +62,15 @@ public class Jerry extends Creature{
         lastYIncrement = yIncrement;
     }
     
-    private void land(){
+    private void land(CustomAnimation rightAnim, CustomAnimation leftAnim){
         
-        if(state == STATE_LEFT) currentAnimation = ((AssetsJerry) assets).endJumpLeft;
-        else currentAnimation = ((AssetsJerry) assets).endJumpRight;
-        
-        //currentAnimation.setCurrentAnimationFrame(0);
+        if(facingRight()) currentAnimation = rightAnim;
+        else currentAnimation = leftAnim;
         
 
         state = STATE_FREEZED;
-        ControlLoader.unableControls();
+        xIncrement = 0;
+        ControlLoader.disableControls();
         
         Timer timer = new Timer();
         
@@ -80,6 +84,6 @@ public class Jerry extends Creature{
             }
         };
         
-        timer.schedule(task, 380);
+        timer.schedule(task, currentAnimation.getDurationInMilis());
     }
 } 

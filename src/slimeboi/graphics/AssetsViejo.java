@@ -23,22 +23,22 @@ public class AssetsViejo {
     private static final int DEFAULT_ANIMATION_HEIGHT = 64;
 
     //Jerry//
-    private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";
+    /*private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";
   
-    public static final CustomAnimation idleRight = new CustomAnimation(JERRY_URL, 26, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16);
-    public static final CustomAnimation idleLeft = new CustomAnimation(JERRY_URL, 26, 0, 3, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16);
-    public static final CustomAnimation right = new CustomAnimation(JERRY_URL, 26, 0, 6, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16);
-    public static final CustomAnimation left = new CustomAnimation(JERRY_URL, 26, 0, 9, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16);
-    public static final CustomAnimation endJumpRight = new CustomAnimation(JERRY_URL, 11, 0, 12, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30);
-    public static final CustomAnimation endJumpLeft = new CustomAnimation(JERRY_URL, 11, 0, 14, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30);
-    public static final CustomAnimation onAirRight = new CustomAnimation(JERRY_URL, 1, 0, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60);
-    public static final CustomAnimation onAirLeft = new CustomAnimation(JERRY_URL, 1, 0, 27, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60);
-    public static final CustomAnimation biteRight = new CustomAnimation(JERRY_URL, 18, 0, 16, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30);
-    public static final CustomAnimation biteLeft = new CustomAnimation(JERRY_URL, 18, 0, 18, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30);
-    public static final CustomAnimation fatIdleRight = new CustomAnimation(JERRY_URL, 16, 0, 20, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12);
-    public static final CustomAnimation fatIdleLeft = new CustomAnimation(JERRY_URL, 16, 0, 22, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12);
-    public static final CustomAnimation fatRight = new CustomAnimation(JERRY_URL, 10, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6);
-    public static final CustomAnimation fatLeft = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6);
+    public static final CustomAnimation idleRight = new CustomAnimation(JERRY_URL, 26, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation idleLeft = new CustomAnimation(JERRY_URL, 26, 0, 3, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation right = new CustomAnimation(JERRY_URL, 26, 0, 6, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation left = new CustomAnimation(JERRY_URL, 26, 0, 9, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation endJumpRight = new CustomAnimation(JERRY_URL, 11, 0, 12, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, true);
+    public static final CustomAnimation endJumpLeft = new CustomAnimation(JERRY_URL, 11, 0, 14, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, true);
+    public static final CustomAnimation onAirRight = new CustomAnimation(JERRY_URL, 1, 0, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, true);
+    public static final CustomAnimation onAirLeft = new CustomAnimation(JERRY_URL, 1, 0, 27, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, true);
+    public static final CustomAnimation biteRight = new CustomAnimation(JERRY_URL, 18, 0, 16, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, true);
+    public static final CustomAnimation biteLeft = new CustomAnimation(JERRY_URL, 18, 0, 18, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, true);
+    public static final CustomAnimation fatIdleRight = new CustomAnimation(JERRY_URL, 16, 0, 20, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+    public static final CustomAnimation fatIdleLeft = new CustomAnimation(JERRY_URL, 16, 0, 22, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+    public static final CustomAnimation fatRight = new CustomAnimation(JERRY_URL, 10, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);
+    public static final CustomAnimation fatLeft = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);*/
     
     
     /////////
