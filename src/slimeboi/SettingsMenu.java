@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author Salahodin
  */
-public class SettingsMenuController implements Initializable {
+public class SettingsMenu implements Initializable {
 
     @FXML
     private VBox fondo;
@@ -39,6 +39,7 @@ public class SettingsMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
@@ -59,6 +60,8 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private void setConfigB(ActionEvent event) throws Exception {
         AorB = false;
+        
+        //esto se puede refactorizar cuando toque refactorizar ya que es el mismo codigo que el metodo anterior
         
         Parent root;
         

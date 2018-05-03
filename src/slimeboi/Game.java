@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
-import static slimeboi.SettingsMenuController.AorB;
+import static slimeboi.SettingsMenu.AorB;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.Camera;
