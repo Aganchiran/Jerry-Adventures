@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.Tile;
 import slimeboi.graphics.Assets;
 import slimeboi.graphics.CustomAnimation;
@@ -84,7 +85,7 @@ public abstract class Creature extends Entity{
         //Descomentar para visualizar hitbox//
         //gc.setFill(Paint.valueOf("black"));
         //gc.fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
-
+        //if(this instanceof Jerry) gc.fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
     }
     
     private void moveX(){
@@ -141,10 +142,6 @@ public abstract class Creature extends Entity{
         }
         
         return false;
-    }
-    
-    public BoundingBox getCollisionBounds(double xIncrement, double yIncrement){
-        return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
     }
     
     public abstract void updateState();

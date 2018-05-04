@@ -22,7 +22,7 @@ public class Blancanubes extends Enemy{
 
     @Override
     public void updateState() {
-        if(isDead()){
+        if(isEated()){
             game.getWorld().killCreature(this);
         }
         if(state == STATE_RIGHT){

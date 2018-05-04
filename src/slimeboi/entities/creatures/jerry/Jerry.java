@@ -26,6 +26,7 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     
+    private final BoundingBox biteHitBox = new BoundingBox(10, 18, 45, 34);
     
     public Jerry(double xPos, double yPos, Game game){
         super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
@@ -88,6 +89,10 @@ public class Jerry extends Creature{
         };
         
         timer.schedule(task, currentAnimation.getDurationInMilis());
+    }
+    
+    public BoundingBox getBiteBounds(){
+        return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
     }
     
 } 

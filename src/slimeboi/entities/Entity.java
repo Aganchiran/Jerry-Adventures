@@ -29,6 +29,10 @@ public abstract class Entity {
         this.game = game;
     }
     
+    public BoundingBox getCollisionBounds(double xIncrement, double yIncrement){
+        return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
+    }
+    
     public abstract void render(GraphicsContext gc);
     
     public double getXPos(){

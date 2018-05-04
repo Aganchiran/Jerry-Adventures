@@ -20,7 +20,7 @@ public abstract class Enemy extends Creature{
         super(xPos, yPos, width, height, xOffset, yOffset, speed, health, assets, game);
     }
     
-    protected boolean isDead(){
-        return this.getCollisionBounds(0, 0).contains(game.jerry.getCollisionBounds(0, 0)) && (game.jerry.currentAnimation == AssetsJerry.biteLeft || game.jerry.currentAnimation == AssetsJerry.biteRight);
+    protected boolean isEated(){
+        return game.jerry.getBiteBounds().contains(this.getCollisionBounds(0, 0)) && (game.jerry.currentAnimation == AssetsJerry.biteLeft || game.jerry.currentAnimation == AssetsJerry.biteRight);
     }
 }
