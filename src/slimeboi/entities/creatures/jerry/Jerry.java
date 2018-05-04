@@ -26,7 +26,7 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     
-    private final BoundingBox biteHitBox = new BoundingBox(10, 18, 45, 34);
+    private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 30);
     
     public Jerry(double xPos, double yPos, Game game){
         super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
