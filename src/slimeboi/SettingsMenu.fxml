@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="fondo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="vbox-custom" stylesheets="@slime.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slimeboi.SettingsMenu">
    <children>
-      <Button fx:id="configA" mnemonicParsing="false" onAction="#setConfigA" />
-      <Button fx:id="configB" mnemonicParsing="false" onAction="#setConfigB" />
+      <Button fx:id="configA" mnemonicParsing="false" onAction="#setConfigA" styleClass="configA">
+         <VBox.margin>
+            <Insets top="180.0" />
+         </VBox.margin></Button>
+      <Button fx:id="configB" mnemonicParsing="false" onAction="#setConfigB" styleClass="configB" />
    </children>
 </VBox>
