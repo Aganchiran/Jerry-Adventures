@@ -6,7 +6,8 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
-import slimeboi.entities.creatures.Blancanubes;
+import slimeboi.entities.creatures.enemies.Blancanubes;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.EarthCenterCenter;
 import slimeboi.entities.tiles.EarthCenterLeft;
 import slimeboi.entities.tiles.EarthCenterRight;
@@ -31,8 +32,8 @@ import slimeboi.entities.tiles.SkyTile;
  */
 public class Leaflands extends World{
     
-    public Leaflands(String music, String mapURL, int width, int height, Game game) {
-        super(music, mapURL, width, height, game);
+    public Leaflands(String music, String mapURL, int width, int height, Jerry jerry, Game game) {
+        super(music, mapURL, width, height, jerry, game);
         tileSet.add(new SkyTile());//00
         tileSet.add(new EarthUpLeft());//01
         tileSet.add(new EarthUpCenter());//02

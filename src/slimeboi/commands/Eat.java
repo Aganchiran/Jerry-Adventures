@@ -8,6 +8,7 @@ package slimeboi.commands;
 import java.util.Timer;
 import java.util.TimerTask;
 import slimeboi.entities.creatures.Creature;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.AssetsJerry;
 
 /**
@@ -45,8 +46,7 @@ public class Eat implements JerryCommand {
         }else{
             creature.setXIncrement(-1);
         }
-        
-        
+                
         Timer timer = new Timer();
         try{
             TimerTask task = new TimerTask() {

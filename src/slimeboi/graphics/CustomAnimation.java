@@ -62,7 +62,6 @@ public class CustomAnimation {
     }
     
     public int getDurationInMilis(){
-        System.out.println(16 * ((numFrames - 1) * 60/frameRate));
         return 16 * ((numFrames - 1) * 60/frameRate);
     }
     

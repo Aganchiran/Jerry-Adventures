@@ -7,6 +7,7 @@ package slimeboi.entities.creatures.jerry;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.geometry.BoundingBox;
 import javafx.scene.input.KeyCode;
 import slimeboi.Game;
 import slimeboi.commands.ControlLoader;
@@ -25,8 +26,9 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     
-    public Jerry(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
-        super(xPos, yPos, width, height, xOffset, yOffset, 1, 3, new AssetsJerry(), game);
+    
+    public Jerry(double xPos, double yPos, Game game){
+        super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
     }
     
     @Override
@@ -71,7 +73,7 @@ public class Jerry extends Creature{
         state = STATE_FREEZED;
         xIncrement = 0;
         ControlLoader.disableControls();
-        
+                
         Timer timer = new Timer();
         
         TimerTask task = new TimerTask() {
@@ -86,4 +88,5 @@ public class Jerry extends Creature{
         
         timer.schedule(task, currentAnimation.getDurationInMilis());
     }
+    
 } 

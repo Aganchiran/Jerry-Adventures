@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slimeboi.entities.creatures;
+package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
 import slimeboi.graphics.AssetsBlancanubes;
@@ -12,7 +12,7 @@ import slimeboi.graphics.AssetsBlancanubes;
  *
  * @author Javier Pastor Pérez
  */
-public class Blancanubes extends Creature{
+public class Blancanubes extends Enemy{
     
     private long count = 0;
 
@@ -22,6 +22,9 @@ public class Blancanubes extends Creature{
 
     @Override
     public void updateState() {
+        if(isDead()){
+            game.getWorld().killCreature(this);
+        }
         if(state == STATE_RIGHT){
             count++;
             if(count == 200) state = STATE_LEFT;
@@ -36,5 +39,5 @@ public class Blancanubes extends Creature{
     public boolean colidesY(){
         return true;
     }
-    
+
 }

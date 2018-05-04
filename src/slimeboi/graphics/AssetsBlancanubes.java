@@ -24,5 +24,4 @@ public class AssetsBlancanubes extends Assets{
         super.dieRight = super.idleRight;
         super.dieLeft = super.idleLeft;
     }
-    
 }

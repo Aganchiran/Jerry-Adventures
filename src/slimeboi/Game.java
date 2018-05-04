@@ -44,9 +44,9 @@ public class Game implements Initializable {
         
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        jerry = new Jerry(500, 550, 23, 16, 21, 30, this);
+        jerry = new Jerry(500, 550, this);
         
-        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
+        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, jerry, this);
         world.loadWorld();
         
         if(AorB)
