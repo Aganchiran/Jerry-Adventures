@@ -50,7 +50,8 @@ public class Jerry extends Creature{
         if(KeyManager.checkKey(KeyCode.Z.getName())){
             
             configuration.doAction(3); //3 es Z (o la que acabe siendo)
-        }else if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
+        }
+        if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
 
             configuration.doAction(0); // 0 es Derecha
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){           
