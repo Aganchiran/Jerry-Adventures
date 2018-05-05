@@ -21,5 +21,6 @@ public abstract class Assets {
     public  CustomAnimation onAirLeft;
     public  CustomAnimation dieRight;
     public  CustomAnimation dieLeft;
+    
 
 }

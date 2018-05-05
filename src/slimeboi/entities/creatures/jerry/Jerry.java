@@ -95,4 +95,6 @@ public class Jerry extends Creature{
         return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
     }
     
+    
+    
 } 

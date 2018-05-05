@@ -157,6 +157,8 @@ public abstract class Creature extends Entity{
         return xIncrement;
     }
     
+    
+    
     public double getXIncrement(){
         return xIncrement;
     }

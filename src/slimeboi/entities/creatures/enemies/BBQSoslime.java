@@ -28,7 +28,14 @@ public class BBQSoslime extends Enemy {
         }
         
         
+        if(game.jerry.getXPos() > this.getXPos())
+            state = STATE_RIGHT;
+        else if(game.jerry.getXPos() <= this.getXPos())
+            state = STATE_LEFT;
+           
         
-
+        state.move();
     }
+    
+    
 }
