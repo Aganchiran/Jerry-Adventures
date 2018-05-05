@@ -46,6 +46,8 @@ public class SettingsMenu implements Initializable {
     private void setConfigA(ActionEvent event) throws Exception {
         AorB = true;
         
+        //refactorisarllasldasfdakldas
+        
         Parent root;
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));

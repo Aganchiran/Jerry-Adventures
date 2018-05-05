@@ -6,6 +6,7 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
+import slimeboi.entities.creatures.enemies.BBQSoslime;
 import slimeboi.entities.creatures.enemies.Blancanubes;
 import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.EarthCenterCenter;
@@ -53,6 +54,7 @@ public class Leaflands extends World{
         tileSet.add(new EarthSingleBlock());//16
         
         creatures.add(new Blancanubes(500, 100, 32, 23, 16, 20, game));
+        creatures.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
     }
     
 }
