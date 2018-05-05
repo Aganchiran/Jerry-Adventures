@@ -85,6 +85,7 @@ public abstract class Creature extends Entity{
         //Descomentar para visualizar hitbox//
         //gc.setFill(Paint.valueOf("black"));
         //gc.fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
+        //gc.setFill(Paint.valueOf("red"));
         //if(this instanceof Jerry) gc.fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
     }
     
