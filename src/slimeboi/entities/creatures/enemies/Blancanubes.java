@@ -25,6 +25,11 @@ public class Blancanubes extends Enemy{
         if(isEated()){
             game.getWorld().killCreature(this);
         }
+        
+        if(!game.jerry.isBiting() && hitsJerry()){
+            System.out.println("Ouch!");
+        }
+        
         if(state == STATE_RIGHT){
             count++;
             if(count == 200) state = STATE_LEFT;

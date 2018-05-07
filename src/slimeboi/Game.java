@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import slimeboi.HUD.HUD;
 import static slimeboi.SettingsMenu.AorB;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
@@ -32,6 +33,7 @@ public class Game implements Initializable {
     private Canvas canvas;
     private Camera camera;
     private World world;
+    private HUD HUD;
     public Jerry jerry;
 
     /**
@@ -55,6 +57,7 @@ public class Game implements Initializable {
             DefaultControls.LoadControlsB(this);
         
         camera = new Camera(this);
+        HUD = new HUD(this);
         
         //GAME LOOP//
         new AnimationTimer()
@@ -66,6 +69,7 @@ public class Game implements Initializable {
 
                 world.render(gc);
                 jerry.render(gc);
+                HUD.render(gc);
             }
         }.start();
         

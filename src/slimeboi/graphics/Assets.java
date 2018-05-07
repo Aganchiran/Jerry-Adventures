@@ -10,8 +10,8 @@ package slimeboi.graphics;
  * @author Javier Pastor Pérez
  */
 public abstract class Assets {
-    protected static final int DEFAULT_ANIMATION_WIDTH = 64;
-    protected static final int DEFAULT_ANIMATION_HEIGHT = 64;
+    public static final int DEFAULT_ANIMATION_WIDTH = 64;
+    public static final int DEFAULT_ANIMATION_HEIGHT = 64;
     
     public  CustomAnimation idleRight;
     public  CustomAnimation idleLeft;

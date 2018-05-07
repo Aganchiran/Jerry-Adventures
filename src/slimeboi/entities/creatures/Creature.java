@@ -36,7 +36,7 @@ public abstract class Creature extends Entity{
     public final StateFreezed STATE_FREEZED = new StateFreezed(this);
 
     
-    public final Assets assets;
+    public Assets assets;
     public final int MAX_HEALTH;
     public final double DEFAULT_SPEED;
     

@@ -5,6 +5,7 @@
  */
 package slimeboi.graphics;
 
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -15,9 +16,10 @@ import javafx.scene.image.WritableImage;
  */
 public class CustomAnimation {
     
-    private final WritableImage[] sequence;
+    //private final WritableImage[] sequence;
+    private final ArrayList<Image> sequence;
     private final int frameRate;
-    private final int numFrames;
+    private int numFrames;
     private final boolean loop;
     private int frameAdjustement;
     private int currentAnimationFrame = 0;
@@ -25,7 +27,8 @@ public class CustomAnimation {
     
     public CustomAnimation(String url, int numFrames, int x, int y, int width, int height, int frameRate, boolean loop){
         
-        sequence = new WritableImage[numFrames];
+        //sequence = new WritableImage[numFrames];
+        sequence = new ArrayList<>();
         this.frameRate = frameRate;
         this.numFrames = numFrames;
         this.loop = loop;
@@ -36,7 +39,8 @@ public class CustomAnimation {
         
         for(int i = x ; i < numFrames + x ; i++){
             WritableImage frame = new WritableImage(reader, ((i % 10) * width), (y * height) + ((i / 10) * height), width, height);
-            sequence[i - x] = frame;
+            //sequence[i - x] = frame;
+            sequence.add(frame);
         }
         
     }
@@ -51,7 +55,8 @@ public class CustomAnimation {
             else currentAnimationFrame = (currentAnimationFrame + 1) % numFrames;
         }
         
-        return sequence[currentAnimationFrame];
+        //return sequence[currentAnimationFrame];
+        return sequence.get(currentAnimationFrame);
     }
     
     public int getCurrentAnimationFrame(){
@@ -65,4 +70,19 @@ public class CustomAnimation {
         return 16 * ((numFrames - 1) * 60/frameRate);
     }
     
+    public void setFrameInPositions(WritableImage frame, int[] pos){
+        for(int i = 0 ; i < pos.length ; i++){
+            sequence.set(pos[i], frame);
+        }
+        
+    }
+    
+    public void addFrames(Image[] frames){
+        
+        for(int i = 0 ; i < frames.length ; i++){
+            sequence.add(frames[i]);
+            numFrames++;
+        }
+        
+    }
 }

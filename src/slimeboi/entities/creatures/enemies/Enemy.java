@@ -8,7 +8,6 @@ package slimeboi.entities.creatures.enemies;
 import slimeboi.Game;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.Assets;
-import slimeboi.graphics.AssetsJerry;
 
 /**
  *
@@ -21,6 +20,10 @@ public abstract class Enemy extends Creature{
     }
     
     protected boolean isEated(){
-        return game.jerry.getBiteBounds().contains(this.getCollisionBounds(0, 0)) && (game.jerry.currentAnimation == AssetsJerry.biteLeft || game.jerry.currentAnimation == AssetsJerry.biteRight);
+        return game.jerry.getBiteBounds().contains(this.getCollisionBounds(0, 0)) && game.jerry.isBiting();
+    }
+    
+    protected boolean hitsJerry(){
+        return game.jerry.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(0, 0));
     }
 }

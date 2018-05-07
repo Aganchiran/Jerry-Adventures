@@ -27,6 +27,9 @@ public class BBQSoslime extends Enemy {
             game.getWorld().killCreature(this);
         }
         
+        if(!game.jerry.isBiting() && hitsJerry()){
+            game.jerry.hurt();
+        }
         
         if(game.jerry.getXPos() > this.getXPos())
             state = STATE_RIGHT;

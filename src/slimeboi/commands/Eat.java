@@ -26,8 +26,8 @@ public class Eat implements JerryCommand {
     public void execute() {
         
         
-        if(creature.facingRight()) creature.currentAnimation = AssetsJerry.biteRight;
-        else creature.currentAnimation = AssetsJerry.biteLeft;
+        if(creature.facingRight()) creature.currentAnimation = ((AssetsJerry)creature.assets).biteRight;
+        else creature.currentAnimation = ((AssetsJerry)creature.assets).biteLeft;
         creature.currentAnimation.setCurrentAnimationFrame(0);
 
 

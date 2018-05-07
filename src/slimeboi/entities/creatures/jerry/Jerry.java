@@ -14,6 +14,7 @@ import slimeboi.commands.ControlLoader;
 import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.AssetsJerry;
+import slimeboi.graphics.AssetsJerryBlink;
 import slimeboi.graphics.CustomAnimation;
 import slimeboi.input.KeyManager;
 
@@ -25,21 +26,27 @@ public class Jerry extends Creature{
     
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
+    private boolean invulnerable = false;
+    private int blinkCount = 0;
     
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
+    private final AssetsJerry ASSETS_NORMAL;
+    private final AssetsJerryBlink ASSETS_BLINK;
     
     public Jerry(double xPos, double yPos, Game game){
         super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
+        ASSETS_NORMAL = (AssetsJerry) assets;
+        ASSETS_BLINK = new AssetsJerryBlink();
     }
     
     @Override
     public void updateState(){
  
         if(lastStateOnAir && !isOnAir()){
-            if(state != STATE_FREEZED){
-                if(lastYIncrement > 2.5) land(AssetsJerry.endJumpRight, AssetsJerry.endJumpLeft);
+            if(!isBiting()){
+                if(lastYIncrement > 2.5) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
             }else{
-                land(AssetsJerry.endBiteRight, AssetsJerry.endBiteLeft);
+                land(((AssetsJerry)assets).endBiteRight, ((AssetsJerry)assets).endBiteLeft);
             }
             
         } 
@@ -62,6 +69,11 @@ public class Jerry extends Creature{
             state.idle();
         }
         
+        /*if(blinkCount % 30 == 0){
+            currentAnimation = AssetsJerry.emptyAnimation;
+        }
+        
+        blinkCount = (blinkCount + 1) % 60;*/
         lastStateOnAir = isOnAir();
         lastYIncrement = yIncrement;
     }
@@ -72,8 +84,13 @@ public class Jerry extends Creature{
         else currentAnimation = leftAnim;
         
 
-        state = STATE_FREEZED;
+        
         xIncrement = 0;
+        freeze(currentAnimation.getDurationInMilis());
+    }
+    
+    public void freeze(int timeFreezed){
+        state = STATE_FREEZED;        
         ControlLoader.disableControls();
                 
         Timer timer = new Timer();
@@ -88,13 +105,56 @@ public class Jerry extends Creature{
             }
         };
         
-        timer.schedule(task, currentAnimation.getDurationInMilis());
+        timer.schedule(task, timeFreezed);
     }
     
     public BoundingBox getBiteBounds(){
         return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
     }
     
+    public boolean isBiting(){
+        return currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight;
+    }
     
+    public void hurt(){
+        if(!invulnerable){
+            
+            currentAnimation = assets.onAirRight;
+
+            xIncrement = -xIncrement;
+            yIncrement = -2;
+            notFreezedState = STATE_RIGHT_ON_AIR;
+            freeze(400);
+            assets = ASSETS_BLINK;
+            makeInvulnerable();
+            
+        }
+    }
     
+    public void makeInvulnerable(){
+        invulnerable = true;        
+        
+        Timer timer = new Timer();
+        //Timer timerBinking = new Timer();
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                invulnerable = false;
+                assets = ASSETS_NORMAL;
+                timer.cancel();
+            }
+        };
+        
+        /*TimerTask taskBinkingIn = new TimerTask() {
+            @Override
+            public void run() {
+                currentAnimation = AssetsJerry.emptyAnimation;
+                timer.cancel();
+            }
+        };*/
+
+        //timerBinking.scheduleAtFixedRate(taskBinkingIn, 10, 100);
+        timer.schedule(task, 20000);
+    }
 } 
