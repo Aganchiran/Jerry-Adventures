@@ -25,7 +25,7 @@ public class LifeGauge {
         this.game = game;
     }
     
-    public void render(GraphicsContext gc) throws IOException{
+    public void render(GraphicsContext gc){
         int health = game.jerry.getHealth();
         for(int i = 0; i < health ; i++){
             gc.drawImage(game.jerry.assets.onAirRight.nextFrame(), i * 32, 0);
