@@ -5,7 +5,12 @@
  */
 package slimeboi.HUD;
 
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Stage;
 import slimeboi.Game;
 
 /**
@@ -20,10 +25,12 @@ public class LifeGauge {
         this.game = game;
     }
     
-    public void render(GraphicsContext gc){
+    public void render(GraphicsContext gc) throws IOException{
         int health = game.jerry.getHealth();
         for(int i = 0; i < health ; i++){
             gc.drawImage(game.jerry.assets.onAirRight.nextFrame(), i * 32, 0);
         }
+        
+        
     }
 }

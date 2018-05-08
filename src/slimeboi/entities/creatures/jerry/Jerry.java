@@ -27,14 +27,15 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     private boolean invulnerable = false;
-    private int blinkCount = 0;
+    
+    public Timer timer = new Timer();
     
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
     private final AssetsJerry ASSETS_NORMAL;
     private final AssetsJerryBlink ASSETS_BLINK;
     
     public Jerry(double xPos, double yPos, Game game){
-        super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
+        super(xPos, yPos, 23, 16, 21, 30, 1, 1, new AssetsJerry(), game);
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
     }
@@ -69,11 +70,6 @@ public class Jerry extends Creature{
             state.idle();
         }
         
-        /*if(blinkCount % 30 == 0){
-            currentAnimation = AssetsJerry.emptyAnimation;
-        }
-        
-        blinkCount = (blinkCount + 1) % 60;*/
         lastStateOnAir = isOnAir();
         lastYIncrement = yIncrement;
     }
@@ -118,7 +114,7 @@ public class Jerry extends Creature{
     
     public void hurt(){
         if(!invulnerable){
-            
+            health--;
             currentAnimation = assets.onAirRight;
 
             xIncrement = -xIncrement;
@@ -134,8 +130,7 @@ public class Jerry extends Creature{
     public void makeInvulnerable(){
         invulnerable = true;        
         
-        Timer timer = new Timer();
-        //Timer timerBinking = new Timer();
+        timer = new Timer();
 
         TimerTask task = new TimerTask() {
             @Override
@@ -146,15 +141,7 @@ public class Jerry extends Creature{
             }
         };
         
-        /*TimerTask taskBinkingIn = new TimerTask() {
-            @Override
-            public void run() {
-                currentAnimation = AssetsJerry.emptyAnimation;
-                timer.cancel();
-            }
-        };*/
-
-        //timerBinking.scheduleAtFixedRate(taskBinkingIn, 10, 100);
         timer.schedule(task, 20000);
     }
+    
 } 

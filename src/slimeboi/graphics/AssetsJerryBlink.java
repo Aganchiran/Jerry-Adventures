@@ -51,13 +51,17 @@ public class AssetsJerryBlink extends AssetsJerry{
         super.onAirRight.addFrames(frames);
         Image[] froms = {super.onAirLeft.nextFrame(), super.onAirLeft.nextFrame(), super.onAirLeft.nextFrame(),emptyFrame};
         super.onAirLeft.addFrames(froms);
-        /*super.dieRight.addFrames(frames);
-        super.dieLeft.addFrames(frames);
-        super.endJumpRight.addFrame(emptyFrame);
-        super.endJumpLeft.addFrame(emptyFrame);
-        super.biteRight.addFrame(emptyFrame);
-        super.biteLeft.addFrame(emptyFrame);
-        super.endBiteRight.addFrame(emptyFrame);
-        super.endBiteLeft.addFrame(emptyFrame);*/
+        
+        
+        //super.dieRight.addFrames(frames);
+        //super.dieLeft.addFrames(frames);
+        int[] pos2 = {0,1,7,8};
+        super.endJumpRight.setFrameInPositions(emptyFrame, pos2); //13
+        super.endJumpLeft.setFrameInPositions(emptyFrame, pos2);
+        super.biteRight.setFrameInPositions(emptyFrame, pos2); //10
+        super.biteLeft.setFrameInPositions(emptyFrame, pos2);
+        int[] pos3 = {0,1};
+        super.endBiteRight.setFrameInPositions(emptyFrame, pos3); //8
+        super.endBiteLeft.setFrameInPositions(emptyFrame, pos3);
     }
 }
