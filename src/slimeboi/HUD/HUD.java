@@ -5,6 +5,7 @@
  */
 package slimeboi.HUD;
 
+import java.io.IOException;
 import javafx.scene.canvas.GraphicsContext;
 import slimeboi.Game;
 
@@ -22,7 +23,7 @@ public class HUD {
         lifeGauge = new LifeGauge(game);
     }
     
-    public void render(GraphicsContext gc){
+    public void render(GraphicsContext gc) throws IOException{
         lifeGauge.render(gc);
     }
 }

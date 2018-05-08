@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import slimeboi.HUD.HUD;
@@ -42,6 +44,8 @@ public class Game implements Initializable {
     private World world;
     private HUD HUD;
     public Jerry jerry;
+    @FXML
+    private Button cagobutton;
 
     /**
      * Initializes the controller class.
@@ -50,7 +54,7 @@ public class Game implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        cagobutton.setVisible(false);
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
@@ -76,11 +80,15 @@ public class Game implements Initializable {
 
                 world.render(gc);
                 jerry.render(gc);
-                HUD.render(gc);
+                try {
+                    HUD.render(gc);
+                } catch (IOException ex) {
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 if(jerry.getHealth() == 0) {
-                    
-                    Parent root;
+                    cagobutton.setVisible(true);
+                    /*Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                         Scene scene = new Scene(root);
@@ -93,7 +101,7 @@ public class Game implements Initializable {
                         stage.setResizable(false);
                     } catch (IOException ex) {
                         Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }*/
 
                  }
             }
@@ -120,5 +128,23 @@ public class Game implements Initializable {
     }
     public World getWorld(){
         return world;
+    }
+
+    @FXML
+    private void onCago(ActionEvent event) {
+        Parent root;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage) getCanvas().getScene().getWindow();
+
+                        scene.getStylesheets().add("slimeboi/slime.css");
+
+                        stage.setScene(scene);
+                        stage.show();
+                        stage.setResizable(false);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }
 }
