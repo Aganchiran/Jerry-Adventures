@@ -70,7 +70,10 @@ public class Jerry extends Creature{
             state.idle();
         }
         
-        if(health == 0) xIncrement = 0;
+        if(health == 0){
+            xIncrement = 0;
+            ControlLoader.disableControls();
+        }
         lastStateOnAir = isOnAir();
         lastYIncrement = yIncrement;
     }
