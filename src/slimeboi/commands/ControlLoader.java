@@ -49,11 +49,11 @@ public class ControlLoader {
     }
     
     public static void enableControls(){
-        
+        //System.out.println(actions[0]);
         for(int i = 0; i<7; i++) {
             actions[i] = previousActions[i];
         }
-                
+        //System.out.println(actions[0]);
         controlsDisabled = false;
     }
     
