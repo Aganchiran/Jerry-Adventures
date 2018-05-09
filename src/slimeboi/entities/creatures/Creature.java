@@ -175,6 +175,10 @@ public abstract class Creature extends Entity{
         return notFreezedState == STATE_RIGHT || notFreezedState == STATE_RIGHT_ON_AIR;
     }
     
+    public boolean isFreezed(){
+        return state == STATE_FREEZED;
+    }
+    
     public void setXIncrement(double newIncrement){
         xIncrement = newIncrement;
     }

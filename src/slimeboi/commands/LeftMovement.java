@@ -20,13 +20,16 @@ public class LeftMovement implements JerryCommand {
     
     @Override
     public void execute() {
-        if(creature.isOnAir()){
-            creature.state = creature.STATE_LEFT_ON_AIR;
-            creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
-        }else{
-            creature.state = creature.STATE_LEFT;
-            creature.notFreezedState = creature.STATE_LEFT;
+        if(!creature.isFreezed()){
+            if(creature.isOnAir()){
+                creature.state = creature.STATE_LEFT_ON_AIR;
+                creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
+            }else{
+                creature.state = creature.STATE_LEFT;
+                creature.notFreezedState = creature.STATE_LEFT;
+            }
         }
+        
         
         creature.state.move();
     }    

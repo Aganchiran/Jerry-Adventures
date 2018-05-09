@@ -88,6 +88,7 @@ public class Game implements Initializable {
                 
                 if(jerry.getHealth() == 0) {
                     cagobutton.setVisible(true);
+                    //jerry.cancelTimers();
                     /*Parent root;
                     try {
                         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -131,20 +132,22 @@ public class Game implements Initializable {
     }
 
     @FXML
-    private void onCago(ActionEvent event) {
+    private void onCago(ActionEvent event) throws Throwable {
         Parent root;
-                    try {
-                        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) getCanvas().getScene().getWindow();
+        
+        try {
+            root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) getCanvas().getScene().getWindow();
 
-                        scene.getStylesheets().add("slimeboi/slime.css");
+            scene.getStylesheets().add("slimeboi/slime.css");
 
-                        stage.setScene(scene);
-                        stage.show();
-                        stage.setResizable(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            stage.setScene(scene);
+            stage.show();
+            stage.setResizable(false);
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

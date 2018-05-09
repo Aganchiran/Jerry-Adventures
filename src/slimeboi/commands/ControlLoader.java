@@ -57,4 +57,8 @@ public class ControlLoader {
         controlsDisabled = false;
     }
     
+    public static void printControls(){
+        System.out.println("{" + actions[0].toString() + "," + actions[1].toString() + "," + actions[2].toString() + "," + actions[3].toString() + "," + actions[4].toString() + "," + actions[5].toString() + "}");
+    }
+    
 }

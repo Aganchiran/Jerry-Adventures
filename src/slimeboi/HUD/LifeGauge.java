@@ -5,13 +5,11 @@
  */
 package slimeboi.HUD;
 
-import java.io.IOException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.canvas.GraphicsContext;
-import javafx.stage.Stage;
 import slimeboi.Game;
+import slimeboi.graphics.AssetsJerry;
+import slimeboi.graphics.AssetsViejo;
 
 /**
  *
@@ -28,9 +26,14 @@ public class LifeGauge {
     public void render(GraphicsContext gc){
         int health = game.jerry.getHealth();
         for(int i = 0; i < health ; i++){
-            gc.drawImage(game.jerry.assets.onAirRight.nextFrame(), i * 32, 0);
+            gc.drawImage(AssetsViejo.onAirRight.nextFrame(), i * 32, 0);
         }
-        
+        if(game.jerry.currentAnimation == ((AssetsJerry) game.jerry.assets).hurtRight ||
+           game.jerry.currentAnimation == ((AssetsJerry) game.jerry.assets).hurtLeft){
+            gc.drawImage(AssetsViejo.hurtRight.nextFrame(), health * 32, 0);
+        }else{
+            AssetsViejo.hurtRight.setCurrentAnimationFrame(0);
+        }
         
     }
 }

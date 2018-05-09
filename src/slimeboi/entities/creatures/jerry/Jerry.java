@@ -7,8 +7,11 @@ package slimeboi.entities.creatures.jerry;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.BoundingBox;
 import javafx.scene.input.KeyCode;
+import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.commands.ControlLoader;
 import static slimeboi.commands.DefaultControls.configuration;
@@ -27,22 +30,27 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     private boolean invulnerable = false;
-    private Timer timer;
-    private Timer timer2;
+    //private Timer timer;
+    //private Timer timer2;
         
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
     private final AssetsJerry ASSETS_NORMAL;
     private final AssetsJerryBlink ASSETS_BLINK;
     
     public Jerry(double xPos, double yPos, Game game){
-        super(xPos, yPos, 23, 16, 21, 30, 1, 2, new AssetsJerry(), game);
+        super(xPos, yPos, 23, 16, 21, 30, 1, 10, new AssetsJerry(), game);
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
     }
     
     @Override
     public void updateState(){
- 
+        if(health <= 0){
+            invulnerable = true;
+            xIncrement = 0;
+            state = STATE_FREEZED;
+        }
+        
         if(lastStateOnAir && !isOnAir()){
             if(!isBiting()){
                 if(lastYIncrement > 2.5) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
@@ -64,16 +72,13 @@ public class Jerry extends Creature{
 
             ControlLoader.doAction(0); // 0 es Derecha
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){           
-
+            
             ControlLoader.doAction(1); // 1 es Izquierda
         }else {
             state.idle();
         }
         
-        if(health == 0){
-            xIncrement = 0;
-            ControlLoader.disableControls();
-        }
+        
         lastStateOnAir = isOnAir();
         lastYIncrement = yIncrement;
     }
@@ -90,10 +95,18 @@ public class Jerry extends Creature{
     }
     
     public void freeze(int timeFreezed){
+        
         state = STATE_FREEZED;        
         ControlLoader.disableControls();
+        System.out.println("freeze");
+        new Timeline(new KeyFrame(Duration.millis(timeFreezed), ae -> {
+            currentAnimation.setCurrentAnimationFrame(0);
+            state = notFreezedState;
+
+            ControlLoader.enableControls();
+        })).play();
                 
-        timer = new Timer();
+        /*timer = new Timer();
         
         TimerTask task = new TimerTask() {
             @Override
@@ -102,14 +115,13 @@ public class Jerry extends Creature{
                 state = notFreezedState;
                 
                 ControlLoader.enableControls();
-                System.out.println(state);
-                timer.cancel();
+                //timer.cancel();
             }
         };
         
         
         
-        timer.schedule(task, timeFreezed);
+        timer.schedule(task, timeFreezed);*/
     }
     
     public BoundingBox getBiteBounds(){
@@ -121,15 +133,23 @@ public class Jerry extends Creature{
     }
     
     public void hurt(){
-        if(!invulnerable){
+        
+        if(!invulnerable && health > 0){
+            assets = ASSETS_BLINK;
             health--;
-            currentAnimation = assets.onAirRight;
+            
+            if(facingRight()){
+                currentAnimation = ((AssetsJerry) assets).hurtRight;
+                notFreezedState = STATE_RIGHT_ON_AIR;
+            }else{
+                currentAnimation = ((AssetsJerry) assets).hurtLeft;
+                notFreezedState = STATE_LEFT_ON_AIR;
+            }
 
             xIncrement = -xIncrement;
             yIncrement = -2;
-            notFreezedState = STATE_RIGHT_ON_AIR;
+            
             freeze(400);
-            assets = ASSETS_BLINK;
             makeInvulnerable();
             
         }
@@ -138,7 +158,13 @@ public class Jerry extends Creature{
     public void makeInvulnerable(){
         invulnerable = true;        
         
-        timer2 = new Timer();
+        new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
+            invulnerable = false;
+            assets = ASSETS_NORMAL;
+            //timer2.cancel();
+        })).play();
+        
+        /*timer2 = new Timer();
 
         TimerTask task = new TimerTask() {
             @Override
@@ -149,7 +175,15 @@ public class Jerry extends Creature{
             }
         };
         
-        timer2.schedule(task, 3000);
+        timer2.schedule(task, 3000);*/
     }
     
+    
+    /*public void cancelTimers(){
+        timer.cancel();
+        timer2.cancel();
+        timer.purge();
+        timer2.purge();
+        
+    }*/
 } 

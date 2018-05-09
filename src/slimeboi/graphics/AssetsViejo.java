@@ -21,7 +21,9 @@ public class AssetsViejo {
     
     private static final int DEFAULT_ANIMATION_WIDTH = 64;
     private static final int DEFAULT_ANIMATION_HEIGHT = 64;
-
+    
+    public static final CustomAnimation onAirRight = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 0, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    public static final CustomAnimation hurtRight = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 4, 6, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     //Jerry//
     /*private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";
   

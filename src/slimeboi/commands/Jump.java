@@ -21,12 +21,14 @@ public class Jump implements JerryCommand {
     @Override
     public void execute() {
         creature.state.jump();
-        if(creature.state == creature.STATE_LEFT){
-            creature.state = creature.STATE_LEFT_ON_AIR;
-            creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
-        }else if(creature.state == creature.STATE_RIGHT){
-            creature.state = creature.STATE_RIGHT_ON_AIR;
-            creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
+        if(!creature.isFreezed()){
+            if(creature.state == creature.STATE_LEFT){
+                creature.state = creature.STATE_LEFT_ON_AIR;
+                creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
+            }else if(creature.state == creature.STATE_RIGHT){
+                creature.state = creature.STATE_RIGHT_ON_AIR;
+                creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
+            }
         }
     }    
 }
