@@ -6,14 +6,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slimeboi.Game">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slimeboi.Game">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
             <Canvas fx:id="canvas" height="650.0" width="1000.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="cagobutton" mnemonicParsing="false" onAction="#onCago" text="MECAGOENTOTUMUERO" />
+                  <Button fx:id="retryButton" mnemonicParsing="false" onAction="#onRetry" styleClass="retry-custom" stylesheets="@slime.css" />
+                  <Button fx:id="cagobutton" mnemonicParsing="false" onAction="#onCago" styleClass="cago-custom" stylesheets="@slime.css" />
                </children>
             </HBox>
          </children>

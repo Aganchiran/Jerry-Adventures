@@ -46,6 +46,8 @@ public class Game implements Initializable {
     public Jerry jerry;
     @FXML
     private Button cagobutton;
+    @FXML
+    private Button retryButton;
 
     /**
      * Initializes the controller class.
@@ -55,6 +57,7 @@ public class Game implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cagobutton.setVisible(false);
+        retryButton.setVisible(false);
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
@@ -88,6 +91,7 @@ public class Game implements Initializable {
                 
                 if(jerry.getHealth() == 0) {
                     cagobutton.setVisible(true);
+                    retryButton.setVisible(true);
                     //jerry.cancelTimers();
                     /*Parent root;
                     try {
@@ -149,5 +153,26 @@ public class Game implements Initializable {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @FXML
+    private void onRetry(ActionEvent event) {
+        Parent root;
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            
+            Stage stage = (Stage) getCanvas().getScene().getWindow();
+            
+            stage.setScene(scene);
+            
+            Game level = loader.getController();
+            level.listenKeys();
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
