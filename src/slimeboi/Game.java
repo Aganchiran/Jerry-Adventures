@@ -62,8 +62,6 @@ public class Game implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cagobutton.setVisible(false);
         retryButton.setVisible(false);
-        cagobutton.setId("quit-custom");
-        retryButton.setId("quit-custom");
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
