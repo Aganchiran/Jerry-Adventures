@@ -11,9 +11,10 @@
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
             <Canvas fx:id="canvas" height="650.0" width="1000.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
-                  <Button fx:id="cagobutton" mnemonicParsing="false" onAction="#onCago" text="MECAGOENTOTUMUERO" />
+                  <Button fx:id="cagobutton" mnemonicParsing="false" onAction="#onCago" stylesheets="@slime.css" text="MECAGOENTOTUMUERO" />
+                  <Button fx:id="retryButton" mnemonicParsing="false" onAction="#retry" text="Retry" />
                </children>
             </HBox>
          </children>

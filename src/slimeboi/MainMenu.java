@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import slimeboi.commands.DefaultControls;
 
 /**
  * FXML Controller class
@@ -61,7 +60,7 @@ public class MainMenu implements Initializable {
             Scene scene = new Scene(root);
             
             Stage stage = (Stage) fondo.getScene().getWindow();
-            
+            scene.getStylesheets().add("slimeboi/slime.css");
             stage.setScene(scene);
             
             Game level = loader.getController();

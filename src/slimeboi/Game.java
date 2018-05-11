@@ -20,7 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import slimeboi.HUD.HUD;
 import static slimeboi.SettingsMenu.AorB;
@@ -44,8 +47,11 @@ public class Game implements Initializable {
     private World world;
     private HUD HUD;
     public Jerry jerry;
+    private boolean paused = false;
     @FXML
     private Button cagobutton;
+    @FXML
+    private Button retryButton;
 
     /**
      * Initializes the controller class.
@@ -55,6 +61,9 @@ public class Game implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cagobutton.setVisible(false);
+        retryButton.setVisible(false);
+        cagobutton.setId("quit-custom");
+        retryButton.setId("quit-custom");
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
@@ -76,35 +85,40 @@ public class Game implements Initializable {
             @Override
             public void handle(long currentNanoTime)
             {
-                gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-                world.render(gc);
-                jerry.render(gc);
-                try {
-                    HUD.render(gc);
-                } catch (IOException ex) {
-                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 
-                if(jerry.getHealth() == 0) {
-                    cagobutton.setVisible(true);
-                    //jerry.cancelTimers();
-                    /*Parent root;
-                    try {
-                        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) getCanvas().getScene().getWindow();
+                if(!paused){
+                    gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-                        scene.getStylesheets().add("slimeboi/slime.css");
+                    world.render(gc);
+                    jerry.render(gc);
 
-                        stage.setScene(scene);
-                        stage.show();
-                        stage.setResizable(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                    HUD.render(gc);
 
-                 }
+
+                    if(jerry.getHealth() == 0) {
+                        
+                        gc.setFill(Color.rgb(0, 0, 0, 0.5));
+                        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                        cagobutton.setVisible(true);
+                        retryButton.setVisible(true);
+                        //jerry.cancelTimers();
+                        /*Parent root;
+                        try {
+                            root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) getCanvas().getScene().getWindow();
+
+                            scene.getStylesheets().add("slimeboi/slime.css");
+
+                            stage.setScene(scene);
+                            stage.show();
+                            stage.setResizable(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                        }*/
+
+                     }
+                }
             }
         }.start();
         
@@ -113,10 +127,14 @@ public class Game implements Initializable {
     public void listenKeys(){
         canvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, KeyEvent -> {
             KeyManager.pressingKey(KeyEvent);
+            if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                paused = !paused;
+            }
         });
         
         canvas.getScene().addEventFilter(KeyEvent.KEY_RELEASED, KeyEvent -> {
             KeyManager.releasingKey(KeyEvent);
+            
         });
     }
     
@@ -149,5 +167,25 @@ public class Game implements Initializable {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @FXML
+    private void retry(ActionEvent event) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+            root = loader.load();
+            Scene scene = new Scene(root);
+            
+            Stage stage = (Stage) canvas.getScene().getWindow();
+            scene.getStylesheets().add("slimeboi/slime.css");
+            stage.setScene(scene);
+            
+            Game level = loader.getController();
+            level.listenKeys();
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
