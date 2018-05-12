@@ -53,6 +53,8 @@ public class Game implements Initializable {
     private ResourceBundle rb;
     private AnimationTimer gameLoop;
     
+    boolean gover;
+    
     @FXML
     private Button cagobutton;
     @FXML
@@ -105,6 +107,7 @@ public class Game implements Initializable {
                         
                         gc.setFill(Color.rgb(0, 0, 0, 0.5));
                         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                        gover = true;
                         cagobutton.setVisible(true);
                         retryButton.setVisible(true);
                         //jerry.cancelTimers();
@@ -134,7 +137,7 @@ public class Game implements Initializable {
     public void listenKeys(){
         canvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, KeyEvent -> {
             KeyManager.pressingKey(KeyEvent);
-            
+            if(!gover)
             if(KeyEvent.getCode() == KeyCode.ESCAPE){
                 pauseUnpause();
             }
