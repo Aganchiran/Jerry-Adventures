@@ -45,6 +45,8 @@ public class Jerry extends Creature{
     
     @Override
     public void updateState(){
+        //System.out.println(invulnerable + " - " + state + " - " + lastStateOnAir + " - " + !isOnAir());
+
         if(health <= 0){
             invulnerable = true;
             xIncrement = 0;
@@ -52,6 +54,7 @@ public class Jerry extends Creature{
         }
         
         if(lastStateOnAir && !isOnAir()){
+            
             if(!isBiting()){
                 if(lastYIncrement > 2.5) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
             }else{
@@ -69,7 +72,7 @@ public class Jerry extends Creature{
             ControlLoader.doAction(3); //3 es Z (o la que acabe siendo)
         }
         if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
-
+            
             ControlLoader.doAction(0); // 0 es Derecha
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){           
             
@@ -98,7 +101,6 @@ public class Jerry extends Creature{
         
         state = STATE_FREEZED;        
         ControlLoader.disableControls();
-        System.out.println("freeze");
         new Timeline(new KeyFrame(Duration.millis(timeFreezed), ae -> {
             currentAnimation.setCurrentAnimationFrame(0);
             state = notFreezedState;

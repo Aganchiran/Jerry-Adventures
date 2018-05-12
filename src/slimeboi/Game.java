@@ -43,11 +43,16 @@ public class Game implements Initializable {
 
     @FXML
     private Canvas canvas;
+    
     private Camera camera;
     private World world;
     private HUD HUD;
     public Jerry jerry;
     private boolean paused = false;
+    private URL url;
+    private ResourceBundle rb;
+    private AnimationTimer gameLoop;
+    
     @FXML
     private Button cagobutton;
     @FXML
@@ -60,6 +65,9 @@ public class Game implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.url = url;
+        this.rb = rb;
+        
         cagobutton.setVisible(false);
         retryButton.setVisible(false);
         
@@ -78,7 +86,7 @@ public class Game implements Initializable {
         HUD = new HUD(this);
         
         //GAME LOOP//
-        new AnimationTimer()
+        gameLoop = new AnimationTimer()
         {
             @Override
             public void handle(long currentNanoTime)
@@ -118,7 +126,8 @@ public class Game implements Initializable {
                      }
                 }
             }
-        }.start();
+        };
+        gameLoop.start();
         
     }    
     
@@ -170,22 +179,9 @@ public class Game implements Initializable {
 
     @FXML
     private void retry(ActionEvent event) {
-        Parent root;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            
-            Stage stage = (Stage) canvas.getScene().getWindow();
-            scene.getStylesheets().add("slimeboi/slime.css");
-            stage.setScene(scene);
-            
-            Game level = loader.getController();
-            level.listenKeys();
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        paused = false;
+        gameLoop.stop();
+        initialize(url, rb);
     }
     
     public void pauseUnpause(){
