@@ -200,4 +200,8 @@ public class Jerry extends Creature{
     public void setAmmo(Ammo newAmmo) {
         ammo = newAmmo;
     }
+    
+    
+    
+    
 } 

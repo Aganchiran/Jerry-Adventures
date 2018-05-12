@@ -26,6 +26,7 @@ public class BBQSoslime extends Enemy {
     public void updateState(){
         if(isEated()){
             game.getWorld().killCreature(this);
+            game.jerry.hasAmmo = true;
         }
         
         if(!game.jerry.isBiting() && hitsJerry()){

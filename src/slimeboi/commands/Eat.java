@@ -23,46 +23,54 @@ public class Eat implements JerryCommand {
     
     @Override
     public void execute() {
-        
-        if(!creature.isFreezed()){
-            if(creature.facingRight()) creature.currentAnimation = ((AssetsJerry)creature.assets).biteRight;
-            else creature.currentAnimation = ((AssetsJerry)creature.assets).biteLeft;
+        if (!creature.hasAmmo) {
+            if (!creature.isFreezed()) {
+                if (creature.facingRight()) {
+                    creature.currentAnimation = ((AssetsJerry) creature.assets).biteRight;
+                } else {
+                    creature.currentAnimation = ((AssetsJerry) creature.assets).biteLeft;
+                }
 
-            creature.currentAnimation.setCurrentAnimationFrame(0);
+                creature.currentAnimation.setCurrentAnimationFrame(0);
 
-            creature.state = creature.STATE_FREEZED;
+                creature.state = creature.STATE_FREEZED;
 
-            if(creature.notFreezedState == creature.STATE_LEFT){
-                creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
-            }else if(creature.notFreezedState == creature.STATE_RIGHT){
-                creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
+                if (creature.notFreezedState == creature.STATE_LEFT) {
+                    creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
+                } else if (creature.notFreezedState == creature.STATE_RIGHT) {
+                    creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
+                }
+
+                ControlLoader.disableControls();
+                creature.setYIncrement(-2.7);
+                if (creature.facingRight()) {
+                    creature.setXIncrement(1);
+                } else {
+                    creature.setXIncrement(-1);
+                }
+
+                Timer timer = new Timer();
+                try {
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            while (creature.isOnAir());
+
+                            creature.state = creature.notFreezedState;
+                            ControlLoader.enableControls();
+                        }
+                    };
+
+                    timer.schedule(task, 10);
+                } finally {
+                    timer.cancel();
+                }
             }
-
-            ControlLoader.disableControls();
-            creature.setYIncrement(-2.7);
-            if(creature.facingRight()){
-                creature.setXIncrement(1);
-            }else{
-                creature.setXIncrement(-1);
-            }
-
-            Timer timer = new Timer();
-            try{
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        while(creature.isOnAir());
-
-                        creature.state = creature.notFreezedState;
-                        ControlLoader.enableControls();
-                    }
-                };
-
-                timer.schedule(task, 10);
-            }finally{
-                timer.cancel();
-            }
+        } else {
+            
+            //hacer cozas
+       
         }
-    }    
-    
+    }
+
 }

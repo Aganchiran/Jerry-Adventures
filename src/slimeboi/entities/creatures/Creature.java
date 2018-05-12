@@ -39,13 +39,14 @@ public abstract class Creature extends Entity{
     public Assets assets;
     public final int MAX_HEALTH;
     public final double DEFAULT_SPEED;
+    public boolean hasAmmo;
     
     
     public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, double speed, int health, Assets assets, Game game){
         super(xPos, yPos, width, height, xOffset, yOffset, game);
         MAX_HEALTH = health;
         DEFAULT_SPEED = speed;
-        
+        this.hasAmmo = false;
         this.health = health;
         this.xIncrement = 0;
         this.assets = assets;
