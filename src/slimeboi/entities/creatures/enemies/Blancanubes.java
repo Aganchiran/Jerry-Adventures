@@ -6,6 +6,7 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
+import slimeboi.entities.creatures.jerry.ammo.ThunderAmmo;
 import slimeboi.graphics.AssetsBlancanubes;
 
 /**
@@ -17,17 +18,19 @@ public class Blancanubes extends Enemy{
     private long count = 0;
 
     public Blancanubes(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game) {
-        super(xPos, yPos, width, height, xOffset, yOffset, 0.5, 1, new AssetsBlancanubes(), game);
+        super(xPos, yPos, width, height, xOffset, yOffset, 0.5, 1, new AssetsBlancanubes(),new ThunderAmmo(game), game);
     }
 
     @Override
     public void updateState() {
+
         if(isEated()){
+            game.jerry.setAmmo(ammo);
             game.getWorld().killCreature(this);
         }
         
         if(!game.jerry.isBiting() && hitsJerry()){
-            System.out.println("Ouch!");
+            game.jerry.hurt();
         }
         
         if(state == STATE_RIGHT){

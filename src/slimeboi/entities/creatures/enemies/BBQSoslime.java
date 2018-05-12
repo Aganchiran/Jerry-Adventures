@@ -6,6 +6,7 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
+import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsBBQ;
 
 /**
@@ -17,7 +18,7 @@ public class BBQSoslime extends Enemy {
     
     
     public BBQSoslime(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
-        super(xPos, yPos, width, height, xOffset, yOffset, 0, 1, new AssetsBBQ(), game);
+        super(xPos, yPos, width, height, xOffset, yOffset, 0, 1, new AssetsBBQ(),new NoAmmo(game), game);
         
     }
 

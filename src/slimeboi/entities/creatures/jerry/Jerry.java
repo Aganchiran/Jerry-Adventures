@@ -10,12 +10,15 @@ import java.util.TimerTask;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.BoundingBox;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.commands.ControlLoader;
 import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
+import slimeboi.entities.creatures.jerry.ammo.Ammo;
+import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsJerry;
 import slimeboi.graphics.AssetsJerryBlink;
 import slimeboi.graphics.CustomAnimation;
@@ -32,6 +35,9 @@ public class Jerry extends Creature{
     private boolean invulnerable = false;
     //private Timer timer;
     //private Timer timer2;
+    
+    private GraphicsContext gc;
+    private Ammo ammo;
         
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
     private final AssetsJerry ASSETS_NORMAL;
@@ -41,12 +47,14 @@ public class Jerry extends Creature{
         super(xPos, yPos, 23, 16, 21, 30, 1, 2, new AssetsJerry(), game);
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
+        gc = game.getCanvas().getGraphicsContext2D();
+        ammo = new NoAmmo(game);
     }
     
     @Override
     public void updateState(){
-        //System.out.println(invulnerable + " - " + state + " - " + lastStateOnAir + " - " + !isOnAir());
-
+        ammo.render(gc);
+        
         if(health <= 0){
             invulnerable = true;
             xIncrement = 0;
@@ -188,4 +196,8 @@ public class Jerry extends Creature{
         timer2.purge();
         
     }*/
+    
+    public void setAmmo(Ammo newAmmo) {
+        ammo = newAmmo;
+    }
 } 

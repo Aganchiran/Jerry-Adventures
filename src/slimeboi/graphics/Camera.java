@@ -22,8 +22,8 @@ public class Camera {
     }
     
     public void centerOnEntity(Entity e){
-        xPos = (int) (e.getXPos() - (game.getCanvas().getWidth() / 2) + (e.getHitBox().getWidth()/2));
-        yPos = (int) (e.getYPos() - (game.getCanvas().getHeight()/ 2) + (e.getHitBox().getHeight()/2));
+        xPos = (int) (e.getXPos() + e.getHitBox().getMinX() - (game.getCanvas().getWidth() / 2) + (e.getHitBox().getWidth()/2));
+        yPos = (int) (e.getYPos() + e.getHitBox().getMinY() - (game.getCanvas().getHeight()/ 2) + (e.getHitBox().getHeight()/2));
         notShowOutsideMap();
     }
     

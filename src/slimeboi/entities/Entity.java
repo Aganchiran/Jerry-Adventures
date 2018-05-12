@@ -36,11 +36,11 @@ public abstract class Entity {
     public abstract void render(GraphicsContext gc);
     
     public double getXPos(){
-        return xPos + hitBox.getMinX();
+        return xPos;
     }
     
     public double getYPos(){
-        return yPos + hitBox.getMinY();
+        return yPos;
     }
     
     public BoundingBox getHitBox(){
