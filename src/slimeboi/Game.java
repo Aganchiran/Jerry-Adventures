@@ -125,8 +125,9 @@ public class Game implements Initializable {
     public void listenKeys(){
         canvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, KeyEvent -> {
             KeyManager.pressingKey(KeyEvent);
+            
             if(KeyEvent.getCode() == KeyCode.ESCAPE){
-                paused = !paused;
+                pauseUnpause();
             }
         });
         
@@ -185,5 +186,14 @@ public class Game implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void pauseUnpause(){
+        paused = !paused;
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.rgb(0, 0, 0, 0.5));
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        cagobutton.setVisible(paused);
+        retryButton.setVisible(paused);
     }
 }
