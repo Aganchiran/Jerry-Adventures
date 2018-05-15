@@ -7,6 +7,9 @@ package slimeboi.commands;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.graphics.AssetsJerry;
 
@@ -48,7 +51,9 @@ public class Eat implements JerryCommand {
                 } else {
                     creature.setXIncrement(-1);
                 }
-
+                
+                
+                
                 Timer timer = new Timer();
                 try {
                     TimerTask task = new TimerTask() {
@@ -67,7 +72,23 @@ public class Eat implements JerryCommand {
                 }
             }
         } else {
+            creature.currentAnimation = ((AssetsJerry) creature.assets).endBiteLeft;
+
+            creature.currentAnimation.setCurrentAnimationFrame(0);
+
+            creature.state = creature.STATE_FREEZED;
+
             
+
+            ControlLoader.disableControls();
+            
+            new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
+                creature.hasAmmo = false;
+                creature.state = creature.notFreezedState;
+                ControlLoader.enableControls();;
+            })).play();
+            
+          
             //hacer cozas
        
         }
