@@ -24,4 +24,6 @@ public abstract class Ammo {
     public void render(GraphicsContext gc){
         gc.drawImage(animation.nextFrame(), game.jerry.getXPos() - game.getCamera().getXPos(), game.jerry.getYPos() - game.getCamera().getYPos());
     }
+    
+    public abstract void fire();
 }

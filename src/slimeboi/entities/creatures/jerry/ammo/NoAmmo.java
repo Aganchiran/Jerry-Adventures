@@ -18,4 +18,7 @@ public class NoAmmo extends Ammo{
         super(AssetsViejo.emptyAnimation, game);
     }
     
+    @Override
+    public void fire(){};
+
 }

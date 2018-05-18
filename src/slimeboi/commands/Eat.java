@@ -72,25 +72,33 @@ public class Eat implements JerryCommand {
                 }
             }
         } else {
-            creature.currentAnimation = ((AssetsJerry) creature.assets).endBiteLeft;
+            if(!creature.isFreezed()){
+                if (creature.facingRight()) {
+                    creature.currentAnimation = ((AssetsJerry) creature.assets).spitRight;
+                } else {
+                    creature.currentAnimation = ((AssetsJerry) creature.assets).spitLeft;
+                }
 
-            creature.currentAnimation.setCurrentAnimationFrame(0);
+                creature.currentAnimation.setCurrentAnimationFrame(0);
 
-            creature.state = creature.STATE_FREEZED;
+                creature.state = creature.STATE_FREEZED;
 
-            
+               
 
-            ControlLoader.disableControls();
-            
-            new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
-                creature.hasAmmo = false;
-                creature.state = creature.notFreezedState;
-                ControlLoader.enableControls();;
-            })).play();
-            
-          
-            //hacer cozas
-       
+
+
+                ControlLoader.disableControls();
+
+                new Timeline(new KeyFrame(Duration.millis(creature.currentAnimation.getDurationInMilis()), ae -> {
+                    creature.currentAnimation.setCurrentAnimationFrame(0);
+                    creature.hasAmmo = false;
+                    creature.state = creature.notFreezedState;
+                    ControlLoader.enableControls();;
+                })).play();
+
+
+                //hacer cozas
+            }
         }
     }
 

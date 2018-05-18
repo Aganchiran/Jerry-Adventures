@@ -32,6 +32,9 @@ public class AssetsJerry extends Assets{
     //public static final CustomAnimation fatLeft = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6);
     public final CustomAnimation hurtRight = new CustomAnimation(JERRY_URL, 4, 6, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     public final CustomAnimation hurtLeft = new CustomAnimation(JERRY_URL, 4, 6, 27, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    public final CustomAnimation spitRight = new CustomAnimation(JERRY_URL, 8, 0, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
+    public final CustomAnimation spitLeft = new CustomAnimation(JERRY_URL, 8, 0, 29, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
+
     public static final CustomAnimation emptyAnimation =  new CustomAnimation(JERRY_URL, 1, 9, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, false);
 
     public AssetsJerry() {

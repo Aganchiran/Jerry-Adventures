@@ -18,4 +18,8 @@ public class ThunderAmmo extends Ammo{
         super(AssetsViejo.thunderAmmo, game);
     }
     
+    @Override
+    public void fire(){
+        
+    };
 }
