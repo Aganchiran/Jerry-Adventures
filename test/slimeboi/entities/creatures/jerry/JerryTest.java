@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.Ammo;
 
 /**
@@ -20,6 +21,9 @@ import slimeboi.entities.creatures.jerry.ammo.Ammo;
  */
 public class JerryTest {
     
+    private Jerry jerry;
+    private Game game;
+        
     public JerryTest() {
     }
     
@@ -33,6 +37,8 @@ public class JerryTest {
     
     @Before
     public void setUp() {
+        game = new Game();
+        jerry = new Jerry(0, 0, game);
     }
     
     @After
@@ -40,13 +46,13 @@ public class JerryTest {
     }
 
     /**
-     * Test of updateState method, of class Jerry.
+     * Test of updateCreatureStateSpecific method, of class Jerry.
      */
     @Test
     public void testUpdateState() {
         System.out.println("updateState");
-        Jerry instance = null;
-        instance.updateState();
+        Jerry instance = jerry;
+        instance.updateCreatureStateSpecific();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

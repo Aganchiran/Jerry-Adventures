@@ -76,7 +76,7 @@ public class Game implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
         
-        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, jerry, this);
+        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
         
         if(AorB)
@@ -98,7 +98,7 @@ public class Game implements Initializable {
                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                     world.render(gc);
-                    jerry.render(gc);
+                    jerry.updateState();
 
                     HUD.render(gc);
 
@@ -158,6 +158,10 @@ public class Game implements Initializable {
     }
     public World getWorld(){
         return world;
+    }
+    
+    public void setWorld(World wardo){
+        world = wardo;
     }
 
     @FXML

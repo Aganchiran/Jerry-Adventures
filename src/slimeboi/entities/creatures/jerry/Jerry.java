@@ -52,7 +52,7 @@ public class Jerry extends Creature{
     }
     
     @Override
-    public void updateState(){
+    public void updateCreatureStateSpecific(){
         ammo.render(gc);
         
         if(health <= 0){
@@ -105,34 +105,7 @@ public class Jerry extends Creature{
         freeze(currentAnimation.getDurationInMilis());
     }
     
-    public void freeze(int timeFreezed){
-        
-        state = STATE_FREEZED;        
-        ControlLoader.disableControls();
-        new Timeline(new KeyFrame(Duration.millis(timeFreezed), ae -> {
-            currentAnimation.setCurrentAnimationFrame(0);
-            state = notFreezedState;
-
-            ControlLoader.enableControls();
-        })).play();
-                
-        /*timer = new Timer();
-        
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                currentAnimation.setCurrentAnimationFrame(0);
-                state = notFreezedState;
-                
-                ControlLoader.enableControls();
-                //timer.cancel();
-            }
-        };
-        
-        
-        
-        timer.schedule(task, timeFreezed);*/
-    }
+    
     
     public BoundingBox getBiteBounds(){
         return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
@@ -142,6 +115,7 @@ public class Jerry extends Creature{
         return currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight;
     }
     
+    @Override
     public void hurt(){
         
         if(!invulnerable && health > 0){
@@ -196,10 +170,14 @@ public class Jerry extends Creature{
         timer2.purge();
         
     }*/
-    
+    public Ammo getAmmo(){
+        return ammo;
+    }
     public void setAmmo(Ammo newAmmo) {
         ammo = newAmmo;
     }
+
+
     
     
     

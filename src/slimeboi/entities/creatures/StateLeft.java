@@ -34,7 +34,7 @@ public class StateLeft extends CreatureState{
         creature.assets.left.setCurrentAnimationFrame(creature.currentAnimation.getCurrentAnimationFrame());
         creature.currentAnimation = creature.assets.left;
 
-        creature.xIncrement = -creature.DEFAULT_SPEED;
+        creature.xIncrement = -creature.speed;
     }
 
     @Override

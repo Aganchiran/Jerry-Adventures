@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
 import slimeboi.Game;
 import slimeboi.entities.creatures.Creature;
-import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.Tile;
 
 /**
@@ -29,18 +28,17 @@ public abstract class World {
     
     protected final int[][] map;
     protected final ArrayList<Creature> creatures = new ArrayList();
-    protected final Jerry jerry;
+
     
     protected final ArrayList<Tile> tileSet = new ArrayList();
     protected final Game game;
     
-    public World(String music, String mapURL, int width, int height, Jerry jerry, Game game){
+    public World(String music, String mapURL, int width, int height, Game game){
         map = new int[width][height];
         this.mapURL = mapURL;
         this.width = width;
         this.height = height;
         this.music = music;
-        this.jerry = jerry;
         this.game = game;
     }
     
@@ -53,7 +51,7 @@ public abstract class World {
         }
         
         for(int i = 0 ; i < creatures.size() ; i++){
-            creatures.get(i).render(gc);
+            creatures.get(i).updateState();
         }
     }
     

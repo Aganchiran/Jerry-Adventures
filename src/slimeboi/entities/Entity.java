@@ -33,7 +33,7 @@ public abstract class Entity {
         return new BoundingBox(xPos + hitBox.getMinX() + xIncrement, yPos + hitBox.getMinY() + yIncrement, hitBox.getWidth(), hitBox.getHeight());
     }
     
-    public abstract void render(GraphicsContext gc);
+    public abstract void updateState();
     
     public double getXPos(){
         return xPos;

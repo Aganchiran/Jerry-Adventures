@@ -5,10 +5,14 @@
  */
 package slimeboi.entities.creatures;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.commands.ControlLoader;
 import slimeboi.entities.Entity;
 import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.entities.tiles.Tile;
@@ -38,14 +42,14 @@ public abstract class Creature extends Entity{
     
     public Assets assets;
     public final int MAX_HEALTH;
-    public final double DEFAULT_SPEED;
+    public double speed;
     public boolean hasAmmo;
     
     
     public Creature(double xPos, double yPos, double width, double height, double xOffset, double yOffset, double speed, int health, Assets assets, Game game){
         super(xPos, yPos, width, height, xOffset, yOffset, game);
         MAX_HEALTH = health;
-        DEFAULT_SPEED = speed;
+        this.speed = speed;
         this.hasAmmo = false;
         this.health = health;
         this.xIncrement = 0;
@@ -57,32 +61,13 @@ public abstract class Creature extends Entity{
         notFreezedState = STATE_RIGHT;
     }
     
-    @Override
-    public void render(GraphicsContext gc){
-        updateState();
-        gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
-        yIncrement += 0.1;
-        
-        if(!colidesX()){
-            moveX();
-        }
-        
-        if(!colidesY()){
-            isOnAir = true;
-            if(state == STATE_LEFT){
-                state = STATE_LEFT_ON_AIR;
-                notFreezedState = STATE_LEFT_ON_AIR;
-            }else if(state == STATE_RIGHT){
-                state = STATE_RIGHT_ON_AIR;
-                notFreezedState = STATE_RIGHT_ON_AIR;
-            }
-            moveY();
-        } else {
-            yIncrement = 0;
-        }
 
-        
-        
+    @Override
+    public void updateState(){
+        updateCreatureStateSpecific();
+        render(game.getCanvas().getGraphicsContext2D());
+        updateCreatureStateGeneric();
+
         //Descomentar para visualizar hitbox//
         //gc.setFill(Paint.valueOf("black"));
         //gc.fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
@@ -106,6 +91,7 @@ public abstract class Creature extends Entity{
                 tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
                 if(tileHitBox.intersects(this.getCollisionBounds(xIncrement, 0)) && game.getWorld().getTileset().get(game.getWorld().getMap()[i][j]).isSolid()){
+                    
                     return true;
                 }
             }
@@ -146,16 +132,72 @@ public abstract class Creature extends Entity{
         return false;
     }
     
-    public abstract void updateState();
+    public void freeze(int timeFreezed){
+        
+        state = STATE_FREEZED;        
+        ControlLoader.disableControls();
+        new Timeline(new KeyFrame(Duration.millis(timeFreezed), ae -> {
+            currentAnimation.setCurrentAnimationFrame(0);
+            state = notFreezedState;
+
+            ControlLoader.enableControls();
+        })).play();
+                
+        /*timer = new Timer();
+        
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                currentAnimation.setCurrentAnimationFrame(0);
+                state = notFreezedState;
+                
+                ControlLoader.enableControls();
+                //timer.cancel();
+            }
+        };
+        
+        
+        
+        timer.schedule(task, timeFreezed);*/
+    }
     
-   
+    public void render(GraphicsContext gc){
+    gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
+    }
+    
+    public void updateCreatureStateGeneric(){
+        yIncrement += 0.1;
+        
+        if(!colidesX()){
+            moveX();
+        }
+        
+        if(!colidesY()){
+            isOnAir = true;
+            if(state == STATE_LEFT){
+                state = STATE_LEFT_ON_AIR;
+                notFreezedState = STATE_LEFT_ON_AIR;
+            }else if(state == STATE_RIGHT){
+                state = STATE_RIGHT_ON_AIR;
+                notFreezedState = STATE_RIGHT_ON_AIR;
+            }
+            moveY();
+        } else {
+            yIncrement = 0;
+        }
+    }
+    public abstract void updateCreatureStateSpecific();
+    
+    public void hurt(){
+        if(health > 0) health--;
+    };
     
     public int getHealth(){
         return health;
     }
     
     public double getSpeed(){
-        return xIncrement;
+        return speed;
     }
     
     
@@ -193,6 +235,6 @@ public abstract class Creature extends Entity{
     }
     
     public void setSpeed(double newSpeed){
-        xIncrement = newSpeed;
+        speed = newSpeed;
     }
 }

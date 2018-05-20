@@ -22,7 +22,7 @@ public class Blancanubes extends Enemy{
     }
 
     @Override
-    public void updateState() {
+    public void updateCreatureStateSpecific() {
 
         if(isEated()){
             game.jerry.setAmmo(ammo);
