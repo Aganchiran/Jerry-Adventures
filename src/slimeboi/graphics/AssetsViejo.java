@@ -45,8 +45,8 @@ public class AssetsViejo {
     //Ammo//
     public static final CustomAnimation thunderAmmo = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 7, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
     public static final CustomAnimation emptyAnimation = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 9, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 1, true); 
-    public static final CustomAnimation thunderShotR = new CustomAnimation("slimeboi/resources/Shots.png", 7, 0, 0, 128, 64, 16, true);
-    public static final CustomAnimation thunderShotL = new CustomAnimation("slimeboi/resources/Shots.png", 7, 0, 1, 128, 64, 16, true);
+    public static final CustomAnimation thunderShotR = new CustomAnimation("slimeboi/resources/ThunderBeam.png", 13, 0, 0, 832, 64, 16, true);
+    public static final CustomAnimation thunderShotL = new CustomAnimation("slimeboi/resources/ThunderBeamLeft.png", 13, 0, 0, 832, 64, 16, true);
 
     /////////
     //TILES//

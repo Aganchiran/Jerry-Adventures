@@ -37,8 +37,10 @@ public class CustomAnimation {
         Image SpriteSheet = new Image(url);//"slimeboi/resources/JerrySpriteSheet.png"
         PixelReader reader = SpriteSheet.getPixelReader();
         
+        int imageWidth = ((int) SpriteSheet.getWidth() / width);
+
         for(int i = x ; i < numFrames + x ; i++){
-            WritableImage frame = new WritableImage(reader, ((i % 10) * width), (y * height) + ((i / 10) * height), width, height);
+            WritableImage frame = new WritableImage(reader, ((i % imageWidth) * width), (y * height) + ((i / imageWidth) * height), width, height);
             //sequence[i - x] = frame;
             sequence.add(frame);
         }
