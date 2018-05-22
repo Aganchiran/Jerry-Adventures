@@ -19,6 +19,7 @@ import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.entities.creatures.jerry.ammo.Ammo;
 import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
+import slimeboi.graphics.AssetsFat;
 import slimeboi.graphics.AssetsJerry;
 import slimeboi.graphics.AssetsJerryBlink;
 import slimeboi.graphics.CustomAnimation;
@@ -40,13 +41,15 @@ public class Jerry extends Creature{
     private Ammo ammo;
         
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
-    private final AssetsJerry ASSETS_NORMAL;
-    private final AssetsJerryBlink ASSETS_BLINK;
-    
+    public final AssetsJerry ASSETS_NORMAL;
+    public final AssetsJerryBlink ASSETS_BLINK;
+    public final AssetsFat ASSETS_FAT;
+               
     public Jerry(double xPos, double yPos, Game game){
         super(xPos, yPos, 23, 16, 21, 30, 1, 2, new AssetsJerry(), game);
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
+        ASSETS_FAT = new AssetsFat();
         gc = game.getCanvas().getGraphicsContext2D();
         ammo = new NoAmmo(game);
     }
@@ -54,6 +57,11 @@ public class Jerry extends Creature{
     @Override
     public void updateCreatureStateSpecific(){
         ammo.render(gc);
+        if(hasAmmo){
+            assets = ASSETS_FAT;
+        }else if(assets != ASSETS_BLINK){
+            assets = ASSETS_NORMAL;
+        }
         
         if(health <= 0){
             invulnerable = true;

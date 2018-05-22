@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
 import slimeboi.Game;
+import slimeboi.entities.Entity;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.entities.tiles.Tile;
 
@@ -27,7 +28,7 @@ public abstract class World {
     protected final int height;
     
     protected final int[][] map;
-    protected final ArrayList<Creature> creatures = new ArrayList();
+    protected final ArrayList<Entity> entities = new ArrayList();
 
     
     protected final ArrayList<Tile> tileSet = new ArrayList();
@@ -50,8 +51,8 @@ public abstract class World {
             }
         }
         
-        for(int i = 0 ; i < creatures.size() ; i++){
-            creatures.get(i).updateState();
+        for(int i = entities.size() - 1; i >= 0 ; i--){
+            entities.get(i).updateState();
         }
     }
     
@@ -99,7 +100,15 @@ public abstract class World {
         return height * Tile.DEFAULT_HEIGHT;
     }
     
-    public void killCreature(Creature creature){
-        creatures.remove(creature);
+    public void killEntity(Entity entity){
+        entities.remove(entity);
+    }
+    
+    public void addEntityAtBack(Entity entity){
+        entities.add(entity);
+    }
+    
+    public void addEntityAtFront(Entity entity){
+        entities.add(0, entity);
     }
 }

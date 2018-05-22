@@ -42,11 +42,12 @@ public class AssetsViejo {
     public static final CustomAnimation fatRight = new CustomAnimation(JERRY_URL, 10, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);
     public static final CustomAnimation fatLeft = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);*/
     
-    //Ammo//emptyAnimation
+    //Ammo//
     public static final CustomAnimation thunderAmmo = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 7, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
     public static final CustomAnimation emptyAnimation = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 9, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 1, true); 
+    public static final CustomAnimation thunderShotR = new CustomAnimation("slimeboi/resources/Shots.png", 7, 0, 0, 128, 64, 16, true);
+    public static final CustomAnimation thunderShotL = new CustomAnimation("slimeboi/resources/Shots.png", 7, 0, 1, 128, 64, 16, true);
 
-    
     /////////
     //TILES//
     /////////

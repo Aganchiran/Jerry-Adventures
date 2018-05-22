@@ -78,6 +78,7 @@ public class Game implements Initializable {
         
         world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
+        world.addEntityAtFront(jerry);
         
         if(AorB)
             DefaultControls.LoadControlsA(this);
@@ -98,7 +99,7 @@ public class Game implements Initializable {
                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                     world.render(gc);
-                    jerry.updateState();
+                    //jerry.updateState();
 
                     HUD.render(gc);
 

@@ -55,5 +55,9 @@ public abstract class Entity {
         yPos = newYPos;
     }
     
+    public Game getGame(){
+        return game;
+    }
+    
     
 }

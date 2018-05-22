@@ -5,7 +5,12 @@
  */
 package slimeboi.entities.creatures.jerry.ammo;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.commands.ControlLoader;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.AssetsViejo;
 
 /**
@@ -15,11 +20,19 @@ import slimeboi.graphics.AssetsViejo;
 public class ThunderAmmo extends Ammo{
     
     public ThunderAmmo(Game game) {
-        super(AssetsViejo.thunderAmmo, game);
+        super(AssetsViejo.thunderAmmo, new ThunderShot( -200, -200, game), game);
     }
     
     @Override
     public void fire(){
+        game.getWorld().addEntityAtFront(shot);
         
+        new Timeline(new KeyFrame(Duration.millis(5000), ae -> {
+            game.jerry.currentAnimation.setCurrentAnimationFrame(0);
+            game.jerry.hasAmmo = false;
+            game.jerry.state = game.jerry.notFreezedState;
+            ControlLoader.enableControls();
+            ((Jerry) game.jerry).setAmmo(new NoAmmo(game.jerry.getGame()));
+        })).play();
     };
 }

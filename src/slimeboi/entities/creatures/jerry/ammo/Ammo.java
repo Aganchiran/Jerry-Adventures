@@ -5,8 +5,13 @@
  */
 package slimeboi.entities.creatures.jerry.ammo;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.commands.ControlLoader;
+import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.CustomAnimation;
 
 /**
@@ -15,15 +20,32 @@ import slimeboi.graphics.CustomAnimation;
  */
 public abstract class Ammo {
     private final CustomAnimation animation;
-    private final Game game;
-    public Ammo(CustomAnimation animation, Game game){
+    protected final Game game;
+    protected final Shot shot;
+    
+    public Ammo(CustomAnimation animation, Shot shot, Game game){
         this.animation = animation;
         this.game = game;
+        this.shot = shot;
     }
     
     public void render(GraphicsContext gc){
-        gc.drawImage(animation.nextFrame(), game.jerry.getXPos() - game.getCamera().getXPos(), game.jerry.getYPos() - game.getCamera().getYPos());
+        if(!game.jerry.isFreezed()){
+            gc.drawImage(animation.nextFrame(), game.jerry.getXPos() - game.getCamera().getXPos(), game.jerry.getYPos() - game.getCamera().getYPos());
+        }
     }
     
-    public abstract void fire();
+    public void fire(){
+        new Timeline(new KeyFrame(Duration.millis(game.jerry.currentAnimation.getDurationInMilis()), ae -> {
+            game.jerry.currentAnimation.setCurrentAnimationFrame(0);
+            game.jerry.hasAmmo = false;
+            game.jerry.state = game.jerry.notFreezedState;
+            ControlLoader.enableControls();
+            ((Jerry) game.jerry).setAmmo(new NoAmmo(game.jerry.getGame()));
+        })).play();
+    };
+    
+    public Shot getShot(){
+        return shot;
+    }
 }

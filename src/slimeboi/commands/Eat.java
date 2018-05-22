@@ -11,6 +11,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import slimeboi.entities.creatures.Creature;
+import slimeboi.entities.creatures.jerry.Jerry;
+import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsJerry;
 
 /**
@@ -53,26 +55,26 @@ public class Eat implements JerryCommand {
                 }
                 
                 
-                
                 Timer timer = new Timer();
                 try {
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
                             while (creature.isOnAir());
-
+                                                       
                             creature.state = creature.notFreezedState;
                             ControlLoader.enableControls();
                         }
                     };
 
-                    timer.schedule(task, 10);
+                    timer.schedule(task, 1);
                 } finally {
                     timer.cancel();
                 }
+                
             }
         } else {
-            if(!creature.isFreezed()){
+            if(!creature.isFreezed() && !creature.isOnAir()){
                 if (creature.facingRight()) {
                     creature.currentAnimation = ((AssetsJerry) creature.assets).spitRight;
                 } else {
@@ -88,13 +90,12 @@ public class Eat implements JerryCommand {
 
 
                 ControlLoader.disableControls();
-
-                new Timeline(new KeyFrame(Duration.millis(creature.currentAnimation.getDurationInMilis()), ae -> {
-                    creature.currentAnimation.setCurrentAnimationFrame(0);
-                    creature.hasAmmo = false;
-                    creature.state = creature.notFreezedState;
-                    ControlLoader.enableControls();;
+                creature.setXIncrement(0);
+                new Timeline(new KeyFrame(Duration.millis(75), ea -> {
+                    ((Jerry) creature).getAmmo().fire();
                 })).play();
+                
+                
 
 
                 //hacer cozas

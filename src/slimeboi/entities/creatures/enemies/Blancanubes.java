@@ -27,7 +27,7 @@ public class Blancanubes extends Enemy{
         if(isEated()){
             game.jerry.setAmmo(ammo);
             game.jerry.hasAmmo = true;
-            game.getWorld().killCreature(this);
+            game.getWorld().killEntity(this);
         }
         
         if(!game.jerry.isBiting() && hitsJerry()){

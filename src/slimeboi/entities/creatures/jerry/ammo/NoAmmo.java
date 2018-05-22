@@ -15,7 +15,7 @@ import slimeboi.graphics.AssetsViejo;
 public class NoAmmo extends Ammo{
     
     public NoAmmo(Game game) {
-        super(AssetsViejo.emptyAnimation, game);
+        super(AssetsViejo.emptyAnimation,new ThunderShot( -200, -200, game) , game);
     }
     
     @Override
