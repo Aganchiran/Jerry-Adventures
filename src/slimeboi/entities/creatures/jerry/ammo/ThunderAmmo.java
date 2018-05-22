@@ -27,12 +27,17 @@ public class ThunderAmmo extends Ammo{
     public void fire(){
         game.getWorld().addEntityAtFront(shot);
         
-        new Timeline(new KeyFrame(Duration.millis(5000), ae -> {
-            game.jerry.currentAnimation.setCurrentAnimationFrame(0);
+        new Timeline(new KeyFrame(Duration.millis(2000), ae -> {
+            
             game.jerry.hasAmmo = false;
-            game.jerry.state = game.jerry.notFreezedState;
-            ControlLoader.enableControls();
+            
             ((Jerry) game.jerry).setAmmo(new NoAmmo(game.jerry.getGame()));
+            
+            new Timeline(new KeyFrame(Duration.millis(game.jerry.currentAnimation.getDurationInMilis() - 75), ea -> {
+                game.jerry.currentAnimation.setCurrentAnimationFrame(0);
+                game.jerry.state = game.jerry.notFreezedState;
+                ControlLoader.enableControls();
+            })).play();
         })).play();
     };
 }

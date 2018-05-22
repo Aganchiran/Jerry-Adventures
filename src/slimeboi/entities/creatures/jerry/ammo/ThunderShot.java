@@ -16,7 +16,7 @@ import slimeboi.graphics.AssetsViejo;
 public class ThunderShot extends Shot{
     
     public ThunderShot(double xPos, double yPos, Game game) {
-        super(xPos, yPos, 95, 40, 5, 12, AssetsViejo.thunderShotR, game);
+        super(xPos, yPos, 825, 20, 7, 21, AssetsViejo.thunderShotR, game);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ThunderShot extends Shot{
             xPos = game.jerry.getXPos() + 32;
         }else{
             animation = AssetsViejo.thunderShotL;
-            xPos = game.jerry.getXPos() - 2 - this.getHitBox().getWidth();
+            xPos = game.jerry.getXPos() + 25  - this.getHitBox().getWidth();
         }
         
         yPos = game.jerry.getYPos();
