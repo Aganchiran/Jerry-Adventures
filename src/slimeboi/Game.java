@@ -140,6 +140,7 @@ public class Game implements Initializable {
             KeyManager.pressingKey(KeyEvent);
             if(!gover)
             if(KeyEvent.getCode() == KeyCode.ESCAPE){
+                System.out.println(paused);
                 pauseUnpause();
             }
         });
@@ -188,6 +189,7 @@ public class Game implements Initializable {
     @FXML
     private void retry(ActionEvent event) {
         paused = false;
+        gover = false;
         gameLoop.stop();
         initialize(url, rb);
     }

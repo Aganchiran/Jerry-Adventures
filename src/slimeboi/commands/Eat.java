@@ -54,7 +54,7 @@ public class Eat implements JerryCommand {
                     creature.setXIncrement(-1);
                 }
                 
-                
+                /*
                 Timer timer = new Timer();
                 try {
                     TimerTask task = new TimerTask() {
@@ -64,13 +64,14 @@ public class Eat implements JerryCommand {
                                                        
                             creature.state = creature.notFreezedState;
                             ControlLoader.enableControls();
+                            
                         }
                     };
 
                     timer.schedule(task, 1);
                 } finally {
                     timer.cancel();
-                }
+                }*/
                 
             }
         } else {
