@@ -34,14 +34,16 @@ public class Jerry extends Creature{
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
     private boolean invulnerable = false;
-    private int blinkNumber = 0;
+    private int numberOfFrameInASecond = 0;
     //private Timer timer;
     //private Timer timer2;
     
-    private GraphicsContext gc;
+    private final GraphicsContext gc;
     private Ammo ammo;
         
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
+    
+    private final int JERRY_DEFAULT_SPEED = 1;
     public final AssetsJerry ASSETS_NORMAL;
     public final AssetsJerryBlink ASSETS_BLINK;
     public final AssetsFat ASSETS_FAT;
@@ -53,6 +55,7 @@ public class Jerry extends Creature{
         ASSETS_FAT = new AssetsFat();
         gc = game.getCanvas().getGraphicsContext2D();
         ammo = new NoAmmo(game);
+        super.speed = JERRY_DEFAULT_SPEED;
     }
     
     @Override
@@ -60,8 +63,15 @@ public class Jerry extends Creature{
         ammo.render(gc);
         if(hasAmmo){
             assets = ASSETS_FAT;
-        }else /*if(assets != ASSETS_BLINK)*/{
+            
+            if(numberOfFrameInASecond % 2 != 0){
+                speed = 0;
+            }else{
+                speed = JERRY_DEFAULT_SPEED;
+            }
+        }else{
             assets = ASSETS_NORMAL;
+            speed = JERRY_DEFAULT_SPEED;
         }
         
         if(health <= 0){
@@ -112,35 +122,17 @@ public class Jerry extends Creature{
         lastYIncrement = yIncrement;
     }
     
-    private void land(CustomAnimation rightAnim, CustomAnimation leftAnim){
-        
-        if(facingRight()) currentAnimation = rightAnim;
-        else currentAnimation = leftAnim;
-        
-        
-        xIncrement = 0;
-        freeze(currentAnimation.getDurationInMilis());
-        
-    }
-    
     @Override
     public void render(GraphicsContext gc){
+        numberOfFrameInASecond = (numberOfFrameInASecond + 1) % 60;
+
         if(invulnerable){
-            if(blinkNumber % 15 > 5){
+            if(numberOfFrameInASecond % 15 > 5){
                 gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
             }
-            blinkNumber = (blinkNumber + 1)%60;
         }else{
             gc.drawImage(currentAnimation.nextFrame(), xPos  - game.getCamera().getXPos(), yPos - game.getCamera().getYPos());
         }
-    }
-    
-    public BoundingBox getBiteBounds(){
-        return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
-    }
-    
-    public boolean isBiting(){
-        return currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight;
     }
     
     @Override
@@ -190,14 +182,29 @@ public class Jerry extends Creature{
         timer2.schedule(task, 3000);*/
     }
     
-    
-    /*public void cancelTimers(){
-        timer.cancel();
-        timer2.cancel();
-        timer.purge();
-        timer2.purge();
+    private void land(CustomAnimation rightAnim, CustomAnimation leftAnim){
         
-    }*/
+        if(facingRight()) currentAnimation = rightAnim;
+        else currentAnimation = leftAnim;
+        
+        
+        xIncrement = 0;
+        freeze(currentAnimation.getDurationInMilis());
+        
+    }
+    
+    public BoundingBox getBiteBounds(){
+        return new BoundingBox(xPos + biteHitBox.getMinX(), yPos + biteHitBox.getMinY(), biteHitBox.getWidth(), biteHitBox.getHeight());
+    }
+    
+    public boolean isBiting(){
+        return currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight;
+    }
+    
+    public boolean isInvulnerable(){
+        return invulnerable;
+    }
+    
     public Ammo getAmmo(){
         return ammo;
     }
@@ -205,7 +212,7 @@ public class Jerry extends Creature{
         ammo = newAmmo;
     }
 
-
+    
     
     
     

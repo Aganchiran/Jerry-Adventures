@@ -22,6 +22,7 @@ public abstract class Ammo {
     private final CustomAnimation animation;
     protected final Game game;
     protected final Shot shot;
+    private int correctXPos = 2;
     
     public Ammo(CustomAnimation animation, Shot shot, Game game){
         this.animation = animation;
@@ -30,8 +31,11 @@ public abstract class Ammo {
     }
     
     public void render(GraphicsContext gc){
+        if(game.jerry.facingRight())correctXPos = 0;
+        else correctXPos = 2;
+        
         if(!game.jerry.isFreezed()){
-            gc.drawImage(animation.nextFrame(), game.jerry.getXPos() - game.getCamera().getXPos(), game.jerry.getYPos() - game.getCamera().getYPos());
+            gc.drawImage(animation.nextFrame(), game.jerry.getXPos() - game.getCamera().getXPos() - correctXPos, game.jerry.getYPos() - game.getCamera().getYPos());
         }
     }
     

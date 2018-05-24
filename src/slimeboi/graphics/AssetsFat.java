@@ -12,10 +12,10 @@ package slimeboi.graphics;
 public class AssetsFat extends AssetsJerry{
     
     public AssetsFat(){
-        super.idleRight = new CustomAnimation(JERRY_URL, 10, 0, 20, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
-        super.idleLeft = new CustomAnimation(JERRY_URL, 10, 0, 22, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
-        super.right = new CustomAnimation(JERRY_URL, 10, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);
-        super.left = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);
+        super.idleRight = new CustomAnimation(JERRY_URL, 16, 0, 20, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+        super.idleLeft = new CustomAnimation(JERRY_URL, 16, 0, 22, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+        super.right = new CustomAnimation(JERRY_URL, 16, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+        super.left = new CustomAnimation(JERRY_URL, 16, 0, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
         super.endJumpRight = super.endBiteRight;
         super.endJumpLeft = super.endBiteLeft;
     }
