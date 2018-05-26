@@ -112,15 +112,17 @@ public class Blancanubes extends Enemy{
         assets.left.setCurrentAnimationFrame(0);
         
         new Timeline(new KeyFrame(Duration.millis(assets.right.getDurationInMilis()), ae -> {
-            screaming = true;
-            sieteRayitos.setXPos(xPos);
-            game.getWorld().addEntityAtFront(sieteRayitos);
-            
-            new Timeline(new KeyFrame(Duration.millis(assets.idleRight.getDurationInMilis()), ea -> {
-                
-                screaming = false;
-                sieteRayitos.kill();
-            })).play();
+            if(game.getWorld().isAlive(this)){
+                screaming = true;
+                sieteRayitos.setXPos(xPos);
+                game.getWorld().addEntityAtFront(sieteRayitos);
+
+                new Timeline(new KeyFrame(Duration.millis(assets.idleRight.getDurationInMilis()), ea -> {
+
+                    screaming = false;
+                    sieteRayitos.kill();
+                })).play();
+            }
         })).play();
     }
 
@@ -128,7 +130,7 @@ public class Blancanubes extends Enemy{
     @Override
     public void kill(){
         game.getWorld().killEntity(this);
-        alive = false;
+        
         thunderLoop.stop();
     }
 }

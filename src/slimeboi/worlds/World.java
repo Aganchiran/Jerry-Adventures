@@ -101,7 +101,12 @@ public abstract class World {
     }
     
     public void killEntity(Entity entity){
+        
         entities.remove(entity);
+    }
+    
+    public boolean isAlive(Entity entity){
+        return entities.indexOf(entity) != -1;
     }
     
     public void addEntityAtBack(Entity entity){
