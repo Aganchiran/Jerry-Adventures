@@ -15,7 +15,7 @@ public class AssetsBlancanubes extends Assets{
     public final CustomAnimation chargeRight = new CustomAnimation(URL, 14, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, false);
     public final CustomAnimation chargeLeft = new CustomAnimation(URL, 14, 0, 4, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 30, false);
     
-    public static final CustomAnimation sieteRayitos = new CustomAnimation("slimeboi/resources/7RayitosV2.png", 7, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT * 2, 10, true);
+    public static final CustomAnimation sieteRayitos = new CustomAnimation("slimeboi/resources/EnemyShots.png", 7, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT * 2, 10, true);
     
     public AssetsBlancanubes() {
         super.idleRight = new CustomAnimation(URL, 24, 4, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);

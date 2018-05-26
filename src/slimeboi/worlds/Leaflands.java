@@ -8,6 +8,7 @@ package slimeboi.worlds;
 import slimeboi.Game;
 import slimeboi.entities.creatures.enemies.BBQSoslime;
 import slimeboi.entities.creatures.enemies.Blancanubes;
+import slimeboi.entities.creatures.enemies.Mikeleton;
 import slimeboi.entities.tiles.EarthCenterCenter;
 import slimeboi.entities.tiles.EarthCenterLeft;
 import slimeboi.entities.tiles.EarthCenterRight;
@@ -56,6 +57,7 @@ public class Leaflands extends World{
         entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));
         entities.add(new Blancanubes(350, 460, 450, 5000,game));
         entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
+        entities.add(new Mikeleton(900, 100, 300, 5000, game));
     }
     
 }

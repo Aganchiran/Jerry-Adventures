@@ -97,7 +97,7 @@ public class Game implements Initializable {
                 
                 if(!paused){
                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+                    
                     world.render(gc);
                     //jerry.updateState();
 

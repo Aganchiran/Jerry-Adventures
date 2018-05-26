@@ -17,7 +17,6 @@ public class StateLeft extends CreatureState{
 
     @Override
     public void idle() {
-        creature.assets.idleLeft.setCurrentAnimationFrame(creature.currentAnimation.getCurrentAnimationFrame());
         creature.currentAnimation = creature.assets.idleLeft;
         creature.xIncrement = 0;
     }
@@ -31,7 +30,6 @@ public class StateLeft extends CreatureState{
 
     @Override
     public void move() {
-        creature.assets.left.setCurrentAnimationFrame(creature.currentAnimation.getCurrentAnimationFrame());
         creature.currentAnimation = creature.assets.left;
 
         creature.xIncrement = -creature.speed;

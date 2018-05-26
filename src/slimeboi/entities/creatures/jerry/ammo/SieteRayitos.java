@@ -26,11 +26,8 @@ public class SieteRayitos extends Shot{
         }
     }
     
-    protected boolean hitsJerry(){
+    private boolean hitsJerry(){
         return game.jerry.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(0, 0));
     }
     
-    public void kill(){
-        game.getWorld().killEntity(this);
-    }
 }
