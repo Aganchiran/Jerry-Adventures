@@ -111,4 +111,10 @@ public abstract class World {
     public void addEntityAtFront(Entity entity){
         entities.add(0, entity);
     }
+    
+    public void killAllEntities(){
+        for(int i = entities.size() - 1; i >= 0 ; i--){
+            entities.get(i).kill();
+        }
+    }
 }

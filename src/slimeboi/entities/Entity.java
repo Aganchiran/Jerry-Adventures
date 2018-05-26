@@ -20,6 +20,7 @@ public abstract class Entity {
     protected BoundingBox hitBox;
     protected Game game;
     
+    protected boolean alive = true;
     
     public Entity(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
         this.xPos = xPos;
@@ -59,5 +60,8 @@ public abstract class Entity {
         return game;
     }
     
-    
+    public void kill(){
+        game.getWorld().killEntity(this);
+        alive = false;
+    }
 }

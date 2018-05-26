@@ -75,11 +75,11 @@ public abstract class Creature extends Entity{
         //if(this instanceof Jerry) game.getCanvas().getGraphicsContext2D().fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
     }
     
-    private void moveX(){
+    protected void moveX(){
             xPos += xIncrement;
     }
     
-    private void moveY(){
+    protected void moveY(){
             yPos += yIncrement;
     }
     

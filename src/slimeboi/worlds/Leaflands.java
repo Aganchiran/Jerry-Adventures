@@ -52,9 +52,9 @@ public class Leaflands extends World{
         tileSet.add(new EarthHorizontalRight());//15
         tileSet.add(new EarthSingleBlock());//16
         
-        entities.add(new Blancanubes(500, 100, 32, 23, 16, 20, game));
+        entities.add(new Blancanubes(480, 75, 150, 6000, game));
         entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));
-        entities.add(new Blancanubes(500, 480, 32, 23, 16, 20, game));
+        entities.add(new Blancanubes(350, 460, 450, 5000,game));
         entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
     }
     

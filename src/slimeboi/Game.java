@@ -191,6 +191,7 @@ public class Game implements Initializable {
         paused = false;
         gover = false;
         gameLoop.stop();
+        world.killAllEntities();
         initialize(url, rb);
     }
     
