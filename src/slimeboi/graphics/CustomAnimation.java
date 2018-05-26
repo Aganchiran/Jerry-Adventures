@@ -87,4 +87,8 @@ public class CustomAnimation {
         }
         
     }
+    
+    public Image getFrame(int i){
+        return sequence.get(i);
+    }
 }

@@ -17,9 +17,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -29,6 +32,7 @@ import slimeboi.HUD.HUD;
 import static slimeboi.SettingsMenu.AorB;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
+import slimeboi.graphics.AssetsViejo;
 import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
 import slimeboi.worlds.Leaflands;
@@ -40,6 +44,7 @@ import slimeboi.worlds.World;
  * @author sabehas
  */
 public class Game implements Initializable {
+    
 
     @FXML
     private Canvas canvas;
@@ -88,6 +93,8 @@ public class Game implements Initializable {
         camera = new Camera(this);
         HUD = new HUD(this);
         
+        
+        
         //GAME LOOP//
         gameLoop = new AnimationTimer()
         {
@@ -100,10 +107,11 @@ public class Game implements Initializable {
                     
                     world.render(gc);
                     //jerry.updateState();
-
+                    
+                    
                     HUD.render(gc);
 
-
+                   
                     if(jerry.getHealth() == 0) {
                         
                         gc.setFill(Color.rgb(0, 0, 0, 0.5));

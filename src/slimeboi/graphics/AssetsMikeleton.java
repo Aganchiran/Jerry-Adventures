@@ -18,7 +18,10 @@ public class AssetsMikeleton extends Assets{
     public static final CustomAnimation marlon = new CustomAnimation("slimeboi/resources/EnemyShots.png", 1, 0, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 10, true);
     public static final CustomAnimation randy = new CustomAnimation("slimeboi/resources/EnemyShots.png", 1, 0, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 10, true);
     
-    public static final CustomAnimation[] jackboneFive = {jackie, tito, jermaine, marlon, randy};
+    //public static final CustomAnimation[] jackboneFive = {jackie, tito, jermaine, marlon, randy};
+    public static final CustomAnimation jackieV2 = new CustomAnimation("slimeboi/resources/EnemyShots.png", 1, 0, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 10, true);
+    
+    
     
     public AssetsMikeleton() {
         super.idleRight = new CustomAnimation(URL, 4, 0, 10, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 5, true);

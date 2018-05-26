@@ -9,6 +9,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.BoundingBox;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
@@ -64,15 +65,16 @@ public abstract class Creature extends Entity{
 
     @Override
     public void updateState(){
+        //Descomentar para visualizar hitbox//
+        //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
+        //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
+        game.getCanvas().getGraphicsContext2D().setFill(Color.rgb(255, 0, 0, 0.5));
+        if(this instanceof Jerry) game.getCanvas().getGraphicsContext2D().fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
+        
         updateCreatureStateSpecific();
         render(game.getCanvas().getGraphicsContext2D());
         updateCreatureStateGeneric();
 
-        //Descomentar para visualizar hitbox//
-        //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
-        //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
-        //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("red"));
-        //if(this instanceof Jerry) game.getCanvas().getGraphicsContext2D().fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
     }
     
     protected void moveX(){

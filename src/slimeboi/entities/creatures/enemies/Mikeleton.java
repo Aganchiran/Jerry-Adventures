@@ -10,6 +10,9 @@ import java.util.TimerTask;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.BoundingBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.JackboneFive;
@@ -131,5 +134,14 @@ public class Mikeleton extends Enemy{
     public void kill(){
         game.getWorld().killEntity(this);
         boneLoop.stop();
+    }
+    
+    @Override
+    public boolean isEated(){
+        BoundingBox eatDetectionHitbox = new BoundingBox(xPos + 24,yPos + 4, 15, 30);
+        game.getCanvas().getGraphicsContext2D().setFill(Color.rgb(255, 0, 0, 0.5));
+        game.getCanvas().getGraphicsContext2D().fillRect(xPos + 24 - game.getCamera().getXPos(), yPos + 4 - game.getCamera().getYPos(), 15, 30);
+        return game.jerry.getBiteBounds().contains(eatDetectionHitbox) && game.jerry.isBiting();
+
     }
 }

@@ -49,7 +49,7 @@ public class Jerry extends Creature{
     public final AssetsFat ASSETS_FAT;
                
     public Jerry(double xPos, double yPos, Game game){
-        super(xPos, yPos, 23, 16, 21, 30, 1, 2, new AssetsJerry(), game);
+        super(xPos, yPos, 23, 16, 21, 30, 1, 10, new AssetsJerry(), game);
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
         ASSETS_FAT = new AssetsFat();
