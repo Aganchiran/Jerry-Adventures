@@ -122,4 +122,11 @@ public abstract class World {
             entities.get(i).kill();
         }
     }
+    
+    public void resetWorld(){
+        killAllEntities();
+        initializeWorld();
+    }
+    
+    public abstract void initializeWorld();
 }

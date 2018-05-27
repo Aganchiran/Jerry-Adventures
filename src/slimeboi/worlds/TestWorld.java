@@ -57,5 +57,9 @@ public class TestWorld extends World{
         
 
     }
+
+    @Override
+    public void initializeWorld() {
+    }
     
 }

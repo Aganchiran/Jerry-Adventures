@@ -81,6 +81,7 @@ public class Game implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(500, 550, this);
         
+        
         world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
         world.addEntityAtFront(jerry);
@@ -196,11 +197,15 @@ public class Game implements Initializable {
 
     @FXML
     private void retry(ActionEvent event) {
-        paused = false;
+        //paused = false;
+        pauseUnpause();
         gover = false;
-        gameLoop.stop();
-        world.killAllEntities();
-        initialize(url, rb);
+        world.resetWorld();
+        jerry.resetJerry();
+        world.addEntityAtFront(jerry);
+        //gameLoop.stop();
+        //world.killAllEntities();
+        //initialize(url, rb);
     }
     
     public void pauseUnpause(){

@@ -30,6 +30,8 @@ import slimeboi.input.KeyManager;
  * @author Javier Pastor Pérez
  */
 public class Jerry extends Creature{
+    private final double spawnX;
+    private final double spawnY;
     
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
@@ -50,9 +52,13 @@ public class Jerry extends Creature{
                
     public Jerry(double xPos, double yPos, Game game){
         super(xPos, yPos, 23, 16, 21, 30, 1, 10, new AssetsJerry(), game);
+        spawnX = xPos;
+        spawnY = yPos;
+        
         ASSETS_NORMAL = (AssetsJerry) assets;
         ASSETS_BLINK = new AssetsJerryBlink();
         ASSETS_FAT = new AssetsFat();
+        
         gc = game.getCanvas().getGraphicsContext2D();
         ammo = new NoAmmo(game);
         super.speed = JERRY_DEFAULT_SPEED;
@@ -219,7 +225,28 @@ public class Jerry extends Creature{
         ammo = newAmmo;
     }
 
-    
+    public void resetJerry(){
+
+        freeze(10);
+        
+        ammo = new NoAmmo(game);
+        hasAmmo = false;
+
+        xPos = spawnX;
+        yPos = spawnY;
+        
+        
+        
+        lastStateOnAir = true;
+        lastYIncrement = 0;
+        invulnerable = false;
+
+        
+
+        state = STATE_RIGHT;
+        notFreezedState = STATE_RIGHT;
+        
+    }
     
     
     
