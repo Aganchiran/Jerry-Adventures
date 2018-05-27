@@ -26,6 +26,7 @@ import slimeboi.graphics.CustomAnimation;
  */
 public abstract class Creature extends Entity{
     
+    
     protected int health;
     protected double xIncrement;
     protected double yIncrement;

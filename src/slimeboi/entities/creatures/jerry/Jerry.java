@@ -226,7 +226,7 @@ public class Jerry extends Creature{
     }
 
     public void resetJerry(){
-
+        
         freeze(10);
         
         ammo = new NoAmmo(game);
@@ -246,6 +246,7 @@ public class Jerry extends Creature{
         state = STATE_RIGHT;
         notFreezedState = STATE_RIGHT;
         
+        health = MAX_HEALTH;
     }
     
     

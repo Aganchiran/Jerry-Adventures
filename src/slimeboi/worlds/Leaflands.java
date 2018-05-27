@@ -59,7 +59,7 @@ public class Leaflands extends World{
     @Override
     public void initializeWorld() {
         entities.add(new Blancanubes(480, 75, 150, 6000, game));
-        entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));
+        //entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));
         entities.add(new Blancanubes(350, 460, 450, 5000,game));
         //entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
         entities.add(new Mikeleton(900, 100, 300, 5000, game));

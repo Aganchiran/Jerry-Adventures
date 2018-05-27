@@ -138,9 +138,9 @@ public class Mikeleton extends Enemy{
     
     @Override
     public boolean isEated(){
-        BoundingBox eatDetectionHitbox = new BoundingBox(xPos + 24,yPos + 4, 15, 30);
+        BoundingBox eatDetectionHitbox = new BoundingBox(xPos + 15,yPos + 4, 33, 20);
         //game.getCanvas().getGraphicsContext2D().setFill(Color.rgb(255, 0, 0, 0.5));
-        //game.getCanvas().getGraphicsContext2D().fillRect(xPos + 24 - game.getCamera().getXPos(), yPos + 4 - game.getCamera().getYPos(), 15, 30);
+        //game.getCanvas().getGraphicsContext2D().fillRect(eatDetectionHitbox.getMinX() - game.getCamera().getXPos(), eatDetectionHitbox.getMinY() - game.getCamera().getYPos(), eatDetectionHitbox.getWidth(), eatDetectionHitbox.getHeight());
         return game.jerry.getBiteBounds().contains(eatDetectionHitbox) && game.jerry.isBiting();
 
     }
