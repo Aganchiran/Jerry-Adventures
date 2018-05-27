@@ -52,7 +52,7 @@ public class JackboneFive extends Shot{
         
         ImageView imageTest = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
         imageTest.setRotate(rotation = (rotation + 1) % 360);
-        System.out.println(rotation);
+        
 
 
         SnapshotParameters params = new SnapshotParameters();
@@ -69,6 +69,7 @@ public class JackboneFive extends Shot{
             xPos +=0.3;
             yPos +=0.3;
         }
+        
         yIncrement += 0.05;
         
         xPos += xIncrement;

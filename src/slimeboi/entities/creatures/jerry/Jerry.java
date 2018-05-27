@@ -110,15 +110,18 @@ public class Jerry extends Creature{
         if(KeyManager.checkKey(KeyCode.RIGHT.getName())){
             CustomAnimation oldAnimation = currentAnimation;
             ControlLoader.doAction(0); // 0 es Derecha
-            currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
+            
+            if(!isOnAir()) currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
         }else if(KeyManager.checkKey(KeyCode.LEFT.getName())){           
             CustomAnimation oldAnimation = currentAnimation;
             ControlLoader.doAction(1); // 1 es Izquierda
-            currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
+            
+            if(!isOnAir()) currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
         }else {
             CustomAnimation oldAnimation = currentAnimation;
             state.idle();
-            currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
+            
+            if(!isOnAir()) currentAnimation.setCurrentAnimationFrame(oldAnimation.getCurrentAnimationFrame());
         }
         
         

@@ -25,6 +25,7 @@ public class Blancanubes extends Enemy{
     private long count = 0;
     private final int distance;
     private boolean screaming = false;
+    private boolean charging = false;
     private Timeline thunderLoop;
     
     private final SieteRayitos sieteRayitos = new SieteRayitos(xPos, yPos + hitBox.getMaxY() - 5, game);
@@ -95,7 +96,10 @@ public class Blancanubes extends Enemy{
                 count--;
                 if(count == 0) state = STATE_RIGHT;
             }
-            
+            if(!charging){
+                assets.right.setCurrentAnimationFrame(13);
+                assets.left.setCurrentAnimationFrame(13);
+            }
             state.move();
         }else{
             state.idle();
@@ -108,10 +112,12 @@ public class Blancanubes extends Enemy{
     }
     
     private void thunderAtack(){
+        charging = true;
         assets.right.setCurrentAnimationFrame(0);
         assets.left.setCurrentAnimationFrame(0);
         
         new Timeline(new KeyFrame(Duration.millis(assets.right.getDurationInMilis()), ae -> {
+            charging = false;
             if(game.getWorld().isAlive(this)){
                 screaming = true;
                 sieteRayitos.setXPos(xPos);
