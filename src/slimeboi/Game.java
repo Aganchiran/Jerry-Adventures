@@ -35,6 +35,7 @@ import slimeboi.entities.creatures.jerry.Jerry;
 import slimeboi.graphics.AssetsViejo;
 import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
+import slimeboi.worlds.Cave;
 import slimeboi.worlds.Leaflands;
 import slimeboi.worlds.World;
 
@@ -82,7 +83,7 @@ public class Game implements Initializable {
         jerry = new Jerry(500, 550, this);
         
         
-        world = new Leaflands("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
+        world = new Cave("music", "src/slimeboi/resources/GrassLands.txt", 40, 21, this);
         world.loadWorld();
         world.addEntityAtFront(jerry);
         

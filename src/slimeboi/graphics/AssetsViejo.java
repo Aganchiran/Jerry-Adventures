@@ -74,9 +74,9 @@ public class AssetsViejo {
     public static final WritableImage RockVerticalCenter = new WritableImage(reader, 5 * DEFAULT_TILE_WIDTH, 2 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     public static final WritableImage RockVerticalDown = new WritableImage(reader, 5 * DEFAULT_TILE_WIDTH, 3 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
-    public static final WritableImage RockHorizontalRight = new WritableImage(reader, 1 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
+    public static final WritableImage RockHorizontalLeft = new WritableImage(reader, 1 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     public static final WritableImage RockHorizontalCenter = new WritableImage(reader, 2 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
-    public static final WritableImage RockHorizontalLeft = new WritableImage(reader, 3 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
+    public static final WritableImage RockHorizontalRight = new WritableImage(reader, 3 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
     public static final WritableImage RockSingleBlock = new WritableImage(reader, 5 * DEFAULT_TILE_WIDTH, 5 * DEFAULT_TILE_HEIGHT,DEFAULT_TILE_WIDTH,DEFAULT_TILE_HEIGHT);
     
