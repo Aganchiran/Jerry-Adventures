@@ -23,6 +23,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -32,6 +33,7 @@ import slimeboi.HUD.HUD;
 import static slimeboi.SettingsMenu.AorB;
 import slimeboi.commands.DefaultControls;
 import slimeboi.entities.creatures.jerry.Jerry;
+import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.AssetsViejo;
 import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
@@ -108,12 +110,15 @@ public class Game implements Initializable {
                     gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                     
                     world.render(gc);
-                    //jerry.updateState();
+                    /*//jerry.updateState();*/
                     
                     
                     HUD.render(gc);
-
-                   
+                    
+                    
+                    
+                    
+                    
                     if(jerry.getHealth() == 0) {
                         
                         gc.setFill(Color.rgb(0, 0, 0, 0.5));

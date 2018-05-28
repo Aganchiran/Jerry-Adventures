@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.graphics.AssetsMikeleton;
@@ -24,13 +25,19 @@ public class JackboneFive extends Shot{
     private final double xIncrement;
     private double yIncrement = (Math.random() - 1) * 2;
     private final Image bone;
-    
-    //private int rotationSpeed = (int)((Math.random()) * 10);
+    private final ImageView imageRotation;
+    private final SnapshotParameters params;
+
     private int rotation = 0;
     
     public JackboneFive(double xPos, double yPos, double xIncrement, Game game) {
         super(xPos, yPos, 11, 11, 26, 27, AssetsMikeleton.jackie, game);
         this.xIncrement = xIncrement;
+        
+        imageRotation = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
+
+        params = new SnapshotParameters();
+        params.setFill(Color.TRANSPARENT);
         
         /*int randomJackbone = (int) (Math.random() * 5);
         for(int i = 0; i < randomJackbone ; i++){
@@ -50,25 +57,40 @@ public class JackboneFive extends Shot{
             game.jerry.hurt();
         }
         
-        ImageView imageTest = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
-        imageTest.setRotate(rotation = (rotation + 1) % 360);
+        //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
+        //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
+        
+        
+        
+        
+        imageRotation.setRotate(rotation = (rotation + 5) % 360);
+        double sin = Math.sin(Math.toRadians(rotation));
+        double cos = Math.cos(Math.toRadians(rotation));
+        double correction = Math.abs(sin) * Math.abs(cos) * 27;
+        WritableImage rotatedImage = imageRotation.snapshot(params, null);
+        
+        
+        game.getCanvas().getGraphicsContext2D().drawImage(rotatedImage, xPos - game.getCamera().getXPos() - correction, yPos - game.getCamera().getYPos() - correction);
+        
+        /*ImageView imageRotation = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
+        imageRotation.setRotate(rotation = (rotation + 1) % 360);
         
 
 
         SnapshotParameters params = new SnapshotParameters();
         params.setFill(Color.TRANSPARENT);
 
-        WritableImage rotatedImage = imageTest.snapshot(params, null);
+        WritableImage rotatedImage = imageRotation.snapshot(params, null);
         
-        animation.setFrameInPositions(rotatedImage, new int[]{0});
+        animation.setFrameInPositions(rotatedImage, new int[]{0});*/
         
-        if(rotation % 90 < 45 ){
+        /*if(rotation % 90 < 45 ){
             xPos -=0.3;
             yPos -=0.3;
         }else{
             xPos +=0.3;
             yPos +=0.3;
-        }
+        }*/
         
         yIncrement += 0.05;
         
@@ -80,5 +102,8 @@ public class JackboneFive extends Shot{
         return game.jerry.getCollisionBounds(0, 0).intersects(this.getCollisionBounds(0, 0));
     }
     
-    
+    @Override
+    public void updateState(){
+        updateSpecificState();
+    }
 }
