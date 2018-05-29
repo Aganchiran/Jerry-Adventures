@@ -47,6 +47,11 @@ public class AssetsViejo {
     public static final CustomAnimation emptyAnimation = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 9, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 1, true); 
     public static final CustomAnimation thunderShotR = new CustomAnimation("slimeboi/resources/ThunderBeam.png", 13, 0, 0, 832, 64, 16, true);
     public static final CustomAnimation thunderShotL = new CustomAnimation("slimeboi/resources/ThunderBeamLeft.png", 13, 0, 0, 832, 64, 16, true);
+    
+    public static final CustomAnimation shuriAmmo = new CustomAnimation("slimeboi/resources/ShuriAmmo.png", 16, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+    public static final CustomAnimation shuriShotto = new CustomAnimation("slimeboi/resources/ShuriShot.png", 6, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+     public static final CustomAnimation shuriShottwo = new CustomAnimation("slimeboi/resources/ShuriShotto.png", 6, 0, 0, 56, 56, 12, true);
+     public static final CustomAnimation shuriShotthree = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
 
     /////////
     //TILES//
