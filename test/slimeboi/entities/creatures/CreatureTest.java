@@ -210,6 +210,7 @@ public class CreatureTest {
         double newIncrement = 0.0;
         Creature instance = imp;
         instance.setXIncrement(newIncrement);
+        assertEquals(newIncrement,instance.getXIncrement(), Infinity);
     }
 
     /**
@@ -221,6 +222,7 @@ public class CreatureTest {
         double newIncrement = 0.0;
         Creature instance = imp;
         instance.setYIncrement(newIncrement);
+        assertEquals(newIncrement, instance.getYIncrement(), Infinity);
     }
 
     /**
@@ -232,6 +234,7 @@ public class CreatureTest {
         int newHealth = 0;
         Creature instance = imp;
         instance.setHealth(newHealth);
+        assertEquals(newHealth,instance.getHealth());
     }
 
     /**
@@ -243,6 +246,7 @@ public class CreatureTest {
         double newSpeed = 0.0;
         Creature instance = imp;
         instance.setSpeed(newSpeed);
+        assertEquals(newSpeed, instance.getSpeed(), Infinity);
     }
     
     /**

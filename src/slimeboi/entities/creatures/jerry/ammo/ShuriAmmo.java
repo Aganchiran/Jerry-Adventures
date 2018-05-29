@@ -20,7 +20,7 @@ import slimeboi.graphics.AssetsViejo;
 public class ShuriAmmo extends Ammo{
     
     public ShuriAmmo(Game game) {
-        super(AssetsViejo.shuriAmmo, new ShuriShot(  game.jerry.getXPos() + 32,  game.jerry.getXPos() + 25 , 5, game), game);
+        super(AssetsViejo.shuriAmmo, new ShuriShot(  game.jerry.getXPos(),  game.jerry.getYPos() , 5, game), game);
     }
     
     @Override

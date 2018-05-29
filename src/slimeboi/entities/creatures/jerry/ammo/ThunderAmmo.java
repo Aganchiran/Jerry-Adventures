@@ -20,7 +20,7 @@ import slimeboi.graphics.AssetsViejo;
 public class ThunderAmmo extends Ammo{
     
     public ThunderAmmo(Game game) {
-        super(AssetsViejo.thunderAmmo, new ThunderShot( -200, -200, game), game);
+        super(AssetsViejo.thunderAmmo, new ThunderShot(-200, -200, game), game);
     }
     
     @Override

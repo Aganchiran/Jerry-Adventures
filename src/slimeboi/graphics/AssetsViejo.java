@@ -53,6 +53,7 @@ public class AssetsViejo {
      public static final CustomAnimation shuriShottwo = new CustomAnimation("slimeboi/resources/ShuriShotto.png", 6, 0, 0, 56, 56, 12, true);
      public static final CustomAnimation shuriShotthree = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
 
+     public static final CustomAnimation shuriShotthreeV2 = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
     /////////
     //TILES//
     /////////
