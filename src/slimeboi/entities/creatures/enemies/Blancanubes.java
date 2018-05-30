@@ -84,7 +84,7 @@ public class Blancanubes extends Enemy{
             game.jerry.hurt();
         }
         
-        if(isHurt()){
+        if(health == 0){
             kill();
         }
         

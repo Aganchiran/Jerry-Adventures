@@ -45,7 +45,7 @@ public class Jerry extends Creature{
         
     private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
     
-    private final int JERRY_DEFAULT_SPEED = 1;
+    public final int JERRY_DEFAULT_SPEED = 1;
     public final AssetsJerry ASSETS_NORMAL;
     public final AssetsJerryBlink ASSETS_BLINK;
     public final AssetsFat ASSETS_FAT;

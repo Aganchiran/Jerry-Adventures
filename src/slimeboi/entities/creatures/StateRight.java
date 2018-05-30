@@ -24,7 +24,7 @@ public class StateRight extends CreatureState{
 
     @Override
     public void jump() {
-        creature.setYIncrement(-4);
+        creature.setYIncrement(creature.jumpForce);
         creature.currentAnimation = creature.assets.onAirRight;
         
         

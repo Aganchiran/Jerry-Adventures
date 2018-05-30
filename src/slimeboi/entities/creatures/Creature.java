@@ -40,7 +40,8 @@ public abstract class Creature extends Entity{
     public final StateLeftOnAir STATE_LEFT_ON_AIR = new StateLeftOnAir(this);
     public final StateRightOnAir STATE_RIGHT_ON_AIR = new StateRightOnAir(this);
     public final StateFreezed STATE_FREEZED = new StateFreezed(this);
-
+    public final int DEFAULT_JUMP_FORCE = -4;
+    public int jumpForce = -4;
     
     public Assets assets;
     public final int MAX_HEALTH;

@@ -6,6 +6,7 @@
 package slimeboi.commands;
 
 import slimeboi.entities.creatures.Creature;
+import slimeboi.entities.creatures.jerry.Jerry;
 
 /**
  *
@@ -21,17 +22,21 @@ public class Jump implements JerryCommand {
 
     @Override
     public void execute() {
-        if (!creature.hasAmmo) {
-            creature.state.jump();
-            if (!creature.isFreezed()) {
-                if (creature.state == creature.STATE_LEFT) {
-                    creature.state = creature.STATE_LEFT_ON_AIR;
-                    creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
-                } else if (creature.state == creature.STATE_RIGHT) {
-                    creature.state = creature.STATE_RIGHT_ON_AIR;
-                    creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
-                }
+        if (creature.hasAmmo) {
+            creature.jumpForce = (creature.DEFAULT_JUMP_FORCE * 3)/ 4;
+        } else {
+            creature.jumpForce = creature.DEFAULT_JUMP_FORCE;
+        }
+        creature.state.jump();
+        if (!creature.isFreezed()) {
+            if (creature.state == creature.STATE_LEFT) {
+                creature.state = creature.STATE_LEFT_ON_AIR;
+                creature.notFreezedState = creature.STATE_LEFT_ON_AIR;
+            } else if (creature.state == creature.STATE_RIGHT) {
+                creature.state = creature.STATE_RIGHT_ON_AIR;
+                creature.notFreezedState = creature.STATE_RIGHT_ON_AIR;
             }
         }
+
     }
 }

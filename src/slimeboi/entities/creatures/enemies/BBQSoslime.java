@@ -6,7 +6,6 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
-import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.entities.creatures.jerry.ammo.ShuriAmmo;
 import slimeboi.graphics.AssetsBBQ;
 
@@ -31,7 +30,7 @@ public class BBQSoslime extends Enemy {
             game.jerry.hasAmmo = true;
         }
         
-        if(isHurt()){
+        if(health == 0){
             kill();
         }
         

@@ -129,4 +129,9 @@ public abstract class World {
     }
     
     public abstract void initializeWorld();
+    
+    public ArrayList<Entity> getEntities(){
+    
+        return entities;
+    }
 }

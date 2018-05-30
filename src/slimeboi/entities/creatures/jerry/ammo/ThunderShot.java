@@ -7,6 +7,7 @@ package slimeboi.entities.creatures.jerry.ammo;
 
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
+import slimeboi.entities.Entity;
 import slimeboi.graphics.AssetsViejo;
 
 /**
@@ -37,6 +38,14 @@ public class ThunderShot extends Shot{
         }else{
             game.getWorld().killEntity(this);
         }
+        
+        Entity entityAuxiliar;
+        for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
+           entityAuxiliar = game.getWorld().getEntities().get(i);
+           if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+               entityAuxiliar.kill();
+           }
+       }
     }
     
     

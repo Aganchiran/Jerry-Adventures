@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.entities.Entity;
 import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.AssetsViejo;
 
@@ -34,7 +35,7 @@ public class ShuriShot extends Shot{
     private int rotation = 0;
     
     public ShuriShot(double xPos, double yPos, double xIncrement, Game game) {
-        super(xPos, yPos, 32, 32, 8, 8, AssetsViejo.shuriShotthree, game);
+        super(xPos, yPos, 32, 32, 16, 16, AssetsViejo.shuriShotthree, game);
         this.xIncrement = xIncrement;
         
         imageRotation = new ImageView(AssetsViejo.shuriShotthree.getFrame(0));
@@ -47,8 +48,8 @@ public class ShuriShot extends Shot{
 
     @Override
     protected void updateSpecificState() {
-       game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
-       game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
+       //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
+       //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
         
         
         if(game.jerry.facingRight() && !shuriR && !shuriL){
@@ -68,7 +69,7 @@ public class ShuriShot extends Shot{
         WritableImage rotatedImage = imageRotation.snapshot(params, null);
         
         
-        game.getCanvas().getGraphicsContext2D().drawImage(rotatedImage, xPos - game.getCamera().getXPos() - correction, yPos - game.getCamera().getYPos());
+        game.getCanvas().getGraphicsContext2D().drawImage(rotatedImage, xPos - game.getCamera().getXPos() - correction, yPos - game.getCamera().getYPos() - correction);
         
         
         if(shuriR) xPos += xIncrement;
@@ -79,7 +80,20 @@ public class ShuriShot extends Shot{
            shuriR = false;
            shuriL = false;
        })).play();
+       
+       Entity entityAuxiliar;
+       for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
+           entityAuxiliar = game.getWorld().getEntities().get(i);
+           if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+               entityAuxiliar.kill();
+           }
+       }
         
+    }
+    
+    @Override
+    public void updateState(){
+        updateSpecificState();
     }
     
     
