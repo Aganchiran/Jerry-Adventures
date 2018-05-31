@@ -62,7 +62,7 @@ public class ShuriShot extends Shot{
             shuriL = true;
         }
         
-        imageRotation.setRotate(rotation = (rotation + 5) % 360);
+        imageRotation.setRotate(rotation = (rotation - 5) % 360);
         double sin = Math.sin(Math.toRadians(rotation));
         double cos = Math.cos(Math.toRadians(rotation));
         double correction = Math.abs(sin) * Math.abs(cos) * 27;

@@ -16,6 +16,8 @@ public class AssetsFat extends AssetsJerry{
         super.idleLeft = new CustomAnimation(JERRY_URL, 16, 0, 22, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
         super.right = new CustomAnimation(JERRY_URL, 16, 0, 24, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
         super.left = new CustomAnimation(JERRY_URL, 16, 0, 26, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
+        super.onAirRight = new CustomAnimation(JERRY_URL, 1, 1, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+        super.onAirLeft = new CustomAnimation(JERRY_URL, 1, 1, 29, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
         super.endJumpRight = super.endBiteRight;
         super.endJumpLeft = super.endBiteLeft;
     }
