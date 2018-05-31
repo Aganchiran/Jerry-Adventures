@@ -74,7 +74,7 @@ public class Blancanubes extends Enemy{
     public void updateCreatureStateSpecific() {
         
         
-        if(isEated()){
+        if(!screaming && isEated()){
             game.jerry.setAmmo(ammo);
             game.jerry.hasAmmo = true;
             kill();

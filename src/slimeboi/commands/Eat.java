@@ -30,6 +30,7 @@ public class Eat implements JerryCommand {
     public void execute() {
         if (!creature.hasAmmo) {
             if (!creature.isFreezed()) {
+                ((Jerry)creature).biting = true;
                 if (creature.facingRight()) {
                     creature.currentAnimation = ((AssetsJerry) creature.assets).biteRight;
                 } else {

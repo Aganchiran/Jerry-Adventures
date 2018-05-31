@@ -37,6 +37,7 @@ public class Jerry extends Creature{
     private double lastYIncrement = 0;
     private boolean invulnerable = false;
     private int numberOfFrameInASecond = 0;
+    public boolean biting = false;
     //private Timer timer;
     //private Timer timer2;
     
@@ -88,19 +89,22 @@ public class Jerry extends Creature{
         
         if(lastStateOnAir && !isOnAir()){
             
-            if(!isBiting()){
-                if(lastYIncrement > 2.5) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
-            }else{
+            if(isBiting()){
+                biting = false;
                 land(((AssetsJerry)assets).endBiteRight, ((AssetsJerry)assets).endBiteLeft);
                 
-                new Timeline(new KeyFrame(Duration.millis(currentAnimation.getDurationInMilis() + 10), ea -> {
-                    if(facingRight()){
-                        currentAnimation = ((AssetsJerry) assets).noEatRight;
-                    }else{
-                        currentAnimation = ((AssetsJerry) assets).noEatLeft;
-                    }
-                    freeze(currentAnimation.getDurationInMilis());
-                })).play();
+                if(!hasAmmo){
+                    new Timeline(new KeyFrame(Duration.millis(currentAnimation.getDurationInMilis() + 10), ea -> {
+                        if(facingRight()){
+                            currentAnimation = ((AssetsJerry) assets).noEatRight;
+                        }else{
+                            currentAnimation = ((AssetsJerry) assets).noEatLeft;
+                        }
+                        freeze(currentAnimation.getDurationInMilis());
+                    })).play();
+                }
+            }else{
+                if(lastYIncrement > 2.8) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
             }
             
         } 
@@ -211,7 +215,7 @@ public class Jerry extends Creature{
     }
     
     public boolean isBiting(){
-        return currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight;
+        return biting/*currentAnimation == ((AssetsJerry)assets).biteLeft || currentAnimation == ((AssetsJerry)assets).biteRight*/;
     }
     
     public boolean isInvulnerable(){
