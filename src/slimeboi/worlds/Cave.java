@@ -65,7 +65,7 @@ public class Cave extends World{
         entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
         
         entities.add(new BBQSoslime(300, 500, 36, 16, 14, 48, game));
-        //entities.add(new Mikeleton(900, 100, 300, 5000, game));
+        entities.add(new Mikeleton(900, 100, 300, 5000, game));
     }
     
 }

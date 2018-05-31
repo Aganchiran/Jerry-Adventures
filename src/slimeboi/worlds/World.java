@@ -7,14 +7,16 @@ package slimeboi.worlds;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
-import slimeboi.entities.creatures.Creature;
 import slimeboi.entities.tiles.Tile;
 
 /**
@@ -23,6 +25,7 @@ import slimeboi.entities.tiles.Tile;
  */
 public abstract class World {
     private final String music;
+    private MediaPlayer bgMusic;
     private final String mapURL;
     protected final int width;
     protected final int height;
@@ -41,6 +44,21 @@ public abstract class World {
         this.height = height;
         this.music = music;
         this.game = game;
+        
+        //System.out.println();
+        
+        try {
+            Media soundtrack = new Media((new File(music)).toURI().toURL().toString());
+            bgMusic = new MediaPlayer(soundtrack);
+        
+        
+            bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
+            bgMusic.play();
+        } catch (MalformedURLException ex) {
+            
+            System.err.println("No se ha podido cargar la música");
+        }
+        
     }
     
     public void render(GraphicsContext gc){
