@@ -41,5 +41,14 @@ public abstract class Enemy extends Creature{
         return game.jerry.getAmmo().getShot().getCollisionBounds(0, 0).intersects(this.getCollisionBounds(0, 0));
     }*/
     
+    /*@Override
+    public boolean colidesX(){
+        return false;
+    }
+    
+    @Override
+    public boolean colidesY(){
+        return true;
+    }*/
     
 }

@@ -31,6 +31,7 @@ public abstract class World {
     protected final int height;
     
     protected final int[][] map;
+    protected Entity pendingToAdd;
     protected final ArrayList<Entity> entities = new ArrayList();
 
     
@@ -50,18 +51,22 @@ public abstract class World {
         try {
             Media soundtrack = new Media((new File(music)).toURI().toURL().toString());
             bgMusic = new MediaPlayer(soundtrack);
-        
-        
+
             bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
+            bgMusic.setVolume(0.3);
             bgMusic.play();
         } catch (MalformedURLException ex) {
-            
             System.err.println("No se ha podido cargar la música");
         }
         
     }
     
     public void render(GraphicsContext gc){
+        if(pendingToAdd != null){
+            entities.add(0, pendingToAdd);
+            pendingToAdd = null;
+        }
+        
         game.getCamera().centerOnEntity(game.jerry);
         for(int i = 0 ; i < width ; i++){
             for(int j = 0 ; j < height ; j++){
@@ -132,7 +137,7 @@ public abstract class World {
     }
     
     public void addEntityAtFront(Entity entity){
-        entities.add(0, entity);
+        pendingToAdd = entity;
     }
     
     public void killAllEntities(){

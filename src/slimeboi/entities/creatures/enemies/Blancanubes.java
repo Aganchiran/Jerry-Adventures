@@ -5,11 +5,15 @@
  */
 package slimeboi.entities.creatures.enemies;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.SieteRayitos;
@@ -27,25 +31,29 @@ public class Blancanubes extends Enemy{
     private boolean screaming = false;
     private boolean charging = false;
     private Timeline thunderLoop;
+    private MediaPlayer scream;
     
     private final SieteRayitos sieteRayitos = new SieteRayitos(xPos, yPos + hitBox.getMaxY() - 5, game);
 
     public Blancanubes(double xPos, double yPos, int distance, long thunderLoopTime, Game game) {
         super(xPos, yPos, 32, 23, 16, 20, 0.5, 1, new AssetsBlancanubes(),new ThunderAmmo(game), game);
         this.distance = distance;
+        
+        try {
+            Media soundtrack = new Media((new File("src/slimeboi/resources/BlancanubesGrito.mp3")).toURI().toURL().toString());
+            scream = new MediaPlayer(soundtrack);
+
+            scream.setVolume(0.5);
+            //scream.play();
+        } catch (MalformedURLException ex) {
+            System.err.println("No se ha podido cargar la música");
+        }
+        
+        
         thunderAtack();
-        /*
-        Timeline chargeLoop = new Timeline(new KeyFrame(Duration.millis(5200), ae -> {
-            assets.right.setCurrentAnimationFrame(0);
-            assets.left.setCurrentAnimationFrame(0);
-        }));
-        
-        chargeLoop.setCycleCount(Animation.INDEFINITE);
-        chargeLoop.play();*/
-        
+       
         thunderLoop = new Timeline(new KeyFrame(Duration.millis(thunderLoopTime), ea -> {
-            
-            
+
             thunderAtack();
             
         }));
@@ -119,6 +127,8 @@ public class Blancanubes extends Enemy{
         new Timeline(new KeyFrame(Duration.millis(assets.right.getDurationInMilis()), ae -> {
             charging = false;
             if(game.getWorld().isAlive(this)){
+                scream.stop();
+                scream.play();
                 screaming = true;
                 sieteRayitos.setXPos(xPos);
                 game.getWorld().addEntityAtFront(sieteRayitos);

@@ -34,7 +34,7 @@ public class JackboneFive extends Shot{
         super(xPos, yPos, 11, 11, 26, 27, AssetsMikeleton.jackie, game);
         this.xIncrement = xIncrement;
         
-        imageRotation = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
+        imageRotation = new ImageView(AssetsMikeleton.jackbone.getFrame(0));
 
         params = new SnapshotParameters();
         params.setFill(Color.TRANSPARENT);
@@ -61,8 +61,6 @@ public class JackboneFive extends Shot{
         //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
         
         
-        
-        
         imageRotation.setRotate(rotation = (rotation + 5) % 360);
         double sin = Math.sin(Math.toRadians(rotation));
         double cos = Math.cos(Math.toRadians(rotation));
@@ -71,26 +69,6 @@ public class JackboneFive extends Shot{
         
         
         game.getCanvas().getGraphicsContext2D().drawImage(rotatedImage, xPos - game.getCamera().getXPos() - correction, yPos - game.getCamera().getYPos() - correction);
-        
-        /*ImageView imageRotation = new ImageView(AssetsMikeleton.jackieV2.getFrame(0));
-        imageRotation.setRotate(rotation = (rotation + 1) % 360);
-        
-
-
-        SnapshotParameters params = new SnapshotParameters();
-        params.setFill(Color.TRANSPARENT);
-
-        WritableImage rotatedImage = imageRotation.snapshot(params, null);
-        
-        animation.setFrameInPositions(rotatedImage, new int[]{0});*/
-        
-        /*if(rotation % 90 < 45 ){
-            xPos -=0.3;
-            yPos -=0.3;
-        }else{
-            xPos +=0.3;
-            yPos +=0.3;
-        }*/
         
         yIncrement += 0.05;
         

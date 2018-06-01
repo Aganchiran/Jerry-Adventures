@@ -203,7 +203,7 @@ public class Game implements Initializable {
 
     @FXML
     private void retry(ActionEvent event) {
-        //paused = false;
+        paused = true;
         pauseUnpause();
         gover = false;
         world.resetWorld();
