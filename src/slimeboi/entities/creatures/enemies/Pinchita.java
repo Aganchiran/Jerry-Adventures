@@ -34,6 +34,20 @@ public class Pinchita extends Enemy{
             currentAnimation = assets.idleRight;
         }
         
+        if(isEated()){
+            
+            game.jerry.setAmmo(ammo);
+            game.jerry.hasAmmo = true;
+            kill();
+        }
+        
+        if(health == 0){
+            kill();
+        }
+        
+        if(!game.jerry.isBiting() && hitsJerry()){
+            game.jerry.hurt();
+        }
         
     }
     

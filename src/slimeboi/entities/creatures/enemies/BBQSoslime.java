@@ -25,9 +25,10 @@ public class BBQSoslime extends Enemy {
     @Override
     public void updateCreatureStateSpecific(){
         if(isEated()){
-            kill();
+            
             game.jerry.setAmmo(ammo);
             game.jerry.hasAmmo = true;
+            kill();
         }
         
         if(health == 0){
