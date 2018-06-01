@@ -13,14 +13,16 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.entities.Entity;
 import slimeboi.graphics.AssetsMikeleton;
+import slimeboi.graphics.CustomAnimation;
 
 /**
  *
  * @author Javier Pastor Pérez
  */
 public class BoneShot extends Shot{
-    private final double xIncrement = 1;
+    private double xIncrement;
     private double yIncrement = -2;
     
     private final ImageView imageRotation;
@@ -28,22 +30,25 @@ public class BoneShot extends Shot{
     
     private int rotation = 0;
     
-    public BoneShot(double xPos, double yPos, Game game) {
-        super(xPos, yPos, 11, 11, 26, 27, AssetsMikeleton.jackbone, game);
+    public BoneShot(double xPos, double yPos, double xIncrement, CustomAnimation bone, Game game) {
+        super(xPos, yPos, 11, 11, 26, 27, bone, game);
+        this.xIncrement = xIncrement;
         
-        
-        imageRotation = new ImageView(AssetsMikeleton.jackbone.getFrame(0));
+        imageRotation = new ImageView(bone.getFrame(0));
 
         params = new SnapshotParameters();
         params.setFill(Color.TRANSPARENT);
         
-        new Timeline(new KeyFrame(Duration.millis(10000), ea -> {
-            kill();
-        })).play();
+        
     }
 
     @Override
     protected void updateSpecificState() {
+        new Timeline(new KeyFrame(Duration.millis(10000), ea -> {
+            kill();
+        })).play();
+        
+        
         imageRotation.setRotate(rotation = (rotation + 5) % 360);
         double sin = Math.sin(Math.toRadians(rotation));
         double cos = Math.cos(Math.toRadians(rotation));
@@ -57,10 +62,22 @@ public class BoneShot extends Shot{
         
         xPos += xIncrement;
         yPos += yIncrement;
+        
+        Entity entityAuxiliar;
+        for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
+            entityAuxiliar = game.getWorld().getEntities().get(i);
+            if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+                entityAuxiliar.kill();
+            }
+        }
     }
     
     @Override
     public void updateState(){
         updateSpecificState();
+    }
+    
+    public void setIncrement(double increment){
+        xIncrement = increment;
     }
 }

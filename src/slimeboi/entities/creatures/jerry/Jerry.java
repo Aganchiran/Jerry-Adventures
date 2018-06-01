@@ -240,7 +240,8 @@ public class Jerry extends Creature{
 
         xPos = spawnX;
         yPos = spawnY;
-        
+        xIncrement = 0;
+        yIncrement = 0;
         
         
         lastStateOnAir = true;

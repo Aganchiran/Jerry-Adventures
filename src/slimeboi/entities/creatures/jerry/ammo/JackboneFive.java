@@ -16,13 +16,14 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.graphics.AssetsMikeleton;
+import slimeboi.graphics.CustomAnimation;
 
 /**
  *
  * @author Javier Pastor Pérez
  */
 public class JackboneFive extends Shot{
-    private final double xIncrement;
+    private double xIncrement;
     private double yIncrement = (Math.random() - 1) * 2;
     private final Image bone;
     private final ImageView imageRotation;
@@ -30,11 +31,11 @@ public class JackboneFive extends Shot{
 
     private int rotation = 0;
     
-    public JackboneFive(double xPos, double yPos, double xIncrement, Game game) {
-        super(xPos, yPos, 11, 11, 26, 27, AssetsMikeleton.jackie, game);
+    public JackboneFive(double xPos, double yPos, double xIncrement, CustomAnimation animation, Game game) {
+        super(xPos, yPos, 11, 11, 26, 27, animation, game);
         this.xIncrement = xIncrement;
         
-        imageRotation = new ImageView(AssetsMikeleton.jackbone.getFrame(0));
+        imageRotation = new ImageView(animation.getFrame(0));
 
         params = new SnapshotParameters();
         params.setFill(Color.TRANSPARENT);
@@ -46,13 +47,17 @@ public class JackboneFive extends Shot{
         
         this.bone = animation.getFrame(0);
         
-        new Timeline(new KeyFrame(Duration.millis(10000), ea -> {
-            kill();
-        })).play();
+        
     }
 
     @Override
     protected void updateSpecificState() {
+        
+        new Timeline(new KeyFrame(Duration.millis(10000), ea -> {
+            kill();
+        })).play();
+        
+        
         if(hitsJerry()){
             game.jerry.hurt();
         }
@@ -83,5 +88,13 @@ public class JackboneFive extends Shot{
     @Override
     public void updateState(){
         updateSpecificState();
+    }
+    
+    public void setXIncrement(double increment){
+        xIncrement = increment;
+    }
+    
+    public void setYIncrement(double increment){
+        yIncrement = increment;
     }
 }

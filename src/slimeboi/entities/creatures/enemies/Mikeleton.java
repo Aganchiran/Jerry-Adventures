@@ -19,6 +19,7 @@ import slimeboi.entities.creatures.jerry.ammo.BoneAmmo;
 import slimeboi.entities.creatures.jerry.ammo.JackboneFive;
 import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsMikeleton;
+import slimeboi.graphics.CustomAnimation;
 
 /**
  *
@@ -31,12 +32,21 @@ public class Mikeleton extends Enemy{
     private boolean dancing = false;
     private Timeline boneLoop;
     private boolean lastBoneWentRight = true;
+    private CustomAnimation[] jackboneFive = new CustomAnimation[5];
+    private int jackboneCount = 0;
     
     
 
     public Mikeleton(double xPos, double yPos, int distance, long boneLoopTime, Game game) {
         super(xPos, yPos, 15, 56, 24, 4, 0.5, 1, new AssetsMikeleton(),new BoneAmmo(game), game);
         this.distance = distance;
+        
+        jackboneFive[0] = AssetsMikeleton.jackie;
+        jackboneFive[1] = AssetsMikeleton.jermaine;
+        jackboneFive[2] = AssetsMikeleton.marlon;
+        jackboneFive[3] = AssetsMikeleton.randy;
+        jackboneFive[4] = AssetsMikeleton.tito;
+        
         //boneAtack();
         /*
         Timeline chargeLoop = new Timeline(new KeyFrame(Duration.millis(5200), ae -> {
@@ -106,13 +116,23 @@ public class Mikeleton extends Enemy{
             state.idle();
             
             if(currentAnimation.getCurrentAnimationFrame() == 1 && lastBoneWentRight){
-                JackboneFive jackbone = new JackboneFive(xPos - 10, yPos, -3, game);
+                JackboneFive jackbone = new JackboneFive(xPos - 10, yPos, -3, jackboneFive[4 - jackboneCount], game);
+                game.getWorld().addEntityAtFront(jackbone);
+                
+                
                 game.getWorld().addEntityAtFront(jackbone);
                 lastBoneWentRight = false;
+                jackboneCount = (jackboneCount + 1) % 5;
+                System.out.println(jackboneCount);
             }else if(currentAnimation.getCurrentAnimationFrame() == 3 && !lastBoneWentRight){
-                JackboneFive jackbone = new JackboneFive(xPos + 10, yPos, 3, game);
+                JackboneFive jackbone = new JackboneFive(xPos + 10, yPos, 3, jackboneFive[4 -jackboneCount], game);
+                game.getWorld().addEntityAtFront(jackbone);
+                
+                
                 game.getWorld().addEntityAtFront(jackbone);
                 lastBoneWentRight = true;
+                jackboneCount = (jackboneCount + 1) % 5;
+                System.out.println(jackboneCount);
             }
         }
     }

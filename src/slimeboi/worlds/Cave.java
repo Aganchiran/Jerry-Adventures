@@ -35,8 +35,8 @@ import slimeboi.entities.tiles.CaveTile;
  */
 public class Cave extends World{
     
-    public Cave(String music, String mapURL, int width, int height, Game game) {
-        super(music, mapURL, width, height, game);
+    public Cave(String music,int width, int height, Game game) {
+        super(music, "src/slimeboi/resources/Cave.txt", width, height, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02
@@ -60,17 +60,9 @@ public class Cave extends World{
 
     @Override
     public void initializeWorld() {
-        entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
-        entities.add(new Pinchita(15 * 32 - 16, 12 * 32 + 13, game));
-        /*entities.add(new Blancanubes(480, 75, 150, 6000, game));
-        entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));
-        entities.add(new Blancanubes(350, 460, 450, 5000,game));
-        entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
-        entities.add(new Mikeleton(10, 500, 100, 5000, game));
-        
-        entities.add(new Mikeleton(900, 100, 300, 5000, game));
-        entities.add(new Mikeleton(120, 500, 290, 5000, game));
-        entities.add(new BBQSoslime(300, 500, 36, 16, 14, 48, game));*/
+        entities.add(new Pinchita(10 * 32 - 16, 8 * 32 + 13, game));
+        entities.add(new Mikeleton(400, 300, 300, 5000, game));
+        entities.add(new Mikeleton(50, 300, 300, 5000, game));
         
         
     }

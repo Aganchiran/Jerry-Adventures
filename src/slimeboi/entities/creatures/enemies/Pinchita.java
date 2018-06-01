@@ -25,7 +25,7 @@ public class Pinchita extends Enemy{
     public void updateCreatureStateSpecific() {
         if(colgadita){
             currentAnimation = AssetsPinchita.pinchitaColgadita;
-            if(game.jerry.getXPos() == xPos){
+            if(game.jerry.getXPos() == xPos - 60){
                 colgadita = false;
                 yPos = yPos + 3;
             }
