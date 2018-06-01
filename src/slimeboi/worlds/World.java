@@ -147,8 +147,15 @@ public abstract class World {
     }
     
     public void resetWorld(){
+        bgMusic.stop();
         killAllEntities();
         initializeWorld();
+        bgMusic.play();
+    }
+    
+    public void apocalypse(){
+        bgMusic.stop();
+        killAllEntities();
     }
     
     public abstract void initializeWorld();
@@ -157,4 +164,5 @@ public abstract class World {
     
         return entities;
     }
+    
 }

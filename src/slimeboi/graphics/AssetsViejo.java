@@ -24,6 +24,10 @@ public class AssetsViejo {
     
     public static final CustomAnimation heart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 0, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     public static final CustomAnimation hurtHeart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 4, 6, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    
+    public static final CustomAnimation pinchitaColgadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    public static final CustomAnimation pinchitaDescolgadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    public static final CustomAnimation pinchitaPinchadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     //Jerry//
     /*private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";
   

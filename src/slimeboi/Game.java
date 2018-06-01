@@ -183,6 +183,7 @@ public class Game implements Initializable {
 
     @FXML
     private void onCago(ActionEvent event) throws Throwable {
+        world.apocalypse();
         Parent root;
         
         try {
@@ -221,5 +222,10 @@ public class Game implements Initializable {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         cagobutton.setVisible(paused);
         retryButton.setVisible(paused);
+        
+    }
+    
+    public boolean isPaused(){
+        return paused;
     }
 }

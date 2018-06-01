@@ -33,7 +33,10 @@ public class Blancanubes extends Enemy{
     private Timeline thunderLoop;
     private MediaPlayer scream;
     
-    private final SieteRayitos sieteRayitos = new SieteRayitos(xPos, yPos + hitBox.getMaxY() - 5, game);
+    private Timeline chargingTimeline;
+    private Timeline screamingTimeline;
+    
+    private final SieteRayitos sieteRayitos = new SieteRayitos(xPos, yPos + hitBox.getMaxY() - 5, this,  game);
 
     public Blancanubes(double xPos, double yPos, int distance, long thunderLoopTime, Game game) {
         super(xPos, yPos, 32, 23, 16, 20, 0.5, 1, new AssetsBlancanubes(),new ThunderAmmo(game), game);
@@ -53,8 +56,13 @@ public class Blancanubes extends Enemy{
         thunderAtack();
        
         thunderLoop = new Timeline(new KeyFrame(Duration.millis(thunderLoopTime), ea -> {
-
-            thunderAtack();
+            if(!game.isPaused()){
+                thunderAtack();
+            }else{
+                thunderLoop.pause();
+                
+            }
+            
             
         }));
         
@@ -81,6 +89,12 @@ public class Blancanubes extends Enemy{
     @Override
     public void updateCreatureStateSpecific() {
         
+        
+        if(!game.isPaused() && thunderLoop.getStatus() == Animation.Status.PAUSED){
+            thunderLoop.play();
+            chargingTimeline.play();
+            screamingTimeline.play();
+        }
         
         if(!screaming && isEated()){
             game.jerry.setAmmo(ammo);
@@ -120,11 +134,12 @@ public class Blancanubes extends Enemy{
     }
     
     private void thunderAtack(){
+        
         charging = true;
         assets.right.setCurrentAnimationFrame(0);
         assets.left.setCurrentAnimationFrame(0);
         
-        new Timeline(new KeyFrame(Duration.millis(assets.right.getDurationInMilis()), ae -> {
+        chargingTimeline = new Timeline(new KeyFrame(Duration.millis(assets.right.getDurationInMilis()), ae -> {
             charging = false;
             if(game.getWorld().isAlive(this)){
                 scream.stop();
@@ -133,13 +148,15 @@ public class Blancanubes extends Enemy{
                 sieteRayitos.setXPos(xPos);
                 game.getWorld().addEntityAtFront(sieteRayitos);
 
-                new Timeline(new KeyFrame(Duration.millis(assets.idleRight.getDurationInMilis()), ea -> {
+                screamingTimeline = new Timeline(new KeyFrame(Duration.millis(assets.idleRight.getDurationInMilis()), ea -> {
 
                     screaming = false;
-                    sieteRayitos.kill();
-                })).play();
+                    
+                }));
+                screamingTimeline.play();
             }
-        })).play();
+        }));
+        chargingTimeline.play();
     }
 
     
@@ -149,4 +166,10 @@ public class Blancanubes extends Enemy{
         
         thunderLoop.stop();
     }
+    
+    public boolean isScreaming(){
+        return screaming;
+    }
+    
+    
 }

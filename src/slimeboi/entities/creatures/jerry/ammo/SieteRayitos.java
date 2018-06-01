@@ -5,7 +5,11 @@
  */
 package slimeboi.entities.creatures.jerry.ammo;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.entities.creatures.enemies.Blancanubes;
 import slimeboi.graphics.AssetsBlancanubes;
 
 /**
@@ -13,16 +17,20 @@ import slimeboi.graphics.AssetsBlancanubes;
  * @author Javier Pastor Pérez
  */
 public class SieteRayitos extends Shot{
-
-    public SieteRayitos(double xPos, double yPos, Game game) {
+    private final Blancanubes blancanubes;
+    public SieteRayitos(double xPos, double yPos, Blancanubes blancanubes, Game game) {
         super(xPos, yPos, 35, 106, 13, 5, AssetsBlancanubes.sieteRayitos, game);
-        
+        this.blancanubes = blancanubes;
     }
 
     @Override
     protected void updateSpecificState() {
         if(hitsJerry()){
             game.jerry.hurt();
+        }
+        
+        if(game.getWorld().isAlive(this) && !blancanubes.isScreaming()){
+            kill();
         }
     }
     
