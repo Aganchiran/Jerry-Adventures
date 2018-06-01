@@ -107,7 +107,9 @@ public class Jerry extends Creature{
                 if(lastYIncrement > 2.8) land(((AssetsJerry)assets).endJumpRight, ((AssetsJerry)assets).endJumpLeft);
             }
             
-        } 
+        }
+        
+        if(getYPos() > game.getCanvas().getHeight()) health = getHealth() - getHealth();
         
         if(KeyManager.checkKey(KeyCode.SPACE.getName())){
 
