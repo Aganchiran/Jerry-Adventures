@@ -25,9 +25,7 @@ public class AssetsViejo {
     public static final CustomAnimation heart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 0, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     public static final CustomAnimation hurtHeart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 4, 6, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     
-    public static final CustomAnimation pinchitaColgadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
-    public static final CustomAnimation pinchitaDescolgadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
-    public static final CustomAnimation pinchitaPinchadita = new CustomAnimation("slimeboi/resources/EnemiesSpriteSheet.png", 1, 11, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
+    
     //Jerry//
     /*private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";
   
@@ -47,6 +45,10 @@ public class AssetsViejo {
     public static final CustomAnimation fatLeft = new CustomAnimation(JERRY_URL, 10, 0, 25, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 6, true);*/
     
     //Ammo//
+    public static final CustomAnimation pincheAmmo = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 1, 2, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation pincheShotR = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 1, 1, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    public static final CustomAnimation pincheShotL = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 1, 0, 1, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
+    
     public static final CustomAnimation thunderAmmo = new CustomAnimation("slimeboi/resources/AmmoIcons.png", 7, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 16, true);
     public static final CustomAnimation emptyAnimation = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 9, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 1, true); 
     public static final CustomAnimation thunderShotR = new CustomAnimation("slimeboi/resources/ThunderBeam.png", 13, 0, 0, 832, 64, 16, true);
@@ -54,8 +56,8 @@ public class AssetsViejo {
     
     public static final CustomAnimation shuriAmmo = new CustomAnimation("slimeboi/resources/ShuriAmmo.png", 16, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
     public static final CustomAnimation shuriShotto = new CustomAnimation("slimeboi/resources/ShuriShot.png", 6, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 12, true);
-     public static final CustomAnimation shuriShottwo = new CustomAnimation("slimeboi/resources/ShuriShotto.png", 6, 0, 0, 56, 56, 12, true);
-     public static final CustomAnimation shuriShotthree = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
+    public static final CustomAnimation shuriShottwo = new CustomAnimation("slimeboi/resources/ShuriShotto.png", 6, 0, 0, 56, 56, 12, true);
+    public static final CustomAnimation shuriShotthree = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
 
      public static final CustomAnimation shuriShotthreeV2 = new CustomAnimation("slimeboi/resources/ShuriShottwo.png", 6, 0, 0, 64, 64, 12, true);
     /////////

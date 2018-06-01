@@ -7,6 +7,7 @@ package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
+import slimeboi.entities.creatures.jerry.ammo.PincheAmmo;
 import slimeboi.graphics.AssetsPinchita;
 
 /**
@@ -17,7 +18,7 @@ public class Pinchita extends Enemy{
     private boolean colgadita = true;
     
     public Pinchita(double xPos, double yPos, Game game) {
-        super(xPos, yPos, 18, 30, 24, 17, 0, 1, new AssetsPinchita(), new NoAmmo(game), game);
+        super(xPos, yPos, 18, 30, 24, 17, 0, 1, new AssetsPinchita(), new PincheAmmo(game), game);
     }
 
     @Override

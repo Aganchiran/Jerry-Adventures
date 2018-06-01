@@ -6,6 +6,7 @@
 package slimeboi.entities.creatures.jerry.ammo;
 
 import slimeboi.Game;
+import slimeboi.entities.Entity;
 import slimeboi.graphics.AssetsViejo;
 
 /**
@@ -13,20 +14,35 @@ import slimeboi.graphics.AssetsViejo;
  * @author Shion
  */
 public class PincheShot extends Shot {
-    
+    private double xIncrement;
     public PincheShot(double xPos, double yPos, double xIncrement, Game game){
-        super(xPos, yPos, 0, 0, 0, 0, AssetsViejo.emptyAnimation, game);
-    
+        super(xPos, yPos, 40, 18, 6, 22, AssetsViejo.pincheShotR, game);
+        this.xIncrement = xIncrement;
     }
 
     @Override
     protected void updateSpecificState() {
+        if(xIncrement < 0){
+            animation = AssetsViejo.pincheShotL;
+        }else{
+            animation = AssetsViejo.pincheShotR;
+        }
         
+        xPos += xIncrement;
+        
+        Entity entityAuxiliar;
+        for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
+            entityAuxiliar = game.getWorld().getEntities().get(i);
+            if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+                entityAuxiliar.kill();
+            }
+        }
     }
     
-    @Override
-    public void updateState(){
-        updateSpecificState();
+    public void setIncrement(double increment){
+        xIncrement = increment;
     }
+    
+    
     
 }

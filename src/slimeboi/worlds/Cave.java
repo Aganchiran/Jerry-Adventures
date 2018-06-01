@@ -60,7 +60,7 @@ public class Cave extends World{
 
     @Override
     public void initializeWorld() {
-        
+        entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
         entities.add(new Pinchita(15 * 32 - 16, 12 * 32 + 13, game));
         /*entities.add(new Blancanubes(480, 75, 150, 6000, game));
         entities.add(new BBQSoslime(800, 100, 36, 16, 14, 48, game));

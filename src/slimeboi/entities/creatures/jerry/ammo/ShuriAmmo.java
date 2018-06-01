@@ -29,15 +29,15 @@ public class ShuriAmmo extends Ammo{
         
         
             
-            game.jerry.hasAmmo = false;
-            
-            ((Jerry) game.jerry).setAmmo(new NoAmmo(game.jerry.getGame()));
-            
-            new Timeline(new KeyFrame(Duration.millis(game.jerry.currentAnimation.getDurationInMilis() - 75), ea -> {
-                game.jerry.currentAnimation.setCurrentAnimationFrame(0);
-                game.jerry.state = game.jerry.notFreezedState;
-                ControlLoader.enableControls();
-            })).play();
+        game.jerry.hasAmmo = false;
+
+        ((Jerry) game.jerry).setAmmo(new NoAmmo(game.jerry.getGame()));
+
+        new Timeline(new KeyFrame(Duration.millis(game.jerry.currentAnimation.getDurationInMilis() - 75), ea -> {
+            game.jerry.currentAnimation.setCurrentAnimationFrame(0);
+            game.jerry.state = game.jerry.notFreezedState;
+            ControlLoader.enableControls();
+        })).play();
        
     }
 }

@@ -75,19 +75,19 @@ public class ShuriShot extends Shot{
         if(shuriR) xPos += xIncrement;
         if(shuriL) xPos += - xIncrement;
        
-       new Timeline(new KeyFrame(Duration.millis(2000), ea -> { 
-           game.getWorld().killEntity(this);
-           shuriR = false;
-           shuriL = false;
-       })).play();
+        new Timeline(new KeyFrame(Duration.millis(2000), ea -> { 
+            game.getWorld().killEntity(this);
+            shuriR = false;
+            shuriL = false;
+        })).play();
        
-       Entity entityAuxiliar;
-       for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
-           entityAuxiliar = game.getWorld().getEntities().get(i);
-           if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
-               entityAuxiliar.kill();
-           }
-       }
+        Entity entityAuxiliar;
+        for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
+            entityAuxiliar = game.getWorld().getEntities().get(i);
+            if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+                entityAuxiliar.kill();
+            }
+        }
         
     }
     
