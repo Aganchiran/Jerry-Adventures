@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
+import slimeboi.entities.creatures.jerry.ammo.BoneAmmo;
 import slimeboi.entities.creatures.jerry.ammo.JackboneFive;
 import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsMikeleton;
@@ -34,7 +35,7 @@ public class Mikeleton extends Enemy{
     
 
     public Mikeleton(double xPos, double yPos, int distance, long boneLoopTime, Game game) {
-        super(xPos, yPos, 15, 56, 24, 4, 0.5, 1, new AssetsMikeleton(),new NoAmmo(game), game);
+        super(xPos, yPos, 15, 56, 24, 4, 0.5, 1, new AssetsMikeleton(),new BoneAmmo(game), game);
         this.distance = distance;
         //boneAtack();
         /*
