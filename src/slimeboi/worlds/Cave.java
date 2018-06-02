@@ -35,8 +35,8 @@ import slimeboi.entities.tiles.CaveTile;
  */
 public class Cave extends World{
     
-    public Cave(String music,int width, int height, Game game) {
-        super(music, "src/slimeboi/resources/Cave.txt", width, height, game);
+    public Cave(String music, Game game) {
+        super(music, "src/slimeboi/resources/Cave.txt", 74, 21, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02
@@ -60,11 +60,27 @@ public class Cave extends World{
 
     @Override
     public void initializeWorld() {
-        entities.add(new Pinchita(10 * 32 - 16, 8 * 32 + 13, game));
+        entities.add(new Pinchita(10 * 32 - 16, 8 * 32 + 13, 60, game));
+        entities.add(new Pinchita(30 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Mikeleton(400, 300, 300, 5000, game));
         entities.add(new Mikeleton(50, 300, 300, 5000, game));
-        
-        
+        entities.add(new Pinchita(46 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(47 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(48 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(49 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(50 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(51 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(52 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(53 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(54 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(55 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(56 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(57 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(58 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(59 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(60 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(61 * 32 - 16, 8 * 32 + 13, 16, game));
+        entities.add(new Pinchita(62 * 32 - 16, 8 * 32 + 13, 16, game));
     }
     
 }

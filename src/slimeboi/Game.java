@@ -85,7 +85,7 @@ public class Game implements Initializable {
         jerry = new Jerry(50, 10, this);
         
         
-        world = new Cave("src/slimeboi/resources/Bonetrousle.mp3", 40, 21, this);
+        world = new Cave("src/slimeboi/resources/Bonetrousle.mp3", this);
         world.loadWorld();
         world.addEntityAtFront(jerry);
         

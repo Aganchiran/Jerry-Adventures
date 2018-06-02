@@ -109,7 +109,7 @@ public class Jerry extends Creature{
             
         }
         
-        if(getYPos() > game.getCanvas().getHeight()) health = getHealth() - getHealth();
+        if(getYPos() > game.getWorld().getHeightInPixels()) health = getHealth() - getHealth();
         
         if(KeyManager.checkKey(KeyCode.SPACE.getName())){
 
@@ -159,6 +159,7 @@ public class Jerry extends Creature{
         
         if(!invulnerable && health > 0){
             //assets = ASSETS_BLINK;
+            biting = false;
             health--;
             
             if(facingRight()){
@@ -205,7 +206,7 @@ public class Jerry extends Creature{
         
         if(facingRight()) currentAnimation = rightAnim;
         else currentAnimation = leftAnim;
-        
+        currentAnimation.setCurrentAnimationFrame(0);
         
         xIncrement = 0;
         freeze(currentAnimation.getDurationInMilis());

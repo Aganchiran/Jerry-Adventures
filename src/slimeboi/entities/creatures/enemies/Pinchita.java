@@ -6,7 +6,6 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
-import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.entities.creatures.jerry.ammo.PincheAmmo;
 import slimeboi.graphics.AssetsPinchita;
 
@@ -16,16 +15,18 @@ import slimeboi.graphics.AssetsPinchita;
  */
 public class Pinchita extends Enemy{
     private boolean colgadita = true;
+    private double distance;
     
-    public Pinchita(double xPos, double yPos, Game game) {
+    public Pinchita(double xPos, double yPos, double distance, Game game) {
         super(xPos, yPos, 18, 30, 24, 17, 0, 1, new AssetsPinchita(), new PincheAmmo(game), game);
+        this.distance = distance;
     }
 
     @Override
     public void updateCreatureStateSpecific() {
         if(colgadita){
             currentAnimation = AssetsPinchita.pinchitaColgadita;
-            if(game.jerry.getXPos() == xPos - 60){
+            if(game.jerry.getXPos() == xPos - distance){
                 colgadita = false;
                 yPos = yPos + 3;
             }

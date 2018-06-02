@@ -90,8 +90,8 @@ public abstract class Creature extends Entity{
     public boolean colidesX(){
         BoundingBox tileHitBox;
         
-        for(int i = 0 ; i < 100 ; i++){
-            for(int j = 0 ; j < 21 ; j++){
+        for(int i = 0 ; i < game.getWorld().getWidth() ; i++){
+            for(int j = 0 ; j < game.getWorld().getHeight() ; j++){
                 tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
                 if(tileHitBox.intersects(this.getCollisionBounds(xIncrement, 0)) && game.getWorld().getTileset().get(game.getWorld().getMap()[i][j]).isSolid()){
@@ -107,8 +107,8 @@ public abstract class Creature extends Entity{
     public boolean colidesY(){
         BoundingBox tileHitBox;
         
-        for(int i = 0 ; i < 100 ; i++){
-            for(int j = 0 ; j < 21 ; j++){
+        for(int i = 0 ; i < game.getWorld().getWidth() ; i++){
+            for(int j = 0 ; j < game.getWorld().getHeight() ; j++){
                 tileHitBox = new BoundingBox(Tile.DEFAULT_WIDTH * i, Tile.DEFAULT_HEIGHT * j, Tile.DEFAULT_WIDTH, Tile.DEFAULT_HEIGHT);
                 
                 if(tileHitBox.intersects(this.getCollisionBounds(0, yIncrement)) && game.getWorld().getTileset().get(game.getWorld().getMap()[i][j]).isSolid()){

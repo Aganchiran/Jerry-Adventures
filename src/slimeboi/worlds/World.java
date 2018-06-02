@@ -123,6 +123,14 @@ public abstract class World {
         return height * Tile.DEFAULT_HEIGHT;
     }
     
+    public double getWidth(){
+        return width;
+    }
+    
+    public double getHeight(){
+        return height;
+    }
+    
     public void killEntity(Entity entity){
         
         entities.remove(entity);

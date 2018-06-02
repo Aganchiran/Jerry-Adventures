@@ -123,7 +123,6 @@ public class Mikeleton extends Enemy{
                 game.getWorld().addEntityAtFront(jackbone);
                 lastBoneWentRight = false;
                 jackboneCount = (jackboneCount + 1) % 5;
-                System.out.println(jackboneCount);
             }else if(currentAnimation.getCurrentAnimationFrame() == 3 && !lastBoneWentRight){
                 JackboneFive jackbone = new JackboneFive(xPos + 10, yPos, 3, jackboneFive[4 -jackboneCount], game);
                 game.getWorld().addEntityAtFront(jackbone);
@@ -132,7 +131,6 @@ public class Mikeleton extends Enemy{
                 game.getWorld().addEntityAtFront(jackbone);
                 lastBoneWentRight = true;
                 jackboneCount = (jackboneCount + 1) % 5;
-                System.out.println(jackboneCount);
             }
         }
     }
