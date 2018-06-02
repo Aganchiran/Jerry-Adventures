@@ -234,24 +234,29 @@ public class Jerry extends Creature{
     public void resetJerry(){
         
         freeze(10);
+        new Timeline(new KeyFrame(Duration.millis(100), ae -> {
+            currentAnimation = assets.onAirRight;
+            
+        })).play();
         
         ammo = new NoAmmo(game);
         hasAmmo = false;
-
+        biting = false;
+        
         xPos = spawnX;
         yPos = spawnY;
         xIncrement = 0;
-        yIncrement = 0;
+        yIncrement = 1;
         
         
         lastStateOnAir = true;
-        lastYIncrement = 0;
+        lastYIncrement = 1;
         invulnerable = false;
 
         
 
-        state = STATE_RIGHT;
-        notFreezedState = STATE_RIGHT;
+        state = STATE_RIGHT_ON_AIR;
+        notFreezedState = STATE_RIGHT_ON_AIR;
         
         health = MAX_HEALTH;
     }
