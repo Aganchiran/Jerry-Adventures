@@ -53,7 +53,7 @@ public abstract class World {
             bgMusic = new MediaPlayer(soundtrack);
 
             bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
-            bgMusic.setVolume(0.3);
+            bgMusic.setVolume(0.2);
             bgMusic.play();
         } catch (MalformedURLException ex) {
             System.err.println("No se ha podido cargar la música");

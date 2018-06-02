@@ -53,7 +53,7 @@ public class JackboneFive extends Shot{
     @Override
     protected void updateSpecificState() {
         
-        new Timeline(new KeyFrame(Duration.millis(10000), ea -> {
+        new Timeline(new KeyFrame(Duration.millis(3000), ea -> {
             kill();
         })).play();
         

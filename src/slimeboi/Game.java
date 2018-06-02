@@ -82,7 +82,7 @@ public class Game implements Initializable {
         retryButton.setVisible(false);
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        jerry = new Jerry(50, 10, this);
+        jerry = new Jerry(79 * 32 - 16, 23 * 32 + 13, this);//50,10
         
         
         world = new Cave("src/slimeboi/resources/Bonetrousle.mp3", this);

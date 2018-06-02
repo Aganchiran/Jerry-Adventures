@@ -36,7 +36,7 @@ import slimeboi.entities.tiles.CaveTile;
 public class Cave extends World{
     
     public Cave(String music, Game game) {
-        super(music, "src/slimeboi/resources/Cave.txt", 74, 21, game);
+        super(music, "src/slimeboi/resources/Cave.txt", 101, 27, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02
@@ -60,10 +60,11 @@ public class Cave extends World{
 
     @Override
     public void initializeWorld() {
+        entities.add(new Mikeleton(50, 300, 400, 7000, game));
         entities.add(new Pinchita(10 * 32 - 16, 8 * 32 + 13, 60, game));
-        entities.add(new Pinchita(30 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Mikeleton(400, 300, 300, 5000, game));
-        entities.add(new Mikeleton(50, 300, 300, 5000, game));
+        entities.add(new Pinchita(30 * 32 - 16, 8 * 32 + 13, 16, game));
+        
         entities.add(new Pinchita(46 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Pinchita(47 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Pinchita(48 * 32 - 16, 8 * 32 + 13, 16, game));
@@ -81,6 +82,10 @@ public class Cave extends World{
         entities.add(new Pinchita(60 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Pinchita(61 * 32 - 16, 8 * 32 + 13, 16, game));
         entities.add(new Pinchita(62 * 32 - 16, 8 * 32 + 13, 16, game));
+        
+        entities.add(new Mikeleton(76 * 32, 17 * 32, 160, 5000, game));
+        
+        entities.add(new Pinchita(91 * 32 - 16, 1 * 32 + 13, -10, game));        
     }
     
 }
