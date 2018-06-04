@@ -15,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
-import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.CustomAnimation;
 
 /**
@@ -53,7 +52,7 @@ public class JackboneFive extends Shot{
     @Override
     protected void updateSpecificState() {
         
-        new Timeline(new KeyFrame(Duration.millis(3000), ea -> {
+        new Timeline(new KeyFrame(Duration.millis(2600), ea -> {
             kill();
         })).play();
         

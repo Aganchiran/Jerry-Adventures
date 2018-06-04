@@ -52,7 +52,7 @@ public class Jerry extends Creature{
     public final AssetsFat ASSETS_FAT;
                
     public Jerry(double xPos, double yPos, Game game){
-        super(xPos, yPos, 23, 16, 21, 30, 1, 10, new AssetsJerry(), game);
+        super(xPos, yPos, 23, 16, 21, 30, 1, 3, new AssetsJerry(), game);
         spawnX = xPos;
         spawnY = yPos;
         

@@ -35,8 +35,8 @@ import slimeboi.entities.tiles.CaveTile;
  */
 public class Cave extends World{
     
-    public Cave(String music, Game game) {
-        super(music, "src/slimeboi/resources/Cave.txt", 101, 27, game);
+    public Cave(Game game) {
+        super("src/slimeboi/resources/Bonetrousle.mp3", "src/slimeboi/resources/Cave.txt", 101, 27, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02

@@ -5,8 +5,6 @@
  */
 package slimeboi.entities.creatures.enemies;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +15,6 @@ import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.BoneAmmo;
 import slimeboi.entities.creatures.jerry.ammo.JackboneFive;
-import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.CustomAnimation;
 
@@ -30,10 +27,13 @@ public class Mikeleton extends Enemy{
     private long count = 0;
     private final int distance;
     private boolean dancing = false;
-    private Timeline boneLoop;
+    private final Timeline boneLoop;
     private boolean lastBoneWentRight = true;
-    private CustomAnimation[] jackboneFive = new CustomAnimation[5];
+    private final CustomAnimation[] jackboneFive = new CustomAnimation[5];
     private int jackboneCount = 0;
+    
+    
+    //private final JackboneFive jackPrueba = new JackboneFive(100, 100, 0, AssetsMikeleton.jackie, game);
     
     
 
@@ -46,6 +46,8 @@ public class Mikeleton extends Enemy{
         jackboneFive[2] = AssetsMikeleton.marlon;
         jackboneFive[3] = AssetsMikeleton.randy;
         jackboneFive[4] = AssetsMikeleton.tito;
+        
+        
         
         //boneAtack();
         /*
@@ -86,53 +88,52 @@ public class Mikeleton extends Enemy{
 
     @Override
     public void updateCreatureStateSpecific() {
+        if(game.getCamera().getXPos() < xPos + 100 && game.getCamera().getXPos() + game.getCanvas().getWidth() > xPos - 100){
         
-        
-        if(isEated()){
-            game.jerry.setAmmo(ammo);
-            game.jerry.hasAmmo = true;
-            kill();
+            if(isEated()){
+                game.jerry.setAmmo(ammo);
+                game.jerry.hasAmmo = true;
+                kill();
+            }
+
+            if(!game.jerry.isBiting() && hitsJerry()){
+                game.jerry.hurt();
+            }
+
+            if(health == 0){
+                kill();
+            }
         }
-        
-        if(!game.jerry.isBiting() && hitsJerry()){
-            game.jerry.hurt();
-        }
-        
-        if(health == 0){
-            kill();
-        }
-        
-        if(!dancing){
-            if(state == STATE_RIGHT){
-                count++;
-                if(count == distance) state = STATE_LEFT;
+            if(!dancing){
+                if(state == STATE_RIGHT){
+                    count++;
+                    if(count == distance) state = STATE_LEFT;
+                }else{
+                    count--;
+                    if(count == 0) state = STATE_RIGHT;
+                }
+
+                state.move();
             }else{
-                count--;
-                if(count == 0) state = STATE_RIGHT;
+                state.idle();
+                
+                if(game.getCamera().getXPos() < xPos + 100 && game.getCamera().getXPos() + game.getCanvas().getWidth() > xPos - 100){
+                    if(currentAnimation.getCurrentAnimationFrame() == 1 && lastBoneWentRight){
+                        JackboneFive jackbone = new JackboneFive(xPos - 10, yPos, -3, jackboneFive[4 - jackboneCount], game);
+                        game.getWorld().addEntityAtFront(jackbone);
+
+                        lastBoneWentRight = false;
+                        jackboneCount = (jackboneCount + 1) % 5;
+                    }else if(currentAnimation.getCurrentAnimationFrame() == 3 && !lastBoneWentRight){
+                        JackboneFive jackbone = new JackboneFive(xPos + 10, yPos, 3, jackboneFive[4 -jackboneCount], game);
+                        game.getWorld().addEntityAtFront(jackbone);
+
+                        lastBoneWentRight = true;
+                        jackboneCount = (jackboneCount + 1) % 5;
+                    }
+                }
             }
-            
-            state.move();
-        }else{
-            state.idle();
-            
-            if(currentAnimation.getCurrentAnimationFrame() == 1 && lastBoneWentRight){
-                JackboneFive jackbone = new JackboneFive(xPos - 10, yPos, -3, jackboneFive[4 - jackboneCount], game);
-                game.getWorld().addEntityAtFront(jackbone);
-                
-                
-                game.getWorld().addEntityAtFront(jackbone);
-                lastBoneWentRight = false;
-                jackboneCount = (jackboneCount + 1) % 5;
-            }else if(currentAnimation.getCurrentAnimationFrame() == 3 && !lastBoneWentRight){
-                JackboneFive jackbone = new JackboneFive(xPos + 10, yPos, 3, jackboneFive[4 -jackboneCount], game);
-                game.getWorld().addEntityAtFront(jackbone);
-                
-                
-                game.getWorld().addEntityAtFront(jackbone);
-                lastBoneWentRight = true;
-                jackboneCount = (jackboneCount + 1) % 5;
-            }
-        }
+        
     }
     
     

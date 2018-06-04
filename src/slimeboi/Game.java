@@ -37,6 +37,7 @@ import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.AssetsViejo;
 import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
+import slimeboi.worlds.BossRoom;
 import slimeboi.worlds.Cave;
 import slimeboi.worlds.Leaflands;
 import slimeboi.worlds.World;
@@ -82,10 +83,11 @@ public class Game implements Initializable {
         retryButton.setVisible(false);
         
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        jerry = new Jerry(3 * 32 - 16, -2 * 32, this);//50,10
+        jerry = new Jerry(3 * 32 - 16, -2 * 32, this);//3 * 32 - 16, -2 * 32
         
         
-        world = new Cave("src/slimeboi/resources/Bonetrousle.mp3", this);
+        //world = new Cave(this);
+        world = new BossRoom(this);
         world.loadWorld();
         world.addEntityAtFront(jerry);
         
