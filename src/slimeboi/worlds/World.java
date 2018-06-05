@@ -161,14 +161,19 @@ public abstract class World {
     }
     
     public void resetWorld(){
-        bgMusic.stop();
+        if(!music.equals("NONE")){
+            bgMusic.stop();
+            bgMusic.play();
+        }
         killAllEntities();
         initializeWorld();
-        bgMusic.play();
+        
     }
     
     public void apocalypse(){
-        bgMusic.stop();
+        if(!music.equals("NONE")){
+            bgMusic.stop();
+        }
         killAllEntities();
     }
     

@@ -28,7 +28,7 @@ public class Bollito extends Enemy{
         super(xPos, yPos, 237, 145, 142, 55, 0, 10, new AssetsBollito(), new NoAmmo(game), game);
         
         for(int i = 0 ; i < pinchitas.length ; i++){
-            pinchitas[i] = new Pinchita(800 * Math.random() + 60, 400, 0, false, game);
+            pinchitas[i] = new Pinchita(0, 0, 0, false, game);
         }
         
         earthquakeLoop = new Timeline(new KeyFrame(Duration.millis(earthquakeLoopTime), ea -> {
@@ -59,8 +59,8 @@ public class Bollito extends Enemy{
                 for (Pinchita pinchita : pinchitas) {
                     if (!game.getWorld().isAlive(pinchita)) {
                         pinchita.heal(1);
-                        pinchita.setXPos(800 * Math.random() + 60);
-                        pinchita.setYPos(400 + 100 * Math.random());
+                        pinchita.setXPos((int) (800 * Math.random()) + 60);
+                        pinchita.setYPos(-100 + (int)(100 * Math.random()));
                         game.getWorld().addEntityAtFront(pinchita);
                     }
                     if (pinchita.getYIncrement() == 0) {
