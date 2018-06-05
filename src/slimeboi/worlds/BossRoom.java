@@ -5,6 +5,9 @@
  */
 package slimeboi.worlds;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.enemies.Bollito;
 import slimeboi.entities.tiles.CaveTile;
@@ -32,7 +35,7 @@ import slimeboi.entities.tiles.RockVerticalUp;
 public class BossRoom extends World{
 
     public BossRoom(Game game) {
-        super("NONE", "src/slimeboi/resources/BossRoom.txt", 32, 23, game);
+        super("NONE", "src/slimeboi/resources/BossRoom.txt", 34, 25, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02
@@ -52,12 +55,36 @@ public class BossRoom extends World{
         tileSet.add(new RockSingleBlock());//16
         
         initializeWorld();
+        
+        
     }
 
     @Override
     public void initializeWorld() {
+        game.getCamera().leftOffset = 32;
+        game.getCamera().rightOffset = 32;
+        game.getCamera().downOffset = 64;
         
-        entities.add(new Bollito(300, 300, 2000,game));
+        new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
+            Bollito bollito = new Bollito(300, -200, 2000, game);
+            bollito.setYIncrement(10);
+            entities.add(bollito);
+            
+            new Timeline(new KeyFrame(Duration.millis(2000), ea -> {
+                game.getCamera().setFollowJerry(false);
+                game.getCamera().zoom(2);
+                game.getCamera().setYPos(((int) game.getCamera().getYPos()) + 150);
+                
+                
+                new Timeline(new KeyFrame(Duration.millis(2000), aea -> {
+                    game.getCamera().setFollowJerry(true);
+                    game.getCamera().zoom(1);
+                    
+                })).play();
+            })).play();
+        })).play();
+        
+        
     }
     
 }

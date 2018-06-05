@@ -78,7 +78,7 @@ public class Game implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.url = url;
         this.rb = rb;
-        
+        camera = new Camera(this);
         cagobutton.setVisible(false);
         retryButton.setVisible(false);
         
@@ -96,8 +96,9 @@ public class Game implements Initializable {
         else
             DefaultControls.LoadControlsB(this);
         
-        camera = new Camera(this);
+        
         HUD = new HUD(this);
+        
         
         
         
