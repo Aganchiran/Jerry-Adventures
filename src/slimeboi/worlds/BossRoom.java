@@ -32,7 +32,7 @@ import slimeboi.entities.tiles.RockVerticalUp;
 public class BossRoom extends World{
 
     public BossRoom(Game game) {
-        super("src/slimeboi/resources/Bonetrousle.mp3", "src/slimeboi/resources/BossRoom.txt", 32, 23, game);
+        super("NONE", "src/slimeboi/resources/BossRoom.txt", 32, 23, game);
         tileSet.add(new CaveTile());//00
         tileSet.add(new RockUpLeft());//01
         tileSet.add(new RockUpCenter());//02

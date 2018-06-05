@@ -16,7 +16,7 @@ import slimeboi.entities.tiles.SolidTestTile;
 public class TestWorld extends World{
     
     public TestWorld(boolean solid, Game game) {
-        super("src/slimeboi/resources/Bonetrousle.mp3", "src/slimeboi/resources/GrassLands.txt", 40, 21, game);
+        super("NONE", "src/slimeboi/resources/GrassLands.txt", 40, 21, game);
         if(solid){
             tileSet.add(new SolidTestTile());//00
             tileSet.add(new SolidTestTile());//01

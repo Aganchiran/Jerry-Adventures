@@ -48,16 +48,17 @@ public abstract class World {
         this.game = game;
         
         //System.out.println();
-        
-        try {
-            Media soundtrack = new Media((new File(music)).toURI().toURL().toString());
-            bgMusic = new MediaPlayer(soundtrack);
+        if(!music.equals("NONE")){
+            try {
+                Media soundtrack = new Media((new File(music)).toURI().toURL().toString());
+                bgMusic = new MediaPlayer(soundtrack);
 
-            bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
-            bgMusic.setVolume(0.2);
-            bgMusic.play();
-        } catch (MalformedURLException ex) {
-            System.err.println("No se ha podido cargar la música");
+                bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
+                bgMusic.setVolume(0.2);
+                bgMusic.play();
+            } catch (MalformedURLException ex) {
+                System.err.println("No se ha podido cargar la música");
+            }
         }
         
     }
