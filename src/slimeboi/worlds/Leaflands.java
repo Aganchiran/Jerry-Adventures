@@ -33,8 +33,8 @@ import slimeboi.entities.tiles.SkyTile;
  */
 public class Leaflands extends World{
     
-    public Leaflands(String music, String mapURL, int width, int height, Game game) {
-        super(music, mapURL, width, height, game);
+    public Leaflands(Game game) {
+        super("src/slimeboi/resources/Bonetrousle.mp3", "src/slimeboi/resources/GrassLands.txt", 40, 21, game);
         tileSet.add(new SkyTile());//00
         tileSet.add(new EarthUpLeft());//01
         tileSet.add(new EarthUpCenter());//02

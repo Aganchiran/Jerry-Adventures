@@ -26,10 +26,11 @@ public class PincheAmmo extends Ammo {
 
     @Override
     public void fire() {
+        game.getWorld().killEntity(shot);
         if(game.jerry.facingRight()){
-            ((PincheShot)shot).setIncrement(5);
+            ((PincheShot)shot).setXIncrement(5);
         }else{
-            ((PincheShot)shot).setIncrement(-5);
+            ((PincheShot)shot).setXIncrement(-5);
         }
         shot.setXPos(game.jerry.getXPos());
         shot.setYPos(game.jerry.getYPos());

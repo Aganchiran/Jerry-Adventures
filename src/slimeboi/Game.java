@@ -85,7 +85,7 @@ public class Game implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(3 * 32 - 16, -2 * 32, this);//3 * 32 - 16, -2 * 32
         
-        
+        //world = new Leaflands(this);
         //world = new Cave(this);
         world = new BossRoom(this);
         world.loadWorld();

@@ -192,9 +192,15 @@ public abstract class Creature extends Entity{
     }
     public abstract void updateCreatureStateSpecific();
     
+    @Override
     public void hurt(){
         if(health > 0) health--;
     };
+    
+    public void heal(int amount){
+        health += amount;
+        if(health > MAX_HEALTH) health = MAX_HEALTH;
+    }
     
     public int getHealth(){
         return health;

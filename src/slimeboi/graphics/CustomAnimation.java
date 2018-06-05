@@ -72,6 +72,10 @@ public class CustomAnimation {
         return 16 * ((numFrames - 1) * 60/frameRate);
     }
     
+    public int getDurationInMilisFromFrameToFrame(int from, int to){
+        return 16 * ((to - from) * 60/frameRate);
+    }
+    
     public void setFrameInPositions(WritableImage frame, int[] pos){
         for(int i = 0 ; i < pos.length ; i++){
             sequence.set(pos[i], frame);
@@ -91,4 +95,5 @@ public class CustomAnimation {
     public Image getFrame(int i){
         return sequence.get(i);
     }
+    
 }

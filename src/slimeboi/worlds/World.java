@@ -31,7 +31,8 @@ public abstract class World {
     protected final int height;
     
     protected final int[][] map;
-    protected Entity pendingToAdd;
+    //protected Entity pendingToAdd;
+    protected ArrayList<Entity> pendingToAdd = new ArrayList<>();
     protected final ArrayList<Entity> entities = new ArrayList();
 
     
@@ -62,9 +63,13 @@ public abstract class World {
     }
     
     public void render(GraphicsContext gc){
-        if(pendingToAdd != null){
-            entities.add(0, pendingToAdd);
-            pendingToAdd = null;
+        if(pendingToAdd.size() > 0){
+            while(pendingToAdd.size() > 0){
+                entities.add(0, pendingToAdd.get(0));
+                pendingToAdd.remove(0);
+            }
+            //entities.add(0, pendingToAdd);
+            //pendingToAdd = null;
         }
         
         game.getCamera().centerOnEntity(game.jerry);
@@ -145,7 +150,7 @@ public abstract class World {
     }
     
     public void addEntityAtFront(Entity entity){
-        pendingToAdd = entity;
+        pendingToAdd.add(entity);
     }
     
     public void killAllEntities(){

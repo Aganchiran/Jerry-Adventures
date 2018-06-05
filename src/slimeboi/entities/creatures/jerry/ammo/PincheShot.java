@@ -5,6 +5,7 @@
  */
 package slimeboi.entities.creatures.jerry.ammo;
 
+import java.util.ArrayList;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
 import slimeboi.graphics.AssetsViejo;
@@ -15,9 +16,13 @@ import slimeboi.graphics.AssetsViejo;
  */
 public class PincheShot extends Shot {
     private double xIncrement;
+    private ArrayList<Entity> notHurtEntities = new ArrayList();
+    
     public PincheShot(double xPos, double yPos, double xIncrement, Game game){
         super(xPos, yPos, 40, 18, 6, 22, AssetsViejo.pincheShotR, game);
         this.xIncrement = xIncrement;
+        
+        notHurtEntities.add(game.jerry);
     }
 
     @Override
@@ -33,13 +38,14 @@ public class PincheShot extends Shot {
         Entity entityAuxiliar;
         for(int i = 0 ; i < game.getWorld().getEntities().size() ; i++){
             entityAuxiliar = game.getWorld().getEntities().get(i);
-            if(entityAuxiliar != game.jerry && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
-                entityAuxiliar.kill();
+            if(!notHurtEntities.contains(entityAuxiliar) && entityAuxiliar != this && this.getCollisionBounds(0, 0).intersects(entityAuxiliar.getCollisionBounds(0, 0))){
+                entityAuxiliar.hurt();
+                notHurtEntities.add(entityAuxiliar);
             }
         }
     }
     
-    public void setIncrement(double increment){
+    public void setXIncrement(double increment){
         xIncrement = increment;
     }
     

@@ -57,7 +57,7 @@ public class BossRoom extends World{
     @Override
     public void initializeWorld() {
         
-        entities.add(new Bollito(300, 300,game));
+        entities.add(new Bollito(300, 300, 2000,game));
     }
     
 }

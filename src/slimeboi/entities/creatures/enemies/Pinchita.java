@@ -14,12 +14,13 @@ import slimeboi.graphics.AssetsPinchita;
  * @author Javier Pastor Pérez
  */
 public class Pinchita extends Enemy{
-    private boolean colgadita = true;
-    private double distance;
+    private boolean colgadita;
+    private final double distance;
     
-    public Pinchita(double xPos, double yPos, double distance, Game game) {
+    public Pinchita(double xPos, double yPos, double distance, boolean colgadita, Game game) {
         super(xPos, yPos, 18, 30, 24, 17, 0, 1, new AssetsPinchita(), new PincheAmmo(game), game);
         this.distance = distance;
+        this.colgadita = colgadita;
     }
 
     @Override

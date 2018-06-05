@@ -61,4 +61,8 @@ public abstract class Entity {
         game.getWorld().killEntity(this);
     }
     
+    public void hurt(){
+    
+    }
+    
 }
