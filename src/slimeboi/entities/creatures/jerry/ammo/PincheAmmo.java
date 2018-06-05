@@ -27,6 +27,7 @@ public class PincheAmmo extends Ammo {
     @Override
     public void fire() {
         game.getWorld().killEntity(shot);
+        ((PincheShot) shot).resetHurteableEntities();
         if(game.jerry.facingRight()){
             ((PincheShot)shot).setXIncrement(5);
         }else{

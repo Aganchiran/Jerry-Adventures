@@ -49,6 +49,9 @@ public class PincheShot extends Shot {
         xIncrement = increment;
     }
     
-    
+    public void resetHurteableEntities(){
+        notHurtEntities.removeAll(notHurtEntities);
+        notHurtEntities.add(game.jerry);
+    }
     
 }

@@ -44,6 +44,7 @@ public class Bollito extends Enemy{
 
     @Override
     public void updateCreatureStateSpecific() {
+        
         if(health == 0){
             kill();
         }
