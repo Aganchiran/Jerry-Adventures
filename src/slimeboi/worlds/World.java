@@ -24,13 +24,13 @@ import slimeboi.entities.tiles.Tile;
  * @author Javier Pastor Pérez
  */
 public abstract class World {
-    private final String music;
-    private MediaPlayer bgMusic;
+    protected final String music;
+    protected MediaPlayer bgMusic;
     private final String mapURL;
     protected final int width;
     protected final int height;
     
-    
+    public boolean playingKinematic = false;
     
     protected final int[][] map;
     //protected Entity pendingToAdd;

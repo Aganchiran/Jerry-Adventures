@@ -5,9 +5,15 @@
  */
 package slimeboi.entities.creatures.enemies;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.nio.file.Paths;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
@@ -23,6 +29,8 @@ public class Bollito extends Enemy{
     private boolean hitReady = false;
     private boolean previousOnAir = true;
     
+    private final AudioClip stomp;
+    
     private final Pinchita[] pinchitas = new Pinchita[10];
     
     public Bollito(double xPos, double yPos, int earthquakeLoopTime, Game game) {
@@ -31,6 +39,10 @@ public class Bollito extends Enemy{
         for(int i = 0 ; i < pinchitas.length ; i++){
             pinchitas[i] = new Pinchita(0, 0, 0, false, game);
         }
+        
+
+        stomp = new AudioClip(Paths.get("src/slimeboi/resources/Stomp.mp3").toUri().toString());
+        stomp.setVolume(0.6);
         
         earthquakeLoop = new Timeline(new KeyFrame(Duration.millis(earthquakeLoopTime), ea -> {
             
@@ -54,6 +66,8 @@ public class Bollito extends Enemy{
             previousOnAir = false;
             currentAnimation = AssetsBollito.hitGround;
             currentAnimation.setCurrentAnimationFrame(6);
+            
+            stomp.play();
             game.getCamera().shake();
             game.jerry.jumpForce = game.jerry.DEFAULT_JUMP_FORCE/2;
             game.jerry.state.jump();
@@ -69,8 +83,10 @@ public class Bollito extends Enemy{
         if(hitReady && currentAnimation.getCurrentAnimationFrame() == 0){
             hitReady = false;
             currentAnimation = AssetsBollito.hitGround;
-            
+
             new Timeline(new KeyFrame(Duration.millis(currentAnimation.getDurationInMilisFromFrameToFrame(0, 7)), ae -> {
+                
+                stomp.play();
                 game.getCamera().shake();
                 game.jerry.jumpForce = game.jerry.DEFAULT_JUMP_FORCE/2;
                 game.jerry.state.jump();
@@ -82,8 +98,7 @@ public class Bollito extends Enemy{
                         pinchita.setXPos((int) (800 * Math.random()) + 60);
                         pinchita.setYPos(-100 + (int)(100 * Math.random()));
                         game.getWorld().addEntityAtFront(pinchita);
-                    }
-                    if (pinchita.getYIncrement() == 0) {
+                    }else if (pinchita.getYIncrement() == 0) {
                         pinchita.setYIncrement(Math.random() * -8 - 2);
                     }
                 }
@@ -102,12 +117,6 @@ public class Bollito extends Enemy{
 
     private void earthquakeAtack() {
         hitReady = true;
-        /*currentAnimation = AssetsBollito.hitGround;
-        new Timeline(new KeyFrame(Duration.millis(currentAnimation.getDurationInMilis()), ae -> {
-            AssetsBollito.hitGround.setCurrentAnimationFrame(0);
-            currentAnimation = assets.idleRight;
-            currentAnimation.setCurrentAnimationFrame(2);
-        })).play();*/
     }
     
 }

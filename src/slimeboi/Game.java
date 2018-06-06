@@ -156,7 +156,7 @@ public class Game implements Initializable {
     public void listenKeys(){
         canvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, KeyEvent -> {
             KeyManager.pressingKey(KeyEvent);
-            if(!gover)
+            if(!gover && !world.playingKinematic)
             if(KeyEvent.getCode() == KeyCode.ESCAPE){
                 System.out.println(paused);
                 pauseUnpause();
