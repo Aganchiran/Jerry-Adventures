@@ -33,7 +33,7 @@ import slimeboi.entities.tiles.RockVerticalUp;
  * @author Javier Pastor Pérez
  */
 public class BossRoom extends World{
-
+    private Bollito bollito;
     public BossRoom(Game game) {
         super("NONE", "src/slimeboi/resources/BossRoom.txt", 34, 25, game);
         tileSet.add(new CaveTile());//00
@@ -66,7 +66,7 @@ public class BossRoom extends World{
         game.getCamera().downOffset = 64;
         
         new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
-            Bollito bollito = new Bollito(300, -200, 2000, game);
+            bollito = new Bollito(300, -200, 2000, game);
             bollito.setYIncrement(10);
             entities.add(bollito);
             
@@ -76,10 +76,14 @@ public class BossRoom extends World{
                 game.getCamera().setYPos(((int) game.getCamera().getYPos()) + 150);
                 
                 
+                new Timeline(new KeyFrame(Duration.millis(30), eae -> {
+                    game.paused = true;
+                })).play();
+                
                 new Timeline(new KeyFrame(Duration.millis(2000), aea -> {
                     game.getCamera().setFollowJerry(true);
                     game.getCamera().zoom(1);
-                    
+                    game.paused = false;
                 })).play();
             })).play();
         })).play();

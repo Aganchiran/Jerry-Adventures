@@ -57,7 +57,7 @@ public class Game implements Initializable {
     private World world;
     private HUD HUD;
     public Jerry jerry;
-    private boolean paused = false;
+    public boolean paused = false;
     private URL url;
     private ResourceBundle rb;
     private AnimationTimer gameLoop;

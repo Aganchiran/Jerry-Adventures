@@ -30,6 +30,8 @@ public abstract class World {
     protected final int width;
     protected final int height;
     
+    
+    
     protected final int[][] map;
     //protected Entity pendingToAdd;
     protected ArrayList<Entity> pendingToAdd = new ArrayList<>();
