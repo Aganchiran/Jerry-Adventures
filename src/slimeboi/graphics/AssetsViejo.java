@@ -25,6 +25,7 @@ public class AssetsViejo {
     public static final CustomAnimation heart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 1, 0, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     public static final CustomAnimation hurtHeart = new CustomAnimation("slimeboi/resources/JerrySpriteSheet.png", 4, 6, 28, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 15, true);
     
+    public static final CustomAnimation theBigBollito = new CustomAnimation("slimeboi/resources/TheBigBollito.png", 13, 0, 0, 480, 300, 60, true);
     
     //Jerry//
     /*private static final String JERRY_URL = "slimeboi/resources/JerrySpriteSheet.png";

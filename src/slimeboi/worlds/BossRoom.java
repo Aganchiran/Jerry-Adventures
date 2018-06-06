@@ -7,6 +7,9 @@ package slimeboi.worlds;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
 import slimeboi.entities.creatures.enemies.Bollito;
@@ -27,6 +30,7 @@ import slimeboi.entities.tiles.RockUpRight;
 import slimeboi.entities.tiles.RockVerticalCenter;
 import slimeboi.entities.tiles.RockVerticalDown;
 import slimeboi.entities.tiles.RockVerticalUp;
+import slimeboi.graphics.AssetsViejo;
 
 /**
  *
@@ -34,6 +38,13 @@ import slimeboi.entities.tiles.RockVerticalUp;
  */
 public class BossRoom extends World{
     private Bollito bollito;
+    private WritableImage gameSnapshot;
+    private WritableImage shakeSnapshot;
+    
+    private int ShakeXPos = 0;
+    private final Timeline shake;
+    private double changeShakeSign = 1;
+    
     public BossRoom(Game game) {
         super("NONE", "src/slimeboi/resources/BossRoom.txt", 34, 25, game);
         tileSet.add(new CaveTile());//00
@@ -57,6 +68,13 @@ public class BossRoom extends World{
         initializeWorld();
         
         
+        shake = new Timeline(new KeyFrame(Duration.millis(20), ae -> {
+            changeShakeSign *= -1;
+            ShakeXPos += Math.random() * 8 * changeShakeSign;
+            game.getCanvas().getGraphicsContext2D().drawImage(shakeSnapshot, ShakeXPos, 0);
+        }));
+        shake.setCycleCount(5);
+        
     }
 
     @Override
@@ -65,22 +83,93 @@ public class BossRoom extends World{
         game.getCamera().rightOffset = 32;
         game.getCamera().downOffset = 64;
         
-        new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
+        new Timeline(new KeyFrame(Duration.millis(3000), bollitoFall -> {
             bollito = new Bollito(300, -200, 2000, game);
             bollito.setYIncrement(10);
             entities.add(bollito);
             
-            new Timeline(new KeyFrame(Duration.millis(2000), ea -> {
+            new Timeline(new KeyFrame(Duration.millis(2000), Zoom -> {
+                gameSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
                 game.getCamera().setFollowJerry(false);
                 game.getCamera().zoom(2);
                 game.getCamera().setYPos(((int) game.getCamera().getYPos()) + 150);
+                game.getWorld().render(game.getCanvas().getGraphicsContext2D());
                 
                 
-                new Timeline(new KeyFrame(Duration.millis(30), eae -> {
-                    game.paused = true;
+                game.paused = true;
+                
+                
+                new Timeline(new KeyFrame(Duration.millis(1200), the -> {
+                    game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                    game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                    
+                    game.getCamera().zoom(1);
+                    shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                    game.getCamera().zoom(2);
+                    shake.play();
+                    
+                    new Timeline(new KeyFrame(Duration.millis(400), big1 -> {
+                        game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                        game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                    
+                        
+                        game.getCamera().zoom(1);
+                        shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                        game.getCamera().zoom(2);
+                        shake.play();
+                    
+                        new Timeline(new KeyFrame(Duration.millis(1200), big2 -> {
+                            game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                            game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                            
+                            
+                            game.getCamera().zoom(1);
+                            shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                            game.getCamera().zoom(2);
+                            shake.play();
+                            
+                            new Timeline(new KeyFrame(Duration.millis(1000), big3 -> {
+                                game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                                game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                                
+                                game.getCamera().zoom(1);
+                                shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                                game.getCamera().zoom(2);
+                                shake.play();
+                                
+                                new Timeline(new KeyFrame(Duration.millis(1000), big4 -> {
+                                    game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                                    game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                    
+                                    game.getCamera().zoom(1);
+                                    shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                                    game.getCamera().zoom(2);
+                                    shake.play();
+                                    
+                                    new Timeline(new KeyFrame(Duration.millis(1000), w84Big -> {
+                                        Timeline bollitoTitle = new Timeline(new KeyFrame(Duration.millis(300), BOLLITO -> {
+                                            game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
+                                            game.getCanvas().getGraphicsContext2D().drawImage(AssetsViejo.theBigBollito.nextFrame(), 280, 180);
+                                            
+                                            game.getCamera().zoom(1);
+                                            shakeSnapshot = game.getCanvas().snapshot(new SnapshotParameters(), null);
+                                            game.getCamera().zoom(2);
+                                            shake.play();
+                                        })); 
+
+                                        bollitoTitle.setCycleCount(7);
+                                        bollitoTitle.play();
+                                    })).play();
+                                })).play();
+                            })).play();
+                        })).play();
+                    })).play();
                 })).play();
                 
-                new Timeline(new KeyFrame(Duration.millis(2000), aea -> {
+                
+ 
+                
+                new Timeline(new KeyFrame(Duration.millis(8400), aea -> {
                     game.getCamera().setFollowJerry(true);
                     game.getCamera().zoom(1);
                     game.paused = false;
