@@ -111,6 +111,7 @@ public class BossRoom extends World{
             game.getCamera().zoom(2);
             game.getCamera().setYPos(((int) game.getCamera().getYPos()) + 150);
             game.getWorld().render(game.getCanvas().getGraphicsContext2D());
+            game.getCanvas().getGraphicsContext2D().drawImage(gameSnapshot, 0, -150);
 
 
             game.paused = true;
