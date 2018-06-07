@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -60,6 +61,10 @@ public class Bollito extends Enemy{
         
         if(health == 0){
             kill();
+            Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(3),
+                    new KeyValue(game.getWorld().bgMusic.volumeProperty(), 0)));
+            timeline.play();
         }
         
         if(previousOnAir && state == STATE_RIGHT){

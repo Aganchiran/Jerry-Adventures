@@ -128,12 +128,12 @@ public class BossRoom extends World{
         }));
         
         TL4 = new Timeline(new KeyFrame(Duration.millis(7600), big2 -> {
-            stomp.setVolume(0.5);
+            stomp.setVolume(0.65);
             hitLetter();
         }));    
         
         TL5 = new Timeline(new KeyFrame(Duration.millis(8600), big3 -> {
-            stomp.setVolume(0.7);
+            stomp.setVolume(0.75);
             hitLetter();
         })); 
                             
@@ -147,7 +147,7 @@ public class BossRoom extends World{
             bollitoTitle.play();
         }));
           
-        end = new Timeline(new KeyFrame(Duration.millis(13400), aea -> {
+        end = new Timeline(new KeyFrame(Duration.millis(13700), aea -> {
             game.getCamera().setFollowJerry(true);
             game.getCamera().zoom(1);
             game.paused = false;

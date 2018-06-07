@@ -25,7 +25,7 @@ import slimeboi.entities.tiles.Tile;
  */
 public abstract class World {
     protected final String music;
-    protected MediaPlayer bgMusic;
+    public MediaPlayer bgMusic;
     private final String mapURL;
     protected final int width;
     protected final int height;
