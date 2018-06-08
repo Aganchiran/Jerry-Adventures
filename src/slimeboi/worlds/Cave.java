@@ -55,11 +55,12 @@ public class Cave extends World{
         tileSet.add(new RockHorizontalRight());//15
         tileSet.add(new RockSingleBlock());//16
         
-        initializeWorld();
+        //initializeWorld();
     }
 
     @Override
     public void initializeWorld() {
+        bgMusic.play();
         entities.add(new Mikeleton(50, 300, 400, 7000, game));
         entities.add(new Pinchita(10 * 32 - 16, 8 * 32 + 13, 60, true, game));
         entities.add(new Mikeleton(400, 300, 300, 5000, game));

@@ -163,7 +163,7 @@ public class BossRoom extends World{
         
         
         
-        initializeWorld();
+        //initializeWorld();
         
         
         
@@ -176,7 +176,6 @@ public class BossRoom extends World{
         game.getCamera().rightOffset = 32;
         game.getCamera().downOffset = 64;
         AssetsViejo.theBigBollito.setCurrentAnimationFrame(0);
-        bgMusic.stop();
         
         TL0.stop();
         TL0.play();
@@ -208,6 +207,7 @@ public class BossRoom extends World{
             end.play();
         }else{
             playingKinematic = false;
+            bgMusic.play();
         }
         
         firstTime = false;

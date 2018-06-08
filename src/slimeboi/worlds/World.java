@@ -57,7 +57,7 @@ public abstract class World {
 
                 bgMusic.setCycleCount(MediaPlayer.INDEFINITE);
                 bgMusic.setVolume(0.2);
-                bgMusic.play();
+                
             } catch (MalformedURLException ex) {
                 System.err.println("No se ha podido cargar la música");
             }
@@ -88,6 +88,7 @@ public abstract class World {
     }
     
     public void loadWorld(){
+        
         String file = loadMapAsString();
         String[] tileIDs = file.split("\\s+");
         

@@ -55,6 +55,8 @@ public class Game implements Initializable {
     
     private Camera camera;
     private World world;
+    private final World[] worlds = new World[3];
+    private int worldCount = 0;
     private HUD HUD;
     public Jerry jerry;
     public boolean paused = false;
@@ -85,10 +87,15 @@ public class Game implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(3 * 32 - 16, -2 * 32, this);//3 * 32 - 16, -2 * 32
         
-        //world = new Leaflands(this);
-        //world = new Cave(this);
-        world = new Leaflands(this);
-        world.loadWorld();
+        worlds[0] = new Leaflands(this);
+        worlds[1] = new Cave(this);
+        worlds[2] = new Leaflands(this);
+        
+        world = worlds[0];
+        for(World w : worlds){
+            w.loadWorld();
+        }
+        world.initializeWorld();
         world.addEntityAtFront(jerry);
         
         if(AorB)
@@ -230,5 +237,14 @@ public class Game implements Initializable {
     
     public boolean isPaused(){
         return paused;
+    }
+    
+    public void nextWorld(){
+        world.apocalypse();
+        worldCount = (worldCount + 1) % worlds.length;
+        world = worlds[worldCount];
+        world.initializeWorld();
+        jerry.resetJerry();
+        world.addEntityAtFront(jerry);
     }
 }

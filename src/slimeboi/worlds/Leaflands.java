@@ -6,6 +6,7 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
+import slimeboi.entities.Victor;
 import slimeboi.entities.creatures.enemies.BBQSoslime;
 import slimeboi.entities.creatures.enemies.Blancanubes;
 import slimeboi.entities.creatures.enemies.Mikeleton;
@@ -34,7 +35,7 @@ import slimeboi.entities.tiles.SkyTile;
 public class Leaflands extends World{
     
     public Leaflands(Game game) {
-        super("src/slimeboi/resources/Bonetrousle.mp3", "src/slimeboi/resources/GrassLands.txt", 40, 21, game);
+        super("src/slimeboi/resources/TemmieVillage.mp3", "src/slimeboi/resources/LeafLands.txt", 78, 28, game);
         tileSet.add(new SkyTile());//00
         tileSet.add(new EarthUpLeft());//01
         tileSet.add(new EarthUpCenter());//02
@@ -53,16 +54,20 @@ public class Leaflands extends World{
         tileSet.add(new EarthHorizontalRight());//15
         tileSet.add(new EarthSingleBlock());//16
         
-        initializeWorld();
+        //initializeWorld();
     }
 
     @Override
     public void initializeWorld() {
+        bgMusic.play();
         //entities.add(new Blancanubes(480, 75, 150, 6000, game));
-        entities.add(new BBQSoslime(200, 100, 36, 16, 14, 48, game));
-        entities.add(new Blancanubes(350, 460, 450, 5000,game));
+        //entities.add(new BBQSoslime(200, 100, 36, 16, 14, 48, game));
+        //entities.add(new Blancanubes(350, 460, 450, 5000,game));
         //entities.add(new BBQSoslime(600, 500, 36, 16, 14, 48, game));
         //entities.add(new Mikeleton(900, 100, 300, 5000, game));
+        
+        entities.add(new BBQSoslime(35 * 32, 24 * 32, 36, 16, 14, 48, game));
+        entities.add(new Victor(77 * 32, 24 * 32, game));
     }
     
 }
