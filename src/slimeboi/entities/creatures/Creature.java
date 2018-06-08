@@ -16,7 +16,7 @@ import slimeboi.Game;
 import slimeboi.commands.ControlLoader;
 import slimeboi.entities.Entity;
 import slimeboi.entities.creatures.jerry.Jerry;
-import slimeboi.entities.tiles.Tile;
+import slimeboi.tiles.Tile;
 import slimeboi.graphics.Assets;
 import slimeboi.graphics.CustomAnimation;
 
