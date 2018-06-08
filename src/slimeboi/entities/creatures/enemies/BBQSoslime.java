@@ -15,7 +15,9 @@ import slimeboi.graphics.AssetsBBQ;
  */
 public class BBQSoslime extends Enemy {
     
-    
+    private long count = 0;
+    private long secondcount = 0;
+    private boolean shuriken = false;
     
     public BBQSoslime(double xPos, double yPos, double width, double height, double xOffset, double yOffset, Game game){
         super(xPos, yPos, width, height, xOffset, yOffset, 0, 1, new AssetsBBQ(),new ShuriAmmo(game), game);
@@ -24,7 +26,7 @@ public class BBQSoslime extends Enemy {
 
     @Override
     public void updateCreatureStateSpecific(){
-        if(isEated()){
+        if(isEated() && !shuriken){
             
             game.jerry.setAmmo(ammo);
             game.jerry.hasAmmo = true;
@@ -39,13 +41,41 @@ public class BBQSoslime extends Enemy {
             game.jerry.hurt();
         }
         
-        if(game.jerry.getXPos() > this.getXPos())
+        if(game.jerry.getXPos() > this.getXPos() && !shuriken){
             state = STATE_RIGHT;
-        else if(game.jerry.getXPos() <= this.getXPos())
-            state = STATE_LEFT;
+        } 
+        else if(game.jerry.getXPos() <= this.getXPos() && !shuriken){
+             state = STATE_LEFT;
+        }
            
         
-        state.move();
+        if(!shuriken){
+            if(count!=84)
+                count++;
+            
+            state.idle(); 
+            if(count == 84) {
+                secondcount++;
+                if(secondcount == 85){
+                    shuriken = true;
+                    secondcount = 0;
+                }
+       
+            }
+        } else {
+            state.move();
+            count--;
+             
+            if(count == 0){
+             shuriken = false;
+             
+            }
+        }
+        
+             
+           
+        
+        
     }
     
     

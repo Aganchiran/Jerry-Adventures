@@ -12,17 +12,17 @@ package slimeboi.graphics;
 public class AssetsBBQ extends Assets {
     private static final String URL = "slimeboi/resources/BBQSprite.png";
     
-    public static final CustomAnimation NeedlesOutR = new CustomAnimation(URL, 21, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
+    public static final CustomAnimation NeedlesOutR = new CustomAnimation(URL, 42, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, true);
     public static final CustomAnimation NeedlesInR = new CustomAnimation(URL, 21, 0, 2, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
     
-    public static final CustomAnimation NeedlesOutL = new CustomAnimation(URL, 21, 0, 5, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
+    public static final CustomAnimation NeedlesOutL = new CustomAnimation(URL, 42, 0, 5, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, true);
     public static final CustomAnimation NeedlesInL = new CustomAnimation(URL, 21, 0, 7, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, false);
     
     public AssetsBBQ(){
         super.idleRight = new CustomAnimation(URL, 1, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, false);
         super.idleLeft = new CustomAnimation(URL, 1, 0, 5, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, false);
-        super.right = super.idleRight;
-        super.left = super.idleLeft;
+        super.right = NeedlesOutR;
+        super.left = NeedlesOutL;
         super.onAirRight = super.idleRight;
         super.onAirLeft = super.idleLeft;
         super.dieRight = super.idleRight;

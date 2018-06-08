@@ -87,7 +87,7 @@ public class Game implements Initializable {
         
         //world = new Leaflands(this);
         //world = new Cave(this);
-        world = new BossRoom(this);
+        world = new Leaflands(this);
         world.loadWorld();
         world.addEntityAtFront(jerry);
         
