@@ -21,8 +21,8 @@ public class AssetsBBQ extends Assets {
     public AssetsBBQ(){
         super.idleRight = new CustomAnimation(URL, 1, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, false);
         super.idleLeft = new CustomAnimation(URL, 1, 0, 5, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 60, false);
-        super.right = NeedlesOutR;
-        super.left = NeedlesOutL;
+        super.right = new CustomAnimation(URL, 42, 0, 0, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, true);
+        super.left = new CustomAnimation(URL, 42, 0, 5, DEFAULT_ANIMATION_WIDTH, DEFAULT_ANIMATION_HEIGHT, 24, true);
         super.onAirRight = super.idleRight;
         super.onAirLeft = super.idleLeft;
         super.dieRight = super.idleRight;

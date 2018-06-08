@@ -82,8 +82,10 @@ public abstract class World {
             }
         }
         
-        for(int i = entities.size() - 1; i >= 0 ; i--){
-            entities.get(i).updateState();
+        if(!entities.isEmpty()){
+            for(int i = entities.size() - 1; i >= 0 ; i--){
+                entities.get(i).updateState();
+            }
         }
     }
     

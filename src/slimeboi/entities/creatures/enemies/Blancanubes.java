@@ -16,8 +16,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import slimeboi.Game;
-import slimeboi.entities.creatures.jerry.ammo.SieteRayitos;
-import slimeboi.entities.creatures.jerry.ammo.ThunderAmmo;
+import slimeboi.entities.creatures.ammo.SieteRayitos;
+import slimeboi.entities.creatures.ammo.ThunderAmmo;
 import slimeboi.graphics.AssetsBlancanubes;
 
 /**

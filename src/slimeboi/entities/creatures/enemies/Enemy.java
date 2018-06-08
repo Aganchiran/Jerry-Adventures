@@ -8,7 +8,7 @@ package slimeboi.entities.creatures.enemies;
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
 import slimeboi.entities.creatures.Creature;
-import slimeboi.entities.creatures.jerry.ammo.Ammo;
+import slimeboi.entities.creatures.ammo.Ammo;
 import slimeboi.graphics.Assets;
 
 /**

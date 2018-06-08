@@ -17,8 +17,8 @@ import slimeboi.Game;
 import slimeboi.commands.ControlLoader;
 import static slimeboi.commands.DefaultControls.configuration;
 import slimeboi.entities.creatures.Creature;
-import slimeboi.entities.creatures.jerry.ammo.Ammo;
-import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
+import slimeboi.entities.creatures.ammo.Ammo;
+import slimeboi.entities.creatures.ammo.NoAmmo;
 import slimeboi.graphics.AssetsFat;
 import slimeboi.graphics.AssetsJerry;
 import slimeboi.graphics.AssetsJerryBlink;
@@ -30,8 +30,8 @@ import slimeboi.input.KeyManager;
  * @author Javier Pastor Pérez
  */
 public class Jerry extends Creature{
-    private final double spawnX;
-    private final double spawnY;
+    private double spawnX;
+    private double spawnY;
     
     private boolean lastStateOnAir = true;
     private double lastYIncrement = 0;
@@ -44,7 +44,7 @@ public class Jerry extends Creature{
     private final GraphicsContext gc;
     private Ammo ammo;
         
-    private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 32);
+    private final BoundingBox biteHitBox = new BoundingBox(5, 14, 55, 35);
     
     public final int JERRY_DEFAULT_SPEED = 1;
     public final AssetsJerry ASSETS_NORMAL;
@@ -262,7 +262,10 @@ public class Jerry extends Creature{
         health = MAX_HEALTH;
     }
     
-    
+    public void setSpawn(double x, double y){
+        spawnX = x;
+        spawnY = y;
+    }
     
     
 } 

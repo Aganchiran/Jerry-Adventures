@@ -17,7 +17,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import slimeboi.Game;
-import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
+import slimeboi.entities.creatures.ammo.NoAmmo;
 import slimeboi.graphics.AssetsBollito;
 
 /**

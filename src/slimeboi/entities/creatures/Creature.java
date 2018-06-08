@@ -71,7 +71,7 @@ public abstract class Creature extends Entity{
         //game.getCanvas().getGraphicsContext2D().setFill(Paint.valueOf("black"));
         //game.getCanvas().getGraphicsContext2D().fillRect(getCollisionBounds(0, 0).getMinX() - game.getCamera().getXPos(), getCollisionBounds(0, 0).getMinY() - game.getCamera().getYPos(), getCollisionBounds(0, 0).getWidth(), getCollisionBounds(0, 0).getHeight());
         //game.getCanvas().getGraphicsContext2D().setFill(Color.rgb(255, 0, 0, 0.5));
-        // if(this instanceof Jerry) game.getCanvas().getGraphicsContext2D().fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
+        //if(this instanceof Jerry) game.getCanvas().getGraphicsContext2D().fillRect(((Jerry)this).getBiteBounds().getMinX() - game.getCamera().getXPos(), ((Jerry)this).getBiteBounds().getMinY() - game.getCamera().getYPos(), ((Jerry)this).getBiteBounds().getWidth(), ((Jerry)this).getBiteBounds().getHeight());
         
         updateCreatureStateSpecific();
         render(game.getCanvas().getGraphicsContext2D());

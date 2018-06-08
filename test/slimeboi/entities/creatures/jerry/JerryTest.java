@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import slimeboi.Game;
-import slimeboi.entities.creatures.jerry.ammo.Ammo;
+import slimeboi.entities.creatures.ammo.Ammo;
 
 /**
  *

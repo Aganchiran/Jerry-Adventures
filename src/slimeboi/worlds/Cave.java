@@ -6,6 +6,7 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
+import slimeboi.entities.Victor;
 import slimeboi.entities.creatures.enemies.BBQSoslime;
 import slimeboi.entities.creatures.enemies.Blancanubes;
 import slimeboi.entities.creatures.enemies.Mikeleton;
@@ -86,7 +87,9 @@ public class Cave extends World{
         
         entities.add(new Mikeleton(76 * 32, 17 * 32, 160, 5000, game));
         
-        entities.add(new Pinchita(91 * 32 - 16, 1 * 32 + 13, -10, true, game));        
+        entities.add(new Pinchita(91 * 32 - 16, 1 * 32 + 13, -10, true, game));
+        
+        entities.add(new Victor(97 * 32, 26 * 32, 64, 64, game));
     }
     
 }

@@ -19,7 +19,7 @@ import slimeboi.commands.DefaultControls;
 import slimeboi.commands.LeftMovement;
 import slimeboi.graphics.Assets;
 import slimeboi.graphics.AssetsViejo;
-import slimeboi.worlds.Leaflands;
+import slimeboi.worlds.TutoriaLands;
 import slimeboi.worlds.TestWorld;
 import slimeboi.worlds.World;
 

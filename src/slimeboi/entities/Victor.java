@@ -13,8 +13,8 @@ import slimeboi.Game;
  */
 public class Victor extends Entity{
 
-    public Victor(double xPos, double yPos, Game game) {
-        super(xPos, yPos, 64, 64, 0, 0, game);
+    public Victor(double xPos, double yPos, double width, double height, Game game) {
+        super(xPos, yPos, width, height, 0, 0, game);
     }
 
     @Override

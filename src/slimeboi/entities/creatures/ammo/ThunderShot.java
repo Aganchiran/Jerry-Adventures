@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slimeboi.entities.creatures.jerry.ammo;
+package slimeboi.entities.creatures.ammo;
 
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
@@ -17,7 +17,7 @@ import slimeboi.graphics.AssetsViejo;
 public class ThunderShot extends Shot{
     
     public ThunderShot(double xPos, double yPos, Game game) {
-        super(xPos, yPos, 825, 20, 7, 21, AssetsViejo.thunderShotR, game);
+        super(xPos, yPos, 1825, 20, 7, 21, AssetsViejo.thunderShotR, game);
     }
 
     @Override

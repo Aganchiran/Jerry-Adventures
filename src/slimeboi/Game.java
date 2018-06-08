@@ -39,7 +39,8 @@ import slimeboi.graphics.Camera;
 import slimeboi.input.KeyManager;
 import slimeboi.worlds.BossRoom;
 import slimeboi.worlds.Cave;
-import slimeboi.worlds.Leaflands;
+import slimeboi.worlds.LeafLands;
+import slimeboi.worlds.TutoriaLands;
 import slimeboi.worlds.World;
 
 /**
@@ -55,7 +56,7 @@ public class Game implements Initializable {
     
     private Camera camera;
     private World world;
-    private final World[] worlds = new World[3];
+    private final World[] worlds = new World[4];
     private int worldCount = 0;
     private HUD HUD;
     public Jerry jerry;
@@ -87,16 +88,21 @@ public class Game implements Initializable {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         jerry = new Jerry(3 * 32 - 16, -2 * 32, this);//3 * 32 - 16, -2 * 32
         
-        worlds[0] = new Leaflands(this);
-        worlds[1] = new Cave(this);
-        worlds[2] = new Leaflands(this);
+        worlds[0] = new TutoriaLands(this);
+        worlds[1] = new LeafLands(this);
+        worlds[2] = new Cave(this);
+        worlds[3] = new BossRoom(this);
         
-        world = worlds[0];
+        world = worlds[1];
+        
         for(World w : worlds){
             w.loadWorld();
         }
         world.initializeWorld();
         world.addEntityAtFront(jerry);
+        
+        
+        
         
         if(AorB)
             DefaultControls.LoadControlsA(this);
@@ -107,7 +113,7 @@ public class Game implements Initializable {
         HUD = new HUD(this);
         
         
-        
+        jerry.resetJerry();
         
         //GAME LOOP//
         gameLoop = new AnimationTimer()
