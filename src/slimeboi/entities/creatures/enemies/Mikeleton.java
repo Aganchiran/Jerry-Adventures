@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import slimeboi.Game;
-import slimeboi.entities.creatures.ammo.BoneAmmo;
-import slimeboi.entities.creatures.ammo.JackboneFive;
+import slimeboi.entities.creatures.jerry.ammo.BoneAmmo;
+import slimeboi.entities.creatures.jerry.ammo.JackboneFive;
 import slimeboi.graphics.AssetsMikeleton;
 import slimeboi.graphics.CustomAnimation;
 

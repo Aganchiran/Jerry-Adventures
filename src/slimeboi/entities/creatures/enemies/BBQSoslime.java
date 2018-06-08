@@ -6,7 +6,7 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
-import slimeboi.entities.creatures.ammo.ShuriAmmo;
+import slimeboi.entities.creatures.jerry.ammo.ShuriAmmo;
 import slimeboi.graphics.AssetsBBQ;
 
 /**

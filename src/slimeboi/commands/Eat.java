@@ -12,7 +12,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import slimeboi.entities.creatures.Creature;
 import slimeboi.entities.creatures.jerry.Jerry;
-import slimeboi.entities.creatures.ammo.NoAmmo;
+import slimeboi.entities.creatures.jerry.ammo.NoAmmo;
 import slimeboi.graphics.AssetsJerry;
 
 /**

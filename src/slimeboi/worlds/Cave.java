@@ -90,6 +90,8 @@ public class Cave extends World{
         entities.add(new Pinchita(91 * 32 - 16, 1 * 32 + 13, -10, true, game));
         
         entities.add(new Victor(97 * 32, 26 * 32, 64, 64, game));
+        
+        game.jerry.setSpawn(3 * 32 - 16, -2 * 32);
     }
     
 }

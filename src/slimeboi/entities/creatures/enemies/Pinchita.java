@@ -6,7 +6,7 @@
 package slimeboi.entities.creatures.enemies;
 
 import slimeboi.Game;
-import slimeboi.entities.creatures.ammo.PincheAmmo;
+import slimeboi.entities.creatures.jerry.ammo.PincheAmmo;
 import slimeboi.graphics.AssetsPinchita;
 
 /**

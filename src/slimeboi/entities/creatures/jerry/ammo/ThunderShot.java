@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slimeboi.entities.creatures.ammo;
+package slimeboi.entities.creatures.jerry.ammo;
 
 import javafx.scene.paint.Paint;
 import slimeboi.Game;
