@@ -6,8 +6,8 @@
 package slimeboi.worlds;
 
 import slimeboi.Game;
-import slimeboi.tiles.NotSolidTestTile;
-import slimeboi.tiles.SolidTestTile;
+import slimeboi.entities.tiles.NotSolidTestTile;
+import slimeboi.entities.tiles.SolidTestTile;
 
 /**
  *

@@ -17,7 +17,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import slimeboi.Game;
 import slimeboi.entities.Entity;
-import slimeboi.tiles.Tile;
+import slimeboi.entities.tiles.Tile;
 
 /**
  *
